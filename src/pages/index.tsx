@@ -2,9 +2,10 @@ import NavbarBottom from '@/components/navbar/navbar.bottom';
 import VideoMain from '@/components/video/video.main';
 import CONSTS_SISTEMA from '@/utils/consts/outros/sistema';
 import gerarItemRandom from '@/utils/misc/gerarItemRandom';
+import gerarNumeroAleatorio from '@/utils/misc/gerarNumeroAleatorio';
 import { iPexel, iPexelVideo } from '@/utils/types/iPexel';
 import Head from 'next/head';
-import { createClient } from 'pexels';
+import { createClient } from 'pexels'; // https://www.pexels.com/api/documentation/
 import { Fragment, useEffect, useState } from 'react';
 import Styles from '../styles/home.module.scss';
 
@@ -13,25 +14,30 @@ export default function Home() {
     const [videos, setVideos] = useState<iPexelVideo[]>([]);
     const [videosLoaded, setVideosLoaded] = useState(false);
 
-    async function getVideos(qtdVideos: number) {
+    function getVideos() {
         const client = createClient(CONSTS_SISTEMA.KEY_PEXELS_API);
 
-        // const queries = ['Funny', 'Art', 'Animals', 'Coding', 'Space'];
-        const queries = ['Cat', 'Dog'];
+        const queries = ['Funny', 'Art', 'Animals', 'Coding', 'Space'];
         const query = gerarItemRandom(queries);
 
         client.videos
-            .search({ query, per_page: qtdVideos })
+            .search({ query, per_page: 10, page: gerarNumeroAleatorio(1, 20) })
             .then((result) => {
                 const resultado = result as unknown as iPexel;
+                console.log(resultado);
+
                 setVideos((oldVideos: any) => [...oldVideos, ...resultado.videos]);
                 setVideosLoaded(true);
             })
-            .catch((e) => setVideosLoaded(false));
+            .catch((e: any) => {
+                console.log('Erro: ', e);
+                setVideosLoaded(false);
+                getVideos(); // Recursão;
+            });
     }
 
     useEffect(() => {
-        getVideos(3);
+        getVideos();
     }, []);
 
     return (
@@ -54,7 +60,7 @@ export default function Home() {
                                             autorLink={v.user.url}
                                             videoUrl={v.video_files[0].link}
                                             indexUltimoVideo={videos.length - 1}
-                                            getVideos={getVideos}
+                                            getVideos={() => getVideos()}
                                         />
                                     ))
                                 }

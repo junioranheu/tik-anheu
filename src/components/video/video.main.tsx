@@ -9,23 +9,25 @@ interface iParametros {
     autorLink: string;
     videoUrl: string;
     indexUltimoVideo: number;
-    getVideos: (qtdVideos: number) => void;
+    getVideos: () => void;
 }
 
 export default function VideoMain({ index, autorNome, autorLink, videoUrl, indexUltimoVideo, getVideos }: iParametros) {
 
     const video = useRef<HTMLVideoElement>(null);
     const isInViewport = useIsInViewport(video);
-    const [loadNewVidsAt, setloadNewVidsAt] = useState(indexUltimoVideo);
+    const [carregarNovosVideoEm, setCarregarNovosVideoEm] = useState(indexUltimoVideo);
 
     if (isInViewport) {
         setTimeout(() => {
             video?.current?.play();
         }, 1000);
 
-        if (loadNewVidsAt === Number(video?.current?.id)) {
-            setloadNewVidsAt((prev) => prev + 2);
-            getVideos(3);
+        // console.log('loadNewVidsAt: ', loadNewVidsAt);
+        // console.log('video?.current?.id: ', video?.current?.id);
+        if (carregarNovosVideoEm === Number(video?.current?.id)) {
+            setCarregarNovosVideoEm((prev) => prev + 2);
+            getVideos();
         }
     }
 
