@@ -1,8 +1,6 @@
 import NavbarBottom from '@/components/navbar/navbar.bottom';
 import VideoMain from '@/components/video/video.main';
 import CONSTS_SISTEMA from '@/utils/consts/outros/sistema';
-import { Aviso } from '@/utils/misc/aviso';
-import gerarEmojiAleatorio from '@/utils/misc/gerarEmojiAleatorio';
 import gerarItemRandom from '@/utils/misc/gerarItemRandom';
 import gerarNumeroAleatorio from '@/utils/misc/gerarNumeroAleatorio';
 import { iPexels, iPexelsVideo } from '@/utils/types/iPexels';
@@ -32,13 +30,13 @@ export default function Home() {
                 setVideosLoaded(true);
 
                 if (process.env.NODE_ENV === 'development') {
-                    Aviso.toast(`${resultado.videos.length} novos vídeos baixados`, 3500, gerarEmojiAleatorio(), true);
+                   // Aviso.toast(`${resultado.videos.length} novos vídeos baixados`, 3500, gerarEmojiAleatorio(), true);
                 }
             })
             .catch((e: any) => {
                 if (process.env.NODE_ENV === 'development') {
-                    console.log('Houve um erro ao carregar os vídeos. Forçando recursão', e);
-                    Aviso.toast('Houve um erro ao carregar os vídeos. Forçando recursão', 3500, gerarEmojiAleatorio(), true);
+                    console.log('Houve um erro ao carregar os vídeos. Forçando recursão. Key alterada para CONSTS_SISTEMA.KEY_PEXELS_API_2', e);
+                    // Aviso.toast('Houve um erro ao carregar os vídeos. Forçando recursão', 3500, gerarEmojiAleatorio(), true);
                 }
 
                 setVideosLoaded(false);

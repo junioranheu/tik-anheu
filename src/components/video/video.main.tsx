@@ -20,8 +20,7 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, index
 
     async function verificarNecessidadeGetNovosVideos() {
         if (process.env.NODE_ENV === 'development') {
-            console.log('carregarNovosVideoEm: ', carregarNovosVideoEm);
-            console.log('video?.current?.id: ', video?.current?.id);
+            console.log('carregarNovosVideoEm: ', carregarNovosVideoEm, ' | video?.current?.id: ', video?.current?.id);
         }
 
         if (carregarNovosVideoEm === Number(video?.current?.id)) {
