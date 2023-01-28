@@ -1,5 +1,5 @@
 import Styles from '@/components/navbar/styles/navbar.bottom.module.scss';
-
+ 
 export default function NavbarBottom() {
     return (
         <nav className={Styles.navbarBottom}>
