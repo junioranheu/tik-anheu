@@ -3,42 +3,43 @@ import VideoMain from '@/components/video/video.main';
 import CONSTS_SISTEMA from '@/utils/consts/outros/sistema';
 import gerarItemRandom from '@/utils/misc/gerarItemRandom';
 import gerarNumeroAleatorio from '@/utils/misc/gerarNumeroAleatorio';
-import { iPexel, iPexelVideo } from '@/utils/types/iPexel';
+import { iPexels, iPexelsVideo } from '@/utils/types/iPexels';
 import Head from 'next/head';
 import { createClient } from 'pexels'; // https://www.pexels.com/api/documentation/
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useCallback, useEffect, useState } from 'react';
 import Styles from '../styles/home.module.scss';
 
 export default function Home() {
 
-    const [videos, setVideos] = useState<iPexelVideo[]>([]);
+    const [keyPexelsAPI, setKeyPexelsAPI] = useState<string>(CONSTS_SISTEMA.KEY_PEXELS_API_1);
+    const [videos, setVideos] = useState<iPexelsVideo[]>([]);
     const [videosLoaded, setVideosLoaded] = useState(false);
 
-    function getVideos() {
-        const client = createClient(CONSTS_SISTEMA.KEY_PEXELS_API);
+    const getVideos = useCallback(async () => {
+        const client = createClient(keyPexelsAPI);
 
-        const queries = ['Funny', 'Art', 'Animals', 'Coding', 'Space'];
+        // const queries = ['Funny', 'Art', 'Animals', 'Coding', 'Space'];
+        const queries = ['Cats', 'Dogs', 'Monkeys'];
         const query = gerarItemRandom(queries);
 
-        client.videos
-            .search({ query, per_page: 10, page: gerarNumeroAleatorio(1, 20) })
+        await client.videos
+            .search({ query, per_page: 3, page: gerarNumeroAleatorio(1, 20) })
             .then((result) => {
-                const resultado = result as unknown as iPexel;
-                console.log(resultado);
-
-                setVideos((oldVideos: any) => [...oldVideos, ...resultado.videos]);
+                const resultado = result as unknown as iPexels;
+                setVideos((oldVideos: iPexelsVideo[]) => [...oldVideos, ...resultado.videos]);
                 setVideosLoaded(true);
             })
             .catch((e: any) => {
-                console.log('Erro: ', e);
+                process.env.NODE_ENV === 'development' && console.log('Houve um erro ao carregar os vídeos. Forçando recursão', e);
                 setVideosLoaded(false);
+                setKeyPexelsAPI(CONSTS_SISTEMA.KEY_PEXELS_API_2);
                 getVideos(); // Recursão;
             });
-    }
+    }, [keyPexelsAPI]);
 
     useEffect(() => {
         getVideos();
-    }, []);
+    }, [getVideos]);
 
     return (
         <Fragment>
@@ -52,7 +53,7 @@ export default function Home() {
                         videos?.length > 0 ? (
                             <Fragment>
                                 {
-                                    videos?.map((v: iPexelVideo, id: number) => (
+                                    videos?.map((v: iPexelsVideo, id: number) => (
                                         <VideoMain
                                             key={id}
                                             index={id}

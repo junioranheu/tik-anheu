@@ -9,7 +9,7 @@ interface iParametros {
     autorLink: string;
     videoUrl: string;
     indexUltimoVideo: number;
-    getVideos: () => void;
+    getVideos: () => Promise<void>;
 }
 
 export default function VideoMain({ index, autorNome, autorLink, videoUrl, indexUltimoVideo, getVideos }: iParametros) {
@@ -18,18 +18,28 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, index
     const isInViewport = useIsInViewport(video);
     const [carregarNovosVideoEm, setCarregarNovosVideoEm] = useState(indexUltimoVideo);
 
+    async function verificarNecessidadeGetNovosVideos() {
+        // console.log('carregarNovosVideoEm: ', carregarNovosVideoEm);
+        // console.log('video?.current?.id: ', video?.current?.id);
+        if (carregarNovosVideoEm === Number(video?.current?.id)) {
+            setCarregarNovosVideoEm((prev) => prev + 2);
+            await getVideos();
+        }
+    }
+
     if (isInViewport) {
         setTimeout(() => {
             video?.current?.play();
         }, 1000);
 
-        // console.log('loadNewVidsAt: ', loadNewVidsAt);
-        // console.log('video?.current?.id: ', video?.current?.id);
-        if (carregarNovosVideoEm === Number(video?.current?.id)) {
-            setCarregarNovosVideoEm((prev) => prev + 2);
-            getVideos();
-        }
+        verificarNecessidadeGetNovosVideos();
     }
+
+    useEffect(() => {
+        if (!isInViewport) {
+            video?.current?.pause();  // Se o vídeo não estiver mais sendo visualizado (!isInViewport), pare-o;
+        }
+    }, [isInViewport]);
 
     function togglePlay() {
         const currentVideo = video?.current;
@@ -40,12 +50,6 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, index
             currentVideo?.pause();
         }
     }
-
-    useEffect(() => {
-        if (!isInViewport) {
-            video?.current?.pause();
-        }
-    }, [isInViewport]);
 
     return (
         <section className={Styles.sessaoVideo}>

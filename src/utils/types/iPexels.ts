@@ -1,13 +1,13 @@
-export interface iPexel {
+export interface iPexels {
     next_page: string;
     page: number;
     per_page: number;
     total_results: number;
     url: string;
-    videos: iPexelVideo[];
+    videos: iPexelsVideo[];
 }
 
-export interface iPexelVideo {
+export interface iPexelsVideo {
     avg_color: any;
     duration: number;
     full_res: any;
