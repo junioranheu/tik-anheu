@@ -10,7 +10,7 @@
     align-items: center;
 
     .video {
-        background-color: coral;
+        // background-color: coral;
         position: absolute;
 
         height: 100%;
@@ -22,21 +22,31 @@
 
 /* =-=-=-=-=-=-=-=-=-=-= Media queries =-=-=-=-=-=-=-=-=-=-= */
 /* hi-res laptops and desktops */
-@media (max-width:1281px) {}
-
-/* big landscape tablets, laptops, and desktops */
-@media (max-width:1025px) {
+@media (max-width:1281px) {
     .sessaoVideo {
         .video {
             height: 100%;
-            width: 100%;
+            max-width: 50%;
+            min-width: 50%;
             object-fit: cover;
         }
     }
 }
 
+/* big landscape tablets, laptops, and desktops */
+@media (max-width:1025px) {}
+
 /* tablet, landscape iPad, lo-res laptops ands desktops */
-@media (max-width:801px) {}
+@media (max-width:801px) {
+    .sessaoVideo {
+        .video {
+            height: 100%;
+            max-width: 100%;
+            min-width: 100%;
+            object-fit: cover;
+        }
+    }
+}
 
 /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
 @media (max-width:600px) {}
