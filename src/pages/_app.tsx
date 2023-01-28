@@ -4,6 +4,7 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { Fragment, useEffect, useState } from 'react';
+import { Toaster } from 'react-hot-toast';
 
 export default function App({ Component, pageProps }: AppProps) {
 
@@ -63,6 +64,10 @@ export default function App({ Component, pageProps }: AppProps) {
                     <meta name='author' content='@junioranheu' />
                     <meta name='theme-color' content='#105EAA' />
                 </Head>
+
+                <div className='toaster'>
+                    <Toaster />
+                </div>
 
                 <Component {...pageProps} />
             </Fragment>

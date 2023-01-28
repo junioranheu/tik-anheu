@@ -1,6 +1,8 @@
 import NavbarBottom from '@/components/navbar/navbar.bottom';
 import VideoMain from '@/components/video/video.main';
 import CONSTS_SISTEMA from '@/utils/consts/outros/sistema';
+import { Aviso } from '@/utils/misc/aviso';
+import gerarEmojiAleatorio from '@/utils/misc/gerarEmojiAleatorio';
 import gerarItemRandom from '@/utils/misc/gerarItemRandom';
 import gerarNumeroAleatorio from '@/utils/misc/gerarNumeroAleatorio';
 import { iPexels, iPexelsVideo } from '@/utils/types/iPexels';
@@ -30,7 +32,11 @@ export default function Home() {
                 setVideosLoaded(true);
             })
             .catch((e: any) => {
-                process.env.NODE_ENV === 'development' && console.log('Houve um erro ao carregar os vídeos. Forçando recursão', e);
+                if (process.env.NODE_ENV === 'development') {
+                    console.log('Houve um erro ao carregar os vídeos. Forçando recursão', e);
+                    Aviso.toast('Houve um erro ao carregar os vídeos. Forçando recursão', 3500, gerarEmojiAleatorio(), true);
+                }
+
                 setVideosLoaded(false);
                 setKeyPexelsAPI(CONSTS_SISTEMA.KEY_PEXELS_API_2);
                 getVideos(); // Recursão;

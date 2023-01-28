@@ -23,3 +23,9 @@ body {
     color: #fff;
     font-family: 'Helvetica Neue', sans-serif;
 }
+
+/* =-=-=-=-=-=-=-=-=-=-= react-hot-toast =-=-=-=-=-=-=-=-=-=-= */
+.toaster {
+    position: fixed !important;
+    z-index: 999999999 !important;
+}
