@@ -30,6 +30,10 @@ export default function Home() {
                 const resultado = result as unknown as iPexels;
                 setVideos((oldVideos: iPexelsVideo[]) => [...oldVideos, ...resultado.videos]);
                 setVideosLoaded(true);
+
+                if (process.env.NODE_ENV === 'development') {
+                    Aviso.toast(`${resultado.videos.length} novos vídeos baixados`, 3500, gerarEmojiAleatorio(), true);
+                }
             })
             .catch((e: any) => {
                 if (process.env.NODE_ENV === 'development') {

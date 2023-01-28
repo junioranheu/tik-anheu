@@ -1,9 +1,7 @@
 :root {
     --preto: #1A1A1A;
+    --super-preto: #000000;
     --branco: rgba(255, 255, 255, 0.85);
-    --cor-1: #cdb4db;
-    --cor-2: #ffc8dd;
-    --cor-3: #ffafcc;
 }
 
 * {
@@ -20,7 +18,7 @@ html,
 body {
     height: 100vh;
     overflow: hidden;
-    color: #fff;
+    color: var(--preto);
     font-family: 'Helvetica Neue', sans-serif;
 }
 
