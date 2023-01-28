@@ -30,10 +30,10 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, index
     }
 
     function togglePlay() {
-        let currentVideo = video.current;
+        const currentVideo = video?.current;
 
         if (currentVideo?.paused) {
-            currentVideo.play();
+            currentVideo?.play();
         } else {
             currentVideo?.pause();
         }
@@ -48,12 +48,13 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, index
     return (
         <section className={Styles.sessaoVideo}>
             <video
-                muted
-                className={Styles.video}
                 ref={video}
-                onClick={() => togglePlay()}
                 id={index.toString()}
-                autoPlay={index === 1}
+                className={Styles.video}
+                onClick={() => togglePlay()}
+                muted
+                autoPlay
+                loop
             >
                 <source src={videoUrl} type='video/mp4' />
             </video>

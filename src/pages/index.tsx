@@ -13,10 +13,11 @@ export default function Home() {
     const [videos, setVideos] = useState<iPexelVideo[]>([]);
     const [videosLoaded, setVideosLoaded] = useState(false);
 
-    function getVideos(qtdVideos: number) {
+    async function getVideos(qtdVideos: number) {
         const client = createClient(CONSTS_SISTEMA.KEY_PEXELS_API);
 
-        const queries = ['Funny', 'Art', 'Animals', 'Coding', 'Space'];
+        // const queries = ['Funny', 'Art', 'Animals', 'Coding', 'Space'];
+        const queries = ['Cat', 'Dog'];
         const query = gerarItemRandom(queries);
 
         client.videos
@@ -60,7 +61,7 @@ export default function Home() {
                             </Fragment>
                         ) : (
                             <Fragment>
-                                <h1>Ops... parece que não há nenhum conteúdo para mostrar agora!</h1>
+                                <h1 style={{ color: 'coral' }}>Ops... parece que não há nenhum conteúdo para mostrar agora!</h1>
                             </Fragment>
                         )}
                 </section>

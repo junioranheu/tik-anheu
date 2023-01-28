@@ -1,9 +1,8 @@
 .sessaoVideo {
     height: 100vh;
     scroll-snap-align: start;
-    background: #000;
+    background: var(--cor-1);
     position: relative;
-    border: 1px solid transparent;
 
     .video {
         position: absolute;

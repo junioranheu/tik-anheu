@@ -1,5 +1,5 @@
 const CONSTS_SISTEMA = {
-    NOME_SISTEMA: 'TikAnheu',
+    NOME_SISTEMA: '@TikAnheu',
     SLOGAN_SISTEMA: '',
     DESCRICAO_SISTEMA: 'xxx //dev @junioranheu',
     VERSAO_SISTEMA: 'Beta 1',
