@@ -1,3 +1,5 @@
+import Styles from '@/components/video/styles/video.detalhes.module.scss';
+
 interface iParametros {
     autorNome: string;
     autorLink: string;
@@ -6,9 +8,9 @@ interface iParametros {
 
 export default function VideoDetalhes({ autorNome, autorLink, togglePlay }: iParametros) {
     return (
-        <div className='video-content' onClick={togglePlay}>
+        <div className={Styles.detalhes} onClick={togglePlay}>
             <p>@{autorNome}</p>
-            
+
             <p>
                 Video by <a href={autorLink}>{autorNome}</a> on Pexel
             </p>

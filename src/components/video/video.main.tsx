@@ -1,3 +1,4 @@
+import Styles from '@/components/video/styles/video.main.module.scss';
 import useIsInViewport from '@/hooks/useIsInViewPort';
 import { useEffect, useRef, useState } from 'react';
 import VideoDetalhes from './video.detalhes';
@@ -45,12 +46,12 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, index
     }, [isInViewport]);
 
     return (
-        <div className='slider-children'>
+        <section className={Styles.sessaoVideo}>
             <video
                 muted
-                className='video'
+                className={Styles.video}
                 ref={video}
-                onClick={togglePlay}
+                onClick={() => togglePlay()}
                 id={index.toString()}
                 autoPlay={index === 1}
             >
@@ -62,6 +63,6 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, index
                 autorLink={autorLink}
                 togglePlay={() => togglePlay()}
             />
-        </div>
+        </section>
     )
 }

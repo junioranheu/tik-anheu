@@ -1,11 +1,11 @@
-import BottomNav from '@/components/bottomNav';
+import NavbarBottom from '@/components/navbar/navbar.bottom';
 import VideoMain from '@/components/video/video.main';
 import CONSTS_SISTEMA from '@/utils/consts/outros/sistema';
 import { iPexel, iPexelVideo } from '@/utils/types/iPexel';
 import Head from 'next/head';
 import { createClient } from 'pexels';
 import { Fragment, useEffect, useState } from 'react';
-// import Styles from '../styles/home.module.scss';
+import Styles from '../styles/home.module.scss';
 
 export default function Home() {
 
@@ -41,8 +41,8 @@ export default function Home() {
                 <title>Início • {CONSTS_SISTEMA.NOME_SISTEMA}</title>
             </Head>
 
-            <section>
-                <div className='slider-container'>
+            <main>
+                <section className={Styles.main}>
                     {
                         videos?.length > 0 ? (
                             <Fragment>
@@ -53,7 +53,7 @@ export default function Home() {
                                             index={id}
                                             autorNome={v.user.name}
                                             autorLink={v.user.url}
-                                            videoUrl={v.video_files[0].link}                
+                                            videoUrl={v.video_files[0].link}
                                             indexUltimoVideo={videos.length - 1}
                                             getVideos={getVideos}
                                         />
@@ -65,10 +65,10 @@ export default function Home() {
                                 <h1>Ops... parece que não há nenhum conteúdo para mostrar agora!</h1>
                             </Fragment>
                         )}
-                </div>
+                </section>
 
-                <BottomNav />
-            </section>
+                <NavbarBottom />
+            </main>
         </Fragment>
     )
 }
