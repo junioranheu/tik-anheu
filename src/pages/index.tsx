@@ -1,6 +1,7 @@
 import NavbarBottom from '@/components/navbar/navbar.bottom';
 import VideoMain from '@/components/video/video.main';
 import CONSTS_SISTEMA from '@/utils/consts/outros/sistema';
+import gerarItemRandom from '@/utils/misc/gerarItemRandom';
 import { iPexel, iPexelVideo } from '@/utils/types/iPexel';
 import Head from 'next/head';
 import { createClient } from 'pexels';
@@ -12,14 +13,11 @@ export default function Home() {
     const [videos, setVideos] = useState<iPexelVideo[]>([]);
     const [videosLoaded, setVideosLoaded] = useState(false);
 
-    function randomQuery() {
-        const queries = ['Funny', 'Art', 'Animals', 'Coding', 'Space'];
-        return queries[Math.floor(Math.random() * queries.length)];
-    };
-
     function getVideos(qtdVideos: number) {
         const client = createClient(CONSTS_SISTEMA.KEY_PEXELS_API);
-        const query = randomQuery();
+
+        const queries = ['Funny', 'Art', 'Animals', 'Coding', 'Space'];
+        const query = gerarItemRandom(queries);
 
         client.videos
             .search({ query, per_page: qtdVideos })

@@ -18,7 +18,7 @@ export default function useIsInViewport(ref: RefObject<HTMLVideoElement>) {
 
         return () => {
             observer.disconnect();
-        };
+        }
     }, [ref, observer]);
 
     return isIntersecting;
