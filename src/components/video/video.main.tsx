@@ -19,8 +19,11 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, index
     const [carregarNovosVideoEm, setCarregarNovosVideoEm] = useState(indexUltimoVideo);
 
     async function verificarNecessidadeGetNovosVideos() {
-        // console.log('carregarNovosVideoEm: ', carregarNovosVideoEm);
-        // console.log('video?.current?.id: ', video?.current?.id);
+        if (process.env.NODE_ENV === 'development') {
+            console.log('carregarNovosVideoEm: ', carregarNovosVideoEm);
+            console.log('video?.current?.id: ', video?.current?.id);
+        }
+
         if (carregarNovosVideoEm === Number(video?.current?.id)) {
             setCarregarNovosVideoEm((prev) => prev + 2);
             await getVideos();

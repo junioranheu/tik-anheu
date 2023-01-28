@@ -15,7 +15,7 @@ export default function Home() {
 
     const [keyPexelsAPI, setKeyPexelsAPI] = useState<string>(CONSTS_SISTEMA.KEY_PEXELS_API_1);
     const [videos, setVideos] = useState<iPexelsVideo[]>([]);
-    const [videosLoaded, setVideosLoaded] = useState(false);
+    const [videosLoaded, setVideosLoaded] = useState<boolean>(false);
 
     const getVideos = useCallback(async () => {
         const client = createClient(keyPexelsAPI);
@@ -43,7 +43,7 @@ export default function Home() {
 
                 setVideosLoaded(false);
                 setKeyPexelsAPI(CONSTS_SISTEMA.KEY_PEXELS_API_2);
-                getVideos(); // Recursão;
+                // getVideos(); // Recursão;
             });
     }, [keyPexelsAPI]);
 
