@@ -1,6 +1,7 @@
 import BottomNav from '@/components/bottomNav';
+import VideoMain from '@/components/video/video.main';
 import CONSTS_SISTEMA from '@/utils/consts/outros/sistema';
-import { iPexel } from '@/utils/types/iPexel';
+import { iPexel, iPexelVideo } from '@/utils/types/iPexel';
 import Head from 'next/head';
 import { createClient } from 'pexels';
 import { Fragment, useEffect, useState } from 'react';
@@ -8,7 +9,7 @@ import { Fragment, useEffect, useState } from 'react';
 
 export default function Home() {
 
-    const [videos, setVideos] = useState<iPexel[]>([]);
+    const [videos, setVideos] = useState<iPexelVideo[]>([]);
     const [videosLoaded, setVideosLoaded] = useState(false);
 
     function randomQuery() {
@@ -16,13 +17,12 @@ export default function Home() {
         return queries[Math.floor(Math.random() * queries.length)];
     };
 
-    function getVideos(length: number) {
+    function getVideos(qtdVideos: number) {
         const client = createClient(CONSTS_SISTEMA.KEY_PEXELS_API);
         const query = randomQuery();
-        console.log(query);
 
         client.videos
-            .search({ query, per_page: length })
+            .search({ query, per_page: qtdVideos })
             .then((result) => {
                 const resultado = result as unknown as iPexel;
                 setVideos((oldVideos: any) => [...oldVideos, ...resultado.videos]);
@@ -45,26 +45,25 @@ export default function Home() {
                 <div className='slider-container'>
                     {
                         videos?.length > 0 ? (
-                            <>
+                            <Fragment>
                                 {
-                                    videos?.map((v: any, id: number) => (
-                                        // <VideoCard
-                                        //     key={id}
-                                        //     index={id}
-                                        //     author={v.user.name}
-                                        //     videoURL={v.video_files[0].link}
-                                        //     authorLink={v.user.url}
-                                        //     lastVideoIndex={videos.length - 1}
-                                        //     getVideos={getVideos}
-                                        // />
-                                        <h1 style={{ color: 'coral' }}>{v.user.name}</h1>
+                                    videos?.map((v: iPexelVideo, id: number) => (
+                                        <VideoMain
+                                            key={id}
+                                            index={id}
+                                            autorNome={v.user.name}
+                                            autorLink={v.user.url}
+                                            videoUrl={v.video_files[0].link}                
+                                            indexUltimoVideo={videos.length - 1}
+                                            getVideos={getVideos}
+                                        />
                                     ))
                                 }
-                            </>
+                            </Fragment>
                         ) : (
-                            <>
-                                <h1>Nothing to show here</h1>
-                            </>
+                            <Fragment>
+                                <h1>Ops... parece que não há nenhum conteúdo para mostrar agora!</h1>
+                            </Fragment>
                         )}
                 </div>
 

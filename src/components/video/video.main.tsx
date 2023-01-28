@@ -1,20 +1,21 @@
 import useIsInViewport from '@/hooks/useIsInViewPort';
 import { useEffect, useRef, useState } from 'react';
+import VideoDetalhes from './video.detalhes';
 
 interface iParametros {
     index: number;
-    author: string;
-    videoURL: string;
-    authorLink: string;
-    lastVideoIndex: number;
-    getVideos: any;
+    autorNome: string;
+    autorLink: string;
+    videoUrl: string;
+    indexUltimoVideo: number;
+    getVideos: (qtdVideos: number) => void;
 }
 
-export default function VideoCard({ index, author, videoURL, authorLink, lastVideoIndex, getVideos }: iParametros) {
+export default function VideoMain({ index, autorNome, autorLink, videoUrl, indexUltimoVideo, getVideos }: iParametros) {
 
     const video = useRef<HTMLVideoElement>(null);
     const isInViewport = useIsInViewport(video);
-    const [loadNewVidsAt, setloadNewVidsAt] = useState(lastVideoIndex);
+    const [loadNewVidsAt, setloadNewVidsAt] = useState(indexUltimoVideo);
 
     if (isInViewport) {
         setTimeout(() => {
@@ -27,14 +28,15 @@ export default function VideoCard({ index, author, videoURL, authorLink, lastVid
         }
     }
 
-    const togglePlay = () => {
+    function togglePlay() {
         let currentVideo = video.current;
+
         if (currentVideo?.paused) {
             currentVideo.play();
         } else {
             currentVideo?.pause();
         }
-    };
+    }
 
     useEffect(() => {
         if (!isInViewport) {
@@ -52,15 +54,14 @@ export default function VideoCard({ index, author, videoURL, authorLink, lastVid
                 id={index.toString()}
                 autoPlay={index === 1}
             >
-                <source src={videoURL} type='video/mp4' />
+                <source src={videoUrl} type='video/mp4' />
             </video>
 
-            <div className='video-content' onClick={togglePlay}>
-                <p>@{author}</p>
-                <p>
-                    Video by <a href={authorLink}>{author} </a> on Pexel
-                </p>
-            </div>
+            <VideoDetalhes
+                autorNome={autorNome}
+                autorLink={autorLink}
+                togglePlay={() => togglePlay()}
+            />
         </div>
-    );
-};
+    )
+}
