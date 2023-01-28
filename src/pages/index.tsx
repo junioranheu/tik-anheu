@@ -25,7 +25,7 @@ export default function Home() {
         const query = gerarItemRandom(queries);
 
         await client.videos
-            .search({ query, per_page: 3, page: gerarNumeroAleatorio(1, 20) })
+            .search({ query, per_page: 3, page: gerarNumeroAleatorio(1, 20), orientation: 'portrait' })
             .then((result) => {
                 const resultado = result as unknown as iPexels;
                 setVideos((oldVideos: iPexelsVideo[]) => [...oldVideos, ...resultado.videos]);
