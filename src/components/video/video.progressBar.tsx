@@ -6,10 +6,11 @@ import Styles from './styles/video.progressBar.module.scss';
 interface iParametros {
     handleProgress: (vol: number) => void;
     progress: number;
+    width: string;
 }
 
 // https://codesandbox.io/s/quirky-hopper-jfcx9?file=/src/progress.js:0-2097
-export default function ProgressBar({ handleProgress, progress }: iParametros) {
+export default function ProgressBar({ handleProgress, progress, width }: iParametros) {
 
     const elementoId = 'progressWrapperVolume';
     const [rectLeft, setRectLeft] = useState<number>(0);
@@ -86,6 +87,7 @@ export default function ProgressBar({ handleProgress, progress }: iParametros) {
             className={Styles.progressWrapper}
             id={elementoId}
             onClick={(e) => handleClick(e)} {...bindProgressBar()}
+            style={{width: width}}
         >
             <div className={Styles.progress} style={{ width: volumeControleInterno }}>
                 <div className={Styles.pointer}>

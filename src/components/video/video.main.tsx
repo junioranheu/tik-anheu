@@ -1,6 +1,7 @@
 import Styles from '@/components/video/styles/video.main.module.scss';
+import useWindowSize from '@/hooks/outros/useWindowSize';
 import { Aviso } from '@/utils/misc/aviso';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import VideoDetalhes from './video.detalhes';
 import ProgressBar from './video.progressBar';
 
@@ -28,9 +29,15 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isMut
     }
 
     const [progress, setProgress] = useState<number>(100);
-    function handleNota(n: number) {
+    function handleProgress(n: number) {
         setProgress(Math.trunc(n));
     }
+
+    const tamanhoTela = useWindowSize();
+    const [videoWidth, setvideoWidth] = useState<number>(0);
+    useEffect(() => {
+        setvideoWidth(refVideo?.current?.getBoundingClientRect()?.width ?? 0);
+    }, [refVideo?.current, tamanhoTela]);
 
     return (
         <section className={Styles.sessaoVideo}>
@@ -38,18 +45,23 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isMut
                 ref={refVideo}
                 id={index.toString()}
                 className={Styles.video}
-                onClick={() => togglePlay()}
                 muted={isMutado}
                 autoPlay={true}
                 loop={true}
                 playsInline={true}
                 disablePictureInPicture={true}
                 controls={false}
+                onClick={() => togglePlay()}
+
             >
                 <source src={videoUrl} type='video/mp4' />
             </video>
 
-            <ProgressBar handleProgress={handleNota} progress={progress} />
+            <ProgressBar
+                handleProgress={handleProgress}
+                progress={progress}
+                width={`${videoWidth}px`}
+            />
 
             <VideoDetalhes
                 id={index.toString()}

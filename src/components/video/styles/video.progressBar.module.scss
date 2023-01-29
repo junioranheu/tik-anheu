@@ -6,6 +6,10 @@
     cursor: pointer;
     transition: all linear;
 
+    z-index: 999;
+    position: absolute;
+    bottom: 6rem;
+
     &:hover {
         .progress {
             background-color: blue;
