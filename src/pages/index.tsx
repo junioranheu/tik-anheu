@@ -101,7 +101,7 @@ export default function Home() {
 
             <main>
                 <section
-                    className={`${Styles.main} semHighlight`}
+                    className={`${Styles.main} semHighlight animate__animated animate__fadeIn animate__delay-1s`}
                     onWheel={() => videosLoaded && handleWheel()}
                 >
                     {

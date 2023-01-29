@@ -10,12 +10,12 @@ interface iParametros {
 export default function VideoDetalhes({ id, autorNome, autorLink, togglePlay }: iParametros) {
     return (
         <div className={Styles.detalhes} onClick={togglePlay}>
-            <p>#{id}</p>
-            <p>@{autorNome}</p>
+            <span>#{id}</span>
+            <span>@{autorNome}</span>
 
-            <p>
+            <span>
                 Video by <a href={autorLink}>{autorNome}</a> on Pexel
-            </p>
+            </span>
         </div>
     )
 }

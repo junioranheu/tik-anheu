@@ -1,5 +1,7 @@
+import '@/assets/fonts/GTWalsheim/GTWalsheim.css';
 import '@/styles/globals.scss';
 import CONSTS_SISTEMA from '@/utils/consts/outros/sistema';
+import 'animate.css/animate.min.css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
