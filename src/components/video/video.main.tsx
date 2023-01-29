@@ -34,24 +34,28 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isMut
     }
 
     const tamanhoTela = useWindowSize();
-    const [videoWidth, setvideoWidth] = useState<number>(0);
+    const [videoWidth, setVideoWidth] = useState<number>(0);
     useEffect(() => {
-        setvideoWidth(refVideo?.current?.getBoundingClientRect()?.width ?? 0);
+        setVideoWidth(refVideo?.current?.getBoundingClientRect()?.width ?? 0);
     }, [refVideo?.current, tamanhoTela]);
 
     const [infoProgress, setInfoProgress] = useState<string>('');
     useEffect(() => {
+        setTimeout(function () {
+            setInfoProgress(`#${index} ${videoWidth} ${refVideo?.current?.duration}`);
+        }, 500);
+
         if (refVideo?.current?.duration && videoWidth) {
             const segundoAtual = 5;
             const segundoMaximo = refVideo?.current?.duration;
             let porcentagemVista = Math.trunc((segundoAtual / segundoMaximo) * 100);
             porcentagemVista = porcentagemVista < 0 ? 0 : porcentagemVista;
             porcentagemVista = porcentagemVista > 100 ? 100 : porcentagemVista;
-            
+
             setInfoProgress(`O progresso do vídeo #${index} é ${porcentagemVista}%`);
             setProgress(porcentagemVista);
         }
-    }, [refVideo, videoWidth]);
+    }, [refVideo?.current, videoWidth, index]);
 
     return (
         <section className={Styles.sessaoVideo}>
