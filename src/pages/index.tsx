@@ -1,5 +1,5 @@
-import NavbarBottom from '@/components/navbar/navbar.bottom';
 import VideoMain from '@/components/video/video.main';
+import Styles from '@/styles/home.module.scss';
 import CONSTS_SISTEMA from '@/utils/consts/outros/sistema';
 import gerarItemRandom from '@/utils/misc/gerarItemRandom';
 import gerarNumeroAleatorio from '@/utils/misc/gerarNumeroAleatorio';
@@ -7,7 +7,6 @@ import { iPexels, iPexelsVideo } from '@/utils/types/iPexels';
 import Head from 'next/head';
 import { createClient } from 'pexels'; // https://www.pexels.com/api/documentation/
 import { Fragment, useCallback, useEffect, useState } from 'react';
-import Styles from '../styles/home.module.scss';
 
 export default function Home() {
 
@@ -79,18 +78,13 @@ export default function Home() {
 
     useEffect(() => {
         async function verificarNecessidadeGetNovosVideos(novosEm: number, atual: number) {
-            // Aviso.toast(`Qtd de vídeos: ${videos?.length}`, 3500, gerarEmojiAleatorio(), true);
-            // Aviso.toast(`Vídeo atual: ${atual}`, 3500, gerarEmojiAleatorio(), true);
-            // Aviso.toast(`Novos em: ${novosEm}`, 3500, gerarEmojiAleatorio(), true);
-
             if (novosEm === atual) {
                 setCarregarNovosVideoEm((prev) => prev + qtdImagensPorVez);
                 await getVideos();
             }
 
-            // Se bugar, e a quantidade de vídeos for menor que o necessário, busque novamente mais vídeos;
+            // @BugFix - se a quantidade de vídeos for menor que o necessário, busque novamente mais vídeos;
             if (videos?.length <= novosEm) {
-                // Aviso.toast('Buscando novos', 3500, gerarEmojiAleatorio(), true);
                 await getVideos();
             }
         }
@@ -106,7 +100,7 @@ export default function Home() {
 
             <main>
                 <section
-                    className={Styles.main}
+                    className={`${Styles.main} semHighlight`}
                     onWheel={() => videosLoaded && handleWheel()}
                 >
                     {
@@ -132,7 +126,7 @@ export default function Home() {
                         )}
                 </section>
 
-                <NavbarBottom />
+                {/* <NavbarBottom /> */}
             </main>
         </Fragment>
     )
