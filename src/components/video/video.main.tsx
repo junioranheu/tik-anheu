@@ -39,16 +39,18 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isMut
         setvideoWidth(refVideo?.current?.getBoundingClientRect()?.width ?? 0);
     }, [refVideo?.current, tamanhoTela]);
 
+    const [infoProgress, setInfoProgress] = useState<string>('');
     useEffect(() => {
         if (refVideo?.current?.duration && videoWidth) {
             const segundoAtual = 5;
             const segundoMaximo = refVideo?.current?.duration;
-            const porcentagemVista = segundoAtual / segundoMaximo;
-            let porcentagemVistaWidth = Math.trunc(porcentagemVista * videoWidth);
+            const porcentagemVista = (segundoAtual / segundoMaximo) * 100;
+            let porcentagemVistaWidth = Math.trunc(porcentagemVista / videoWidth);
             porcentagemVistaWidth = porcentagemVistaWidth < 0 ? 0 : porcentagemVistaWidth;
             porcentagemVistaWidth = porcentagemVistaWidth > 100 ? 100 : porcentagemVistaWidth;
 
-            console.log(`O progresso do vídeo #${index} é ${porcentagemVistaWidth}px de ${videoWidth}px`);
+            setInfoProgress(`${segundoAtual} ${segundoMaximo} ${porcentagemVista}`);
+            // setInfoProgress(`O progresso do vídeo #${index} é ${porcentagemVistaWidth}px de ${videoWidth}px, equivalente a ${porcentagemVistaWidth}%`);
             setProgress(porcentagemVistaWidth);
         }
     }, [refVideo, videoWidth]);
@@ -82,6 +84,7 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isMut
                 autorNome={autorNome}
                 autorLink={autorLink}
                 togglePlay={() => togglePlay()}
+                infoProgress={infoProgress}
             />
         </section>
     )

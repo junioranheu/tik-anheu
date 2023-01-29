@@ -46,11 +46,23 @@
 }
 
 /* big landscape tablets, laptops, and desktops */
-@media (max-width:1025px) {}
+@media (max-width:1025px) {
+    .sessaoVideo {
+        // background-color: plum;
+
+        .video {
+            max-width: 75%;
+            min-width: 75%;
+            object-fit: cover;
+        }
+    }
+}
 
 /* tablet, landscape iPad, lo-res laptops ands desktops */
 @media (max-width:801px) {
     .sessaoVideo {
+        // background-color: plum;
+
         .video {
             max-width: 100%;
             min-width: 100%;
