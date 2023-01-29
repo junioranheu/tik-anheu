@@ -4,7 +4,7 @@
     scroll-snap-align: start;
     background: var(--branco);
     position: relative;
- 
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,20 +14,32 @@
         position: absolute;
 
         height: 100%;
-        max-width: 50%;
-        min-width: 50%;
-        object-fit: contain;
+        max-width: 25%;
+        min-width: 25%;
+        object-fit: cover;
     }
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Media queries =-=-=-=-=-=-=-=-=-=-= */
-/* hi-res laptops and desktops */
-@media (max-width:1281px) {
+@media (max-width:1824px) {
     .sessaoVideo {
         .video {
             height: 100%;
-            max-width: 50%;
-            min-width: 50%;
+            max-width: 35%;
+            min-width: 35%;
+            object-fit: cover;
+        }
+    }
+}
+
+/* hi-res laptops and desktops */
+@media (max-width:1281px) {
+    .sessaoVideo {
+        // background-color: coral;
+
+        .video {
+            max-width: 45%;
+            min-width: 45%;
             object-fit: cover;
         }
     }
@@ -40,7 +52,6 @@
 @media (max-width:801px) {
     .sessaoVideo {
         .video {
-            height: 100%;
             max-width: 100%;
             min-width: 100%;
             object-fit: cover;
