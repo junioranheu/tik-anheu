@@ -1,6 +1,6 @@
 import Styles from '@/components/video/styles/video.main.module.scss';
-import useIsInViewport from '@/hooks/useIsInViewPort';
-import { useEffect, useRef, useState } from 'react';
+import { Aviso } from '@/utils/misc/aviso';
+import { useRef } from 'react';
 import VideoDetalhes from './video.detalhes';
 
 interface iParametros {
@@ -8,43 +8,16 @@ interface iParametros {
     autorNome: string;
     autorLink: string;
     videoUrl: string;
-    indexUltimoVideo: number;
-    getVideos: () => Promise<void>;
+    isMutado: boolean;
 }
 
-export default function VideoMain({ index, autorNome, autorLink, videoUrl, indexUltimoVideo, getVideos }: iParametros) {
+export default function VideoMain({ index, autorNome, autorLink, videoUrl, isMutado }: iParametros) {
 
-    const video = useRef<HTMLVideoElement>(null);
-    const isInViewport = useIsInViewport(video);
-    const [carregarNovosVideoEm, setCarregarNovosVideoEm] = useState(indexUltimoVideo);
-
-    async function verificarNecessidadeGetNovosVideos() {
-        if (process.env.NODE_ENV === 'development') {
-            console.log('carregarNovosVideoEm: ', carregarNovosVideoEm, ' | video?.current?.id: ', video?.current?.id);
-        }
-
-        if (carregarNovosVideoEm === Number(video?.current?.id)) {
-            setCarregarNovosVideoEm((prev) => prev + 2);
-            await getVideos();
-        }
-    }
-
-    if (isInViewport) {
-        setTimeout(() => {
-            video?.current?.play();
-        }, 1000);
-
-        verificarNecessidadeGetNovosVideos();
-    }
-
-    useEffect(() => {
-        if (!isInViewport) {
-            video?.current?.pause();  // Se o vídeo não estiver mais sendo visualizado (!isInViewport), pare-o;
-        }
-    }, [isInViewport]);
+    const refVideo = useRef<HTMLVideoElement>(null);
 
     function togglePlay() {
-        const currentVideo = video?.current;
+        const currentVideo = refVideo?.current;
+        Aviso.toast(`Vídeo #${index}`, 1000, '', true);
 
         if (currentVideo?.paused) {
             currentVideo?.play();
@@ -56,18 +29,19 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, index
     return (
         <section className={Styles.sessaoVideo}>
             <video
-                ref={video}
+                ref={refVideo}
                 id={index.toString()}
                 className={Styles.video}
                 onClick={() => togglePlay()}
-                muted
-                autoPlay
-                loop
+                muted={isMutado}
+                autoPlay={true}
+                loop={true}
             >
                 <source src={videoUrl} type='video/mp4' />
             </video>
 
             <VideoDetalhes
+                id={index.toString()}
                 autorNome={autorNome}
                 autorLink={autorLink}
                 togglePlay={() => togglePlay()}

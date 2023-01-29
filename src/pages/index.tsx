@@ -14,6 +14,8 @@ export default function Home() {
     const [keyPexelsAPI, setKeyPexelsAPI] = useState<string>(CONSTS_SISTEMA.KEY_PEXELS_API_1);
     const [videos, setVideos] = useState<iPexelsVideo[]>([]);
     const [videosLoaded, setVideosLoaded] = useState<boolean>(false);
+    const [videoIdAtual, setVideoIdAtual] = useState<number>(0);
+    const [isMutado, setIsMutado] = useState<boolean>(false);
 
     const getVideos = useCallback(async () => {
         const client = createClient(keyPexelsAPI);
@@ -28,9 +30,10 @@ export default function Home() {
                 const resultado = result as unknown as iPexels;
                 setVideos((oldVideos: iPexelsVideo[]) => [...oldVideos, ...resultado.videos]);
                 setVideosLoaded(true);
+                document.querySelectorAll('video').forEach(vid => vid.pause());
 
                 if (process.env.NODE_ENV === 'development') {
-                   // Aviso.toast(`${resultado.videos.length} novos vídeos baixados`, 3500, gerarEmojiAleatorio(), true);
+                    // Aviso.toast(`${resultado.videos.length} novos vídeos baixados`, 3500, gerarEmojiAleatorio(), true);
                 }
             })
             .catch((e: any) => {
@@ -49,6 +52,44 @@ export default function Home() {
         getVideos();
     }, [getVideos]);
 
+    function handleWheel() {
+        function isElementInViewport(el: HTMLVideoElement) {
+            var rect = el.getBoundingClientRect();
+            return rect.bottom > 0 && rect.right > 0 && rect.left < (window.innerWidth || document.documentElement.clientWidth) && rect.top < (window.innerHeight || document.documentElement.clientHeight);
+        }
+
+        setTimeout(function () {
+            const videos = document?.getElementsByTagName('video');
+
+            for (let i = 0; i < videos.length; i++) {
+                const isInViewPort = isElementInViewport(videos[i]) as boolean;
+                videos[i]?.pause();
+
+                if (isInViewPort) {
+                    videos[i]?.play();
+                    setVideoIdAtual(i);
+                }
+            }
+        }, 350);
+    }
+
+    useEffect(() => {
+        console.log(videoIdAtual);
+    }, [videoIdAtual]);
+
+    // const [carregarNovosVideoEm, setCarregarNovosVideoEm] = useState(indexUltimoVideo);
+
+    // async function verificarNecessidadeGetNovosVideos() {
+    //     if (process.env.NODE_ENV === 'development') {
+    //         // console.log('carregarNovosVideoEm: ', carregarNovosVideoEm, ' | video?.current?.id: ', video?.current?.id);
+    //     }
+
+    //     if (carregarNovosVideoEm === Number(refVideo?.current?.id)) {
+    //         setCarregarNovosVideoEm((prev) => prev + 2);
+    //         await getVideos();
+    //     }
+    // }
+
     return (
         <Fragment>
             <Head>
@@ -56,20 +97,23 @@ export default function Home() {
             </Head>
 
             <main>
-                <section className={Styles.main}>
+                <section
+                    className={Styles.main}
+                    onWheel={() => videosLoaded && handleWheel()}
+                >
                     {
                         videos?.length > 0 ? (
                             <Fragment>
                                 {
-                                    videos?.map((v: iPexelsVideo, id: number) => (
+                                    videos?.map((v: iPexelsVideo, i: number) => (
                                         <VideoMain
-                                            key={id}
-                                            index={id}
+                                            key={i}
+                                            index={i}
                                             autorNome={v.user.name}
                                             autorLink={v.user.url}
                                             videoUrl={v.video_files[0].link}
-                                            indexUltimoVideo={videos.length - 1}
-                                            getVideos={() => getVideos()}
+                                            isMutado={isMutado}
+                                        // indexUltimoVideo={videos.length - 1}
                                         />
                                     ))
                                 }
