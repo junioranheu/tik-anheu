@@ -15,7 +15,7 @@ export default function Home() {
     const [videos, setVideos] = useState<iPexelsVideo[]>([]);
     const [videosLoaded, setVideosLoaded] = useState<boolean>(false);
 
-    const qtdImagensPorVez = 3;
+    const qtdImagensPorVez = 5;
     const [videoIdAtual, setVideoIdAtual] = useState<number>(0);
     const [carregarNovosVideoEm, setCarregarNovosVideoEm] = useState<number>(qtdImagensPorVez);
 
@@ -78,15 +78,25 @@ export default function Home() {
     }
 
     useEffect(() => {
-        async function verificarNecessidadeGetNovosVideos() {
-            if ((carregarNovosVideoEm - 1) === videoIdAtual) {
-                setCarregarNovosVideoEm((prev) => prev + 2);
+        async function verificarNecessidadeGetNovosVideos(novosEm: number, atual: number) {
+            // Aviso.toast(`Qtd de vídeos: ${videos?.length}`, 3500, gerarEmojiAleatorio(), true);
+            // Aviso.toast(`Vídeo atual: ${atual}`, 3500, gerarEmojiAleatorio(), true);
+            // Aviso.toast(`Novos em: ${novosEm}`, 3500, gerarEmojiAleatorio(), true);
+
+            if (novosEm === atual) {
+                setCarregarNovosVideoEm((prev) => prev + qtdImagensPorVez);
+                await getVideos();
+            }
+
+            // Se bugar, e a quantidade de vídeos for menor que o necessário, busque novamente mais vídeos;
+            if (videos?.length <= novosEm) {
+                // Aviso.toast('Buscando novos', 3500, gerarEmojiAleatorio(), true);
                 await getVideos();
             }
         }
 
-        verificarNecessidadeGetNovosVideos();
-    }, [videoIdAtual]);
+        verificarNecessidadeGetNovosVideos((carregarNovosVideoEm - 2), videoIdAtual);
+    }, [videoIdAtual, carregarNovosVideoEm, getVideos]);
 
     return (
         <Fragment>
@@ -111,7 +121,6 @@ export default function Home() {
                                             autorLink={v.user.url}
                                             videoUrl={v.video_files[0].link}
                                             isMutado={isMutado}
-                                        // indexUltimoVideo={videos.length - 1}
                                         />
                                     ))
                                 }
