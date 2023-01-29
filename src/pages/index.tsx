@@ -14,7 +14,11 @@ export default function Home() {
     const [keyPexelsAPI, setKeyPexelsAPI] = useState<string>(CONSTS_SISTEMA.KEY_PEXELS_API_1);
     const [videos, setVideos] = useState<iPexelsVideo[]>([]);
     const [videosLoaded, setVideosLoaded] = useState<boolean>(false);
+
+    const qtdImagensPorVez = 3;
     const [videoIdAtual, setVideoIdAtual] = useState<number>(0);
+    const [carregarNovosVideoEm, setCarregarNovosVideoEm] = useState<number>(qtdImagensPorVez);
+
     const [isMutado, setIsMutado] = useState<boolean>(false);
 
     const getVideos = useCallback(async () => {
@@ -25,7 +29,7 @@ export default function Home() {
         const query = gerarItemRandom(queries);
 
         await client.videos
-            .search({ query, per_page: 3, page: gerarNumeroAleatorio(1, 20), orientation: 'portrait' })
+            .search({ query, per_page: qtdImagensPorVez, page: gerarNumeroAleatorio(1, 20), orientation: 'portrait' })
             .then((result) => {
                 const resultado = result as unknown as iPexels;
                 setVideos((oldVideos: iPexelsVideo[]) => [...oldVideos, ...resultado.videos]);
@@ -74,21 +78,15 @@ export default function Home() {
     }
 
     useEffect(() => {
-        console.log(videoIdAtual);
+        async function verificarNecessidadeGetNovosVideos() {
+            if ((carregarNovosVideoEm - 1) === videoIdAtual) {
+                setCarregarNovosVideoEm((prev) => prev + 2);
+                await getVideos();
+            }
+        }
+
+        verificarNecessidadeGetNovosVideos();
     }, [videoIdAtual]);
-
-    // const [carregarNovosVideoEm, setCarregarNovosVideoEm] = useState(indexUltimoVideo);
-
-    // async function verificarNecessidadeGetNovosVideos() {
-    //     if (process.env.NODE_ENV === 'development') {
-    //         // console.log('carregarNovosVideoEm: ', carregarNovosVideoEm, ' | video?.current?.id: ', video?.current?.id);
-    //     }
-
-    //     if (carregarNovosVideoEm === Number(refVideo?.current?.id)) {
-    //         setCarregarNovosVideoEm((prev) => prev + 2);
-    //         await getVideos();
-    //     }
-    // }
 
     return (
         <Fragment>
