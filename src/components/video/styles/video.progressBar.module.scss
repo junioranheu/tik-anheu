@@ -12,14 +12,14 @@
 
     &:hover {
         .progress {
-            background-color: blue;
+            background-color: var(--cor-principal);
             transition: all linear;
         }
     }
 
     .progress {
         // background-color: red !important;
-        background-color: red;
+        background-color: var(--cor-principal-transparente);
         border-radius: 100px;
         height: 100%;
         position: relative;
