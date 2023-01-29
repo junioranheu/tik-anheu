@@ -44,14 +44,12 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isMut
         if (refVideo?.current?.duration && videoWidth) {
             const segundoAtual = 5;
             const segundoMaximo = refVideo?.current?.duration;
-            const porcentagemVista = (segundoAtual / segundoMaximo) * 100;
-            let porcentagemVistaWidth = Math.trunc(porcentagemVista / videoWidth);
-            porcentagemVistaWidth = porcentagemVistaWidth < 0 ? 0 : porcentagemVistaWidth;
-            porcentagemVistaWidth = porcentagemVistaWidth > 100 ? 100 : porcentagemVistaWidth;
-
-            setInfoProgress(`${segundoAtual} ${segundoMaximo} ${porcentagemVista}`);
-            // setInfoProgress(`O progresso do vídeo #${index} é ${porcentagemVistaWidth}px de ${videoWidth}px, equivalente a ${porcentagemVistaWidth}%`);
-            setProgress(porcentagemVistaWidth);
+            let porcentagemVista = Math.trunc((segundoAtual / segundoMaximo) * 100);
+            porcentagemVista = porcentagemVista < 0 ? 0 : porcentagemVista;
+            porcentagemVista = porcentagemVista > 100 ? 100 : porcentagemVista;
+            
+            setInfoProgress(`O progresso do vídeo #${index} é ${porcentagemVista}%`);
+            setProgress(porcentagemVista);
         }
     }, [refVideo, videoWidth]);
 
