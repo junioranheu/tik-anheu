@@ -87,11 +87,12 @@ export default function ProgressBar({ handleProgress, progress, width }: iParame
             className={Styles.progressWrapper}
             id={elementoId}
             onClick={(e) => handleClick(e)} {...bindProgressBar()}
-            style={{width: width}}
+            style={{ width: width }}
         >
             <div className={Styles.progress} style={{ width: volumeControleInterno }}>
                 <div className={Styles.pointer}>
                     <div className={Styles.toast}></div>
+                    <p style={{ color: 'lime', fontSize: '2rem' }}><b>{progress}</b></p>
                 </div>
             </div>
         </div>
