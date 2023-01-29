@@ -96,7 +96,7 @@ export default function Home() {
         }
 
         verificarNecessidadeGetNovosVideos((carregarNovosVideoEm - 2), videoIdAtual);
-    }, [videoIdAtual, carregarNovosVideoEm, getVideos]);
+    }, [videoIdAtual, carregarNovosVideoEm, videos?.length, getVideos]);
 
     return (
         <Fragment>
