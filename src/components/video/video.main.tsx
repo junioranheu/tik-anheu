@@ -31,7 +31,7 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isVid
 
     const [progress, setProgress] = useState<number>(0);
     function handleProgress(n: number) {
-        const porcentagemVista = ajustarPorcentagem(Math.trunc(n));
+        const porcentagemVista = ajustarPorcentagem(n);
         setProgress(porcentagemVista);
     }
 
@@ -45,32 +45,28 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isVid
         porcentagem = porcentagem < 0 ? 0 : porcentagem;
         porcentagem = porcentagem > 100 ? 100 : porcentagem;
 
-        return porcentagem;
+        return Math.trunc(porcentagem);
     }
 
     useEffect(() => {
-        if (refVideo.current) {
-            const tempo = Math.trunc((progress / 100) * refVideo?.current?.duration);
-            refVideo.current.currentTime = isNaN(tempo) ? 0 : tempo;
-        }
+        // if (refVideo.current) {
+        //     const tempo = Math.trunc((progress / 100) * refVideo?.current?.duration);
+        //     refVideo.current.currentTime = isNaN(tempo) ? 0 : tempo;
+        // }
     }, [progress]);
 
-    const [tempoSegundosAtual, setTempoSegundosAtual] = useState<number>(0);
     useEffect(() => {
         const intervalo = setInterval(() => {
             if (isVideoInViewPort && refVideo?.current) {
                 const tempoAtual = refVideo?.current?.currentTime;
                 const duracao = refVideo?.current?.duration;
-                const porcentagem = tempoAtual / duracao;
-                const porcentagemWidth = porcentagem * refVideo?.current?.width;
-                console.log(porcentagemWidth);
-
-                setTempoSegundosAtual(porcentagemWidth ?? 0);
+                const porcentagem = ajustarPorcentagem((tempoAtual / duracao) * 100);
+                setProgress(porcentagem ?? 0);
             }
         }, 500);
 
         return () => clearInterval(intervalo);
-    }, [isVideoInViewPort])
+    }, [isVideoInViewPort, videoWidth])
 
     return (
         <section className={Styles.sessaoVideo}>
@@ -97,7 +93,7 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isVid
 
             <VideoDetalhes
                 id={index.toString()}
-                autorNome={tempoSegundosAtual.toString()}
+                autorNome={autorNome}
                 autorLink={autorLink}
                 togglePlay={() => togglePlay()}
             />
