@@ -7,10 +7,11 @@ interface iParametros {
     handleProgress: (vol: number) => void;
     progress: number;
     width: string;
+    isExibirDebug: boolean;
 }
 
 // https://codesandbox.io/s/quirky-hopper-jfcx9?file=/src/progress.js:0-2097
-export default function ProgressBar({ handleProgress, progress, width }: iParametros) {
+export default function ProgressBar({ handleProgress, progress, width, isExibirDebug }: iParametros) {
 
     const elementoId = 'progressWrapperVolume';
     const [rectLeft, setRectLeft] = useState<number>(0);
@@ -92,7 +93,7 @@ export default function ProgressBar({ handleProgress, progress, width }: iParame
             <div className={Styles.progress} style={{ width: volumeControleInterno }}>
                 <div className={Styles.pointer}>
                     <div className={Styles.toast}></div>
-                    <p style={{ color: 'lime', fontSize: '2rem' }}><b>{progress}</b></p>
+                    {isExibirDebug && <p style={{ color: 'lime', fontSize: '2rem' }}><b>{progress}</b></p>}
                 </div>
             </div>
         </div>

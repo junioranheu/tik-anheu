@@ -29,12 +29,6 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isVid
         }
     }
 
-    const [progress, setProgress] = useState<number>(0);
-    function handleProgress(n: number) {
-        const porcentagemVista = ajustarPorcentagem(n);
-        setProgress(porcentagemVista);
-    }
-
     const tamanhoTela = useWindowSize();
     const [videoWidth, setVideoWidth] = useState<number>(0);
     useEffect(() => {
@@ -45,15 +39,18 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isVid
         porcentagem = porcentagem < 0 ? 0 : porcentagem;
         porcentagem = porcentagem > 100 ? 100 : porcentagem;
 
-        return Math.trunc(porcentagem);
+        return porcentagem;
     }
 
-    useEffect(() => {
-        // if (refVideo.current) {
-        //     const tempo = Math.trunc((progress / 100) * refVideo?.current?.duration);
-        //     refVideo.current.currentTime = isNaN(tempo) ? 0 : tempo;
-        // }
-    }, [progress]);
+
+    const [progress, setProgress] = useState<number>(0);
+    function handleProgress(n: number) {
+        if (refVideo.current) {
+            const tempo = (n / 100) * refVideo?.current?.duration;
+            refVideo.current.currentTime = isNaN(tempo) ? 0 : tempo;
+            setProgress(ajustarPorcentagem(n));
+        }
+    }
 
     useEffect(() => {
         const intervalo = setInterval(() => {
@@ -89,6 +86,7 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isVid
                 handleProgress={handleProgress}
                 progress={progress}
                 width={`${videoWidth}px`}
+                isExibirDebug={false}
             />
 
             <VideoDetalhes
