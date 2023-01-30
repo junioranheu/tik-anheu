@@ -5,12 +5,12 @@
     border-radius: 0.5rem;
 
     position: absolute;
-    bottom: 1rem;
+    bottom: 3rem;
     left: auto;
     right: auto;
 
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     gap: 0.75rem;
 
@@ -19,7 +19,7 @@
     }
 
     .icone {
-        background-color: var(--cor-principal-transparente);
+        background-color: transparent;
         height: 2.5rem;
         width: 2.5rem;
         border-radius: 50%;
@@ -39,12 +39,6 @@
             img {
                 filter: brightness(0) invert(0.85);
                 transition: 0.3s;
-            }
-        }
-
-        &.iconeVermelho {
-            img {
-                filter: invert(21%) sepia(100%) saturate(7414%) hue-rotate(359deg) brightness(94%) contrast(117%);
             }
         }
     }

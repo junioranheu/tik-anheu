@@ -3,7 +3,8 @@ import useWindowSize from '@/hooks/outros/useWindowSize';
 import { lazy, useEffect, useRef, useState } from 'react';
 const ProgressBar = lazy(() => import('./video.progressBar'));
 const VideoDetalhes = lazy(() => import('./video.detalhes'));
-const VideoOpcoes = lazy(() => import('./video.opcoes'));
+const VideoOpcoesDireita = lazy(() => import('./video.opcoes.direita'));
+const VideoOpcoesCentro = lazy(() => import('./video.opcoes.centro'));
 
 interface iParametros {
     index: number;
@@ -95,7 +96,12 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isVid
                 togglePlay={() => togglePlay()}
             />
 
-            <VideoOpcoes
+            <VideoOpcoesCentro
+                id={index.toString()}
+                videoWidth={videoWidth}
+            />
+
+            <VideoOpcoesDireita
                 id={index.toString()}
                 videoWidth={videoWidth}
             />

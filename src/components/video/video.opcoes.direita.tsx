@@ -1,7 +1,7 @@
 import ImgComentario from '@/assets/images/icones/comentario.webp';
 import ImgCompartilhar from '@/assets/images/icones/compartilhar.webp';
 import ImgCoracao from '@/assets/images/icones/coracao.webp';
-import Styles from '@/components/video/styles/video.opcoes.module.scss';
+import Styles from '@/components/video/styles/video.opcoes.direita.module.scss';
 import useWindowSize from '@/hooks/outros/useWindowSize';
 import { Aviso } from '@/utils/misc/aviso';
 import gerarEmojiAleatorio from '@/utils/misc/gerarEmojiAleatorio';
@@ -13,7 +13,7 @@ interface iParametros {
     videoWidth: number;
 }
 
-export default function VideoOpcoes({ id, videoWidth }: iParametros) {
+export default function VideoOpcoesDireita({ id, videoWidth }: iParametros) {
 
     const tamanhoTela = useWindowSize();
     const [isCurtido, setIsCurtido] = useState<boolean>(false);
@@ -49,7 +49,7 @@ interface iIcone {
     isCurtido?: boolean;
 }
 
-export function Icone({ imagem, title, isCurtido, handleFn }: iIcone) {
+export function Icone({ imagem, title, handleFn, isCurtido }: iIcone) {
     return (
         <div
             className={`${Styles.icone} ${(isCurtido && Styles.iconeVermelho)}`}
