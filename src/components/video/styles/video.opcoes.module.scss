@@ -4,10 +4,11 @@
     color: var(--branco);
     padding: 1rem;
     border-radius: 0.5rem;
- 
+
     position: absolute;
     bottom: 1rem;
-    right: 1rem;
+    left: auto;
+    right: auto;
 
     display: flex;
     flex-direction: column;
@@ -16,4 +17,22 @@
     span {
         font-size: 0.8rem;
     }
-} 
+}
+
+/* =-=-=-=-=-=-=-=-=-=-= Media queries =-=-=-=-=-=-=-=-=-=-= */
+@media (max-width:1824px) {}
+
+/* hi-res laptops and desktops */
+@media (max-width:1281px) {}
+
+/* big landscape tablets, laptops, and desktops */
+@media (max-width:1025px) {}
+
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+@media (max-width:801px) {}
+
+/* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+@media (max-width:600px) {}
+
+/* smartphones, Android phones, landscape iPhone */
+@media (max-width:480px) {}

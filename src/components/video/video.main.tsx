@@ -97,6 +97,7 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isVid
 
             <VideoOpcoes
                 id={index.toString()}
+                videoWidth={videoWidth}
             />
         </section>
     )
