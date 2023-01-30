@@ -73,12 +73,12 @@ export default function Home() {
 
                     setTimeout(function () {
                         video?.play();
-                    }, 200);
+                    }, 250);
                 } else {
                     video?.pause();
                 }
             }
-        }, 350);
+        }, 400);
     }
 
     useEffect(() => {
