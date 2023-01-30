@@ -1,4 +1,5 @@
 import '@/assets/fonts/GTWalsheim/GTWalsheim.css';
+import LayoutPadrao from '@/layouts/padrao';
 import '@/styles/globals.scss';
 import CONSTS_SISTEMA from '@/utils/consts/outros/sistema';
 import 'animate.css/animate.min.css';
@@ -56,13 +57,18 @@ export default function App({ Component, pageProps }: AppProps) {
         }
     }, [asPath]);
 
+    function verificarLayout() {
+        // console.log(`Url: ${url}`);
+        return <LayoutPadrao Component={Component} pageProps={pageProps} />
+    }
+
     return url ?
         (
             <Fragment>
                 <Head>
                     <meta name='viewport' content='width=device-width, initial-scale=1' />
                     <meta name='description' content={`${CONSTS_SISTEMA.NOME_SISTEMA}`} />
-                    <meta name='keywords' content='xxxxxxxxxxxxxx' />
+                    <meta name='keywords' content='tiktok, videos' />
                     <meta name='author' content='@junioranheu' />
                     <meta name='theme-color' content='#105EAA' />
                 </Head>
@@ -71,7 +77,7 @@ export default function App({ Component, pageProps }: AppProps) {
                     <Toaster />
                 </div>
 
-                <Component {...pageProps} />
+                {verificarLayout()}
             </Fragment>
         ) : null
 }

@@ -1,4 +1,3 @@
-import NavbarBottom from '@/components/navbar/navbar.bottom';
 import VideoMain from '@/components/video/video.main';
 import Styles from '@/styles/home.module.scss';
 import CONSTS_SISTEMA from '@/utils/consts/outros/sistema';
@@ -126,8 +125,6 @@ export default function Home() {
                             </Fragment>
                         )}
                 </section>
-
-                <NavbarBottom />
             </main>
         </Fragment>
     )

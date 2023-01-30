@@ -30,7 +30,11 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isMut
 
     const [progress, setProgress] = useState<number>(0);
     function handleProgress(n: number) {
-        setProgress(Math.trunc(n));
+        let porcentagemVista = Math.trunc(n);
+        porcentagemVista = porcentagemVista < 0 ? 0 : porcentagemVista;
+        porcentagemVista = porcentagemVista > 100 ? 100 : porcentagemVista;
+        
+        setProgress(porcentagemVista);
     }
 
     const tamanhoTela = useWindowSize();
@@ -43,18 +47,18 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isMut
     useEffect(() => {
         setTimeout(function () {
             setInfoProgress(`#${index} ${videoWidth} ${refVideo?.current?.duration}`);
+
+            if (refVideo?.current?.duration && videoWidth) {
+                const segundoAtual = 5;
+                const segundoMaximo = refVideo?.current?.duration;
+                let porcentagemVista = Math.trunc((segundoAtual / segundoMaximo) * 100);
+                porcentagemVista = porcentagemVista < 0 ? 0 : porcentagemVista;
+                porcentagemVista = porcentagemVista > 100 ? 100 : porcentagemVista;
+
+                setInfoProgress(`O progresso do vídeo #${index} é ${porcentagemVista}%`);
+                setProgress(porcentagemVista);
+            }
         }, 500);
-
-        if (refVideo?.current?.duration && videoWidth) {
-            const segundoAtual = 5;
-            const segundoMaximo = refVideo?.current?.duration;
-            let porcentagemVista = Math.trunc((segundoAtual / segundoMaximo) * 100);
-            porcentagemVista = porcentagemVista < 0 ? 0 : porcentagemVista;
-            porcentagemVista = porcentagemVista > 100 ? 100 : porcentagemVista;
-
-            setInfoProgress(`O progresso do vídeo #${index} é ${porcentagemVista}%`);
-            setProgress(porcentagemVista);
-        }
     }, [refVideo?.current, videoWidth, index]);
 
     return (
