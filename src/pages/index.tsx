@@ -66,7 +66,10 @@ export default function Home() {
         setTimeout(function () {
             for (let i = 0; i < videos.length; i++) {
                 const video = videos[i];
-                video.currentTime = 0;
+
+                if (i > 0) {
+                    video.currentTime = 0;
+                }
 
                 const isInViewPort = isElementInViewport(video) as boolean;
                 if (isInViewPort) {
