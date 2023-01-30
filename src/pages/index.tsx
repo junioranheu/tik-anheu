@@ -66,7 +66,7 @@ export default function Home() {
         setTimeout(function () {
             for (let i = 0; i < videos.length; i++) {
                 const video = videos[i];
-
+ 
                 if (i > 0) {
                     video.currentTime = 0;
                 }

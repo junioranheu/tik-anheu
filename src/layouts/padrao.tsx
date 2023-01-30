@@ -16,7 +16,7 @@ export default function LayoutPadrao({ Component, pageProps }: any) {
 
     return (
         <Fragment>
-            <main className={efeitoAnimar}>
+            <main className={`${efeitoAnimar} semHighlight`}>
                 <Component {...pageProps} />
             </main>
         </Fragment>

@@ -35,8 +35,6 @@ export default function VideoOpcoes({ id, videoWidth }: iParametros) {
             className={Styles.opcoes}
             style={{ marginLeft: tamanhoTela?.width! > 801 ? `${(videoWidth + 80)}px` : '' }}
         >
-            <span>#{id}</span>
-
             <Icone imagem={ImgCoracao} title='Curtir vídeo' handleFn={() => handleCurtir()} isCurtido={isCurtido} />
             <Icone imagem={ImgComentario} title='Comentários' handleFn={() => handleComentarios()} />
             <Icone imagem={ImgCompartilhar} title='Compartilhar' handleFn={() => handleCompartilhar()} />
