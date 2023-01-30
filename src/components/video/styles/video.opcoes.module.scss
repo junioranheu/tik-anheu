@@ -1,6 +1,5 @@
 .opcoes {
-    background-color: coral;
-    // background-color: var(--cor-principal-transparente);
+    background-color: var(--cor-principal-transparente);
     color: var(--branco);
     padding: 1rem;
     border-radius: 0.5rem;
@@ -16,6 +15,29 @@
 
     span {
         font-size: 0.8rem;
+    }
+
+    .icone {
+        background-color: coral;
+        transition: 0.3s;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:hover {
+            img {
+                filter: brightness(0) invert(0.85);
+                transition: 0.3s;
+            }
+
+            &.iconeVermelhoHover {
+                img {
+                    filter: invert(21%) sepia(100%) saturate(7414%) hue-rotate(359deg) brightness(94%) contrast(117%);
+                    transition: 0s;
+                }
+            }
+        }
     }
 }
 
