@@ -10,7 +10,6 @@ interface iParametros {
 export default function VideoDetalhes({ id, autorNome, autorLink, togglePlay }: iParametros) {
     return (
         <div className={Styles.detalhes} onClick={togglePlay}>
-            <span>#{id}</span>
             <span>@{autorNome}</span>
 
             <span>
