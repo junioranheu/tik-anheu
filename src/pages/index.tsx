@@ -15,6 +15,7 @@ const VideoMain = lazy(() => import('@/components/video/video.main'));
 
 export default function Home() {
 
+    const emoji = useEmoji();
     const isDebugging = false;
     const [keyPexelsAPI, setKeyPexelsAPI] = useState<string>(CONSTS_SISTEMA.KEY_PEXELS_API_1);
     const [videos, setVideos] = useState<iPexelsVideo[]>([]);
@@ -23,9 +24,6 @@ export default function Home() {
     const qtdImagensPorVez = 5;
     const [videoIdAtual, setVideoIdAtual] = useState<number>(0);
     const [carregarNovosVideoEm, setCarregarNovosVideoEm] = useState<number>(qtdImagensPorVez);
-
-    const emoji = useEmoji();
-    const [isMutado, setIsMutado] = useState<boolean>(false);
 
     const iterarVideosEDefinirVideoIdAtual = useCallback(async (isUsarTimeOut: boolean) => {
         function isElementInViewport(el: HTMLVideoElement): boolean {
@@ -148,7 +146,6 @@ export default function Home() {
                                             autorLink={v.user.url}
                                             videoUrl={v.video_files[0].link}
                                             isVideoInViewPort={videoIdAtual === i}
-                                            isMutado={isMutado}
                                         />
                                     ))
                                 }

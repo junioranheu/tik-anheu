@@ -1,36 +1,29 @@
 import ImgPlay from '@/assets/images/icones/play.webp';
+import ImgSomMudo from '@/assets/images/icones/som-mudo.webp';
 import ImgSom from '@/assets/images/icones/som.webp';
+import ImgStop from '@/assets/images/icones/stop.webp';
 import Styles from '@/components/video/styles/video.opcoes.centro.module.scss';
-import { Aviso } from '@/utils/misc/aviso';
-import gerarEmojiAleatorio from '@/utils/misc/gerarEmojiAleatorio';
 import Image, { StaticImageData } from 'next/image';
-import { useState } from 'react';
+import { Dispatch } from 'react';
 
 interface iParametros {
     id: string;
+    isMutado: boolean;
+    setIsMutado: Dispatch<boolean>;
+    togglePlay: () => void;
+    isVideoPausado: boolean;
     videoWidth: number;
     classCSS: string;
 }
 
-export default function VideoOpcoesCentro({ id, videoWidth, classCSS }: iParametros) {
-
-    const [isCurtido, setIsCurtido] = useState<boolean>(false);
-
-    function handleCurtir() {
-        setIsCurtido(!isCurtido);
-    }
-
-    function handleComentarios() {
-        Aviso.toast(`Visualizar comentários do vídeo #${id}`, 3500, gerarEmojiAleatorio(), true);
-    }
-
+export default function VideoOpcoesCentro({ id, isMutado, setIsMutado, togglePlay, isVideoPausado, videoWidth, classCSS }: iParametros) {
     return (
         <div
             className={`${Styles.opcoes} ${classCSS}`}
             style={{ width: `${videoWidth}px` }}
         >
-            <Icone imagem={ImgPlay} title='Tocar vídeo' handleFn={() => handleComentarios()} />
-            <Icone imagem={ImgSom} title='Mutar vídeo' handleFn={() => handleCurtir()} />
+            <Icone imagem={(isVideoPausado ? ImgPlay : ImgStop)} title='Tocar vídeo' handleFn={() => togglePlay()} />
+            <Icone imagem={(isMutado ? ImgSomMudo : ImgSom)} title={(isMutado ? 'Habilitar som' : 'Desabilitar som')} handleFn={() => setIsMutado(!isMutado)} />
         </div>
     )
 }

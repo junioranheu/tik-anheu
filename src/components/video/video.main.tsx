@@ -12,12 +12,12 @@ interface iParametros {
     autorLink: string;
     videoUrl: string;
     isVideoInViewPort: boolean;
-    isMutado: boolean;
 }
 
-export default function VideoMain({ index, autorNome, autorLink, videoUrl, isVideoInViewPort, isMutado }: iParametros) {
+export default function VideoMain({ index, autorNome, autorLink, videoUrl, isVideoInViewPort }: iParametros) {
 
     const refVideo = useRef<HTMLVideoElement>(null);
+    const [isMutado, setIsMutado] = useState<boolean>(false);
 
     function togglePlay() {
         const currentVideo = refVideo?.current;
@@ -76,7 +76,6 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isVid
                 playsInline={true}
                 disablePictureInPicture={true}
                 controls={false}
-                onClick={() => togglePlay()}
             >
                 <source src={videoUrl} type='video/mp4' />
             </video>
@@ -98,6 +97,10 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isVid
 
             <VideoOpcoesCentro
                 id={index.toString()}
+                isMutado={isMutado}
+                setIsMutado={setIsMutado}
+                togglePlay={() => togglePlay()}
+                isVideoPausado={refVideo?.current?.paused!}
                 videoWidth={videoWidth}
                 classCSS={Styles.opcoesCentro}
             />
