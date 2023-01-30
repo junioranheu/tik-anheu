@@ -1,9 +1,9 @@
 import Styles from '@/components/video/styles/video.main.module.scss';
 import useWindowSize from '@/hooks/outros/useWindowSize';
 import { Aviso } from '@/utils/misc/aviso';
-import { useEffect, useRef, useState } from 'react';
-import VideoDetalhes from './video.detalhes';
-import ProgressBar from './video.progressBar';
+import { lazy, useEffect, useRef, useState } from 'react';
+const ProgressBar = lazy(() => import('./video.progressBar'));
+const VideoDetalhes = lazy(() => import('./video.detalhes'));
 
 interface iParametros {
     index: number;

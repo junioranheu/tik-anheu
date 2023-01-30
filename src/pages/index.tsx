@@ -1,4 +1,3 @@
-import VideoMain from '@/components/video/video.main';
 import Styles from '@/styles/home.module.scss';
 import CONSTS_SISTEMA from '@/utils/consts/outros/sistema';
 import gerarItemRandom from '@/utils/misc/gerarItemRandom';
@@ -6,8 +5,9 @@ import gerarNumeroAleatorio from '@/utils/misc/gerarNumeroAleatorio';
 import { iPexels, iPexelsVideo } from '@/utils/types/iPexels';
 import Head from 'next/head';
 import { createClient } from 'pexels'; // https://www.pexels.com/api/documentation/
-import { Fragment, useCallback, useEffect, useState } from 'react';
+import { Fragment, lazy, useCallback, useEffect, useState } from 'react';
 import { useSwipeable } from 'react-swipeable'; // https://www.npmjs.com/package/react-swipeable
+const VideoMain = lazy(() => import('@/components/video/video.main'));
 
 export default function Home() {
 
@@ -56,7 +56,7 @@ export default function Home() {
     }, [getVideos]);
 
     function handleWheel() {
-        function isElementInViewport(el: HTMLVideoElement) {
+        function isElementInViewport(el: HTMLVideoElement): boolean {
             var rect = el.getBoundingClientRect();
             return rect.bottom > 0 && rect.right > 0 && rect.left < (window.innerWidth || document.documentElement.clientWidth) && rect.top < (window.innerHeight || document.documentElement.clientHeight);
         }
