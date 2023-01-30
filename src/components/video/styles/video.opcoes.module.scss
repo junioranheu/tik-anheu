@@ -37,7 +37,7 @@
 
         &:hover {
             img {
-                filter: brightness(0) invert(0.3);
+                filter: brightness(0) invert(0.85);
                 transition: 0.3s;
             }
         }
@@ -60,7 +60,25 @@
 @media (max-width:1025px) {}
 
 /* tablet, landscape iPad, lo-res laptops ands desktops */
-@media (max-width:801px) {}
+@media (max-width:801px) {
+    .opcoes {
+        // background-color: coral;
+
+        position: absolute;
+        top: 0rem;
+        left: auto;
+        right: auto;
+
+        display: flex;
+        flex-direction: row;
+        align-items:flex-start;
+        gap: 0.75rem;
+
+        .icone {
+            background-color: var(--cor-principal);
+        }
+    }
+}
 
 /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
 @media (max-width:600px) {}
