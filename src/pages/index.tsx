@@ -7,6 +7,7 @@ import { iPexels, iPexelsVideo } from '@/utils/types/iPexels';
 import Head from 'next/head';
 import { createClient } from 'pexels'; // https://www.pexels.com/api/documentation/
 import { Fragment, useCallback, useEffect, useState } from 'react';
+import { useSwipeable } from 'react-swipeable'; // https://www.npmjs.com/package/react-swipeable
 
 export default function Home() {
 
@@ -97,6 +98,13 @@ export default function Home() {
         verificarNecessidadeGetNovosVideos((carregarNovosVideoEm - 2), videoIdAtual);
     }, [videoIdAtual, carregarNovosVideoEm, videos?.length, getVideos]);
 
+    const handlerSwipe = useSwipeable({
+        onSwiped: () => {
+            // console.log('swiped');
+            videosLoaded && handleWheel();
+        }
+    })
+
     return (
         <Fragment>
             <Head>
@@ -107,6 +115,7 @@ export default function Home() {
                 <section
                     className={Styles.main}
                     onWheel={() => videosLoaded && handleWheel()}
+                    {...handlerSwipe}
                 >
                     {
                         videos?.length > 0 ? (
