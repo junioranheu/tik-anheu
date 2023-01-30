@@ -65,7 +65,12 @@ export default function Home() {
         const query = gerarItemRandom(queries);
 
         await client.videos
-            .search({ query, per_page: qtdImagensPorVez, page: gerarNumeroAleatorio(1, 20), orientation: 'portrait' })
+            .search({
+                query,
+                per_page: qtdImagensPorVez,
+                page: gerarNumeroAleatorio(1, 30),
+                orientation: 'portrait'
+            })
             .then((result) => {
                 const resultado = result as unknown as iPexels;
                 setVideos((oldVideos: iPexelsVideo[]) => [...oldVideos, ...resultado.videos]);
