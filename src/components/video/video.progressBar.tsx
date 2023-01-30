@@ -8,10 +8,11 @@ interface iParametros {
     progress: number;
     width: string;
     isExibirDebug: boolean;
+    classCSS: string;
 }
 
 // https://codesandbox.io/s/quirky-hopper-jfcx9?file=/src/progress.js:0-2097
-export default function ProgressBar({ handleProgress, progress, width, isExibirDebug }: iParametros) {
+export default function ProgressBar({ handleProgress, progress, width, isExibirDebug, classCSS }: iParametros) {
 
     const elementoId = 'progressWrapperVolume';
     const [rectLeft, setRectLeft] = useState<number>(0);
@@ -85,7 +86,7 @@ export default function ProgressBar({ handleProgress, progress, width, isExibirD
 
     return (
         <div
-            className={Styles.progressWrapper}
+            className={`${Styles.progressWrapper} ${classCSS}`}
             id={elementoId}
             onClick={(e) => handleClick(e)} {...bindProgressBar()}
             style={{ width: width }}

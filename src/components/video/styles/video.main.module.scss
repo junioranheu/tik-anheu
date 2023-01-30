@@ -17,6 +17,24 @@
         max-width: 25%;
         min-width: 25%;
         object-fit: cover;
+
+        &:hover {
+            ~.progress {
+                opacity: 1;
+                transition: opacity 0.3s linear;
+            }
+        }
+    }
+
+    .progress {
+        // background-color: coral;
+        opacity: 0;
+        transition: opacity 0.3s linear;
+
+        &:hover {
+            opacity: 1;
+            transition: opacity 0.3s linear;
+        }
     }
 }
 

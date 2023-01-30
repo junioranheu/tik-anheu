@@ -42,7 +42,6 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isVid
         return porcentagem;
     }
 
-
     const [progress, setProgress] = useState<number>(0);
     function handleProgress(n: number) {
         if (refVideo.current) {
@@ -87,6 +86,7 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isVid
                 progress={progress}
                 width={`${videoWidth}px`}
                 isExibirDebug={false}
+                classCSS={Styles.progress}
             />
 
             <VideoDetalhes
