@@ -30,10 +30,7 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isMut
 
     const [progress, setProgress] = useState<number>(0);
     function handleProgress(n: number) {
-        let porcentagemVista = Math.trunc(n);
-        porcentagemVista = porcentagemVista < 0 ? 0 : porcentagemVista;
-        porcentagemVista = porcentagemVista > 100 ? 100 : porcentagemVista;
-        
+        const porcentagemVista = ajustarPorcentagem(Math.trunc(n));
         setProgress(porcentagemVista);
     }
 
@@ -51,15 +48,20 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isMut
             if (refVideo?.current?.duration && videoWidth) {
                 const segundoAtual = 5;
                 const segundoMaximo = refVideo?.current?.duration;
-                let porcentagemVista = Math.trunc((segundoAtual / segundoMaximo) * 100);
-                porcentagemVista = porcentagemVista < 0 ? 0 : porcentagemVista;
-                porcentagemVista = porcentagemVista > 100 ? 100 : porcentagemVista;
+                const porcentagemVista = ajustarPorcentagem(Math.trunc((segundoAtual / segundoMaximo) * 100));
 
                 setInfoProgress(`O progresso do vídeo #${index} é ${porcentagemVista}%`);
                 setProgress(porcentagemVista);
             }
-        }, 500);
+        }, 1000);
     }, [refVideo?.current, videoWidth, index]);
+
+    function ajustarPorcentagem(porcentagem: number) {
+        porcentagem = porcentagem < 0 ? 0 : porcentagem;
+        porcentagem = porcentagem > 100 ? 100 : porcentagem;
+
+        return porcentagem;
+    }
 
     return (
         <section className={Styles.sessaoVideo}>

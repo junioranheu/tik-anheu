@@ -65,15 +65,16 @@ export default function Home() {
             const videos = document?.getElementsByTagName('video');
 
             for (let i = 0; i < videos.length; i++) {
-                const isInViewPort = isElementInViewport(videos[i]) as boolean;
                 videos[i]?.pause();
+                videos[i].currentTime = 0;
 
+                const isInViewPort = isElementInViewport(videos[i]) as boolean;
                 if (isInViewPort) {
                     videos[i]?.play();
                     setVideoIdAtual(i);
                 }
             }
-        }, 350);
+        }, 400);
     }
 
     useEffect(() => {

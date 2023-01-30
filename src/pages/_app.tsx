@@ -70,7 +70,7 @@ export default function App({ Component, pageProps }: AppProps) {
                     <meta name='description' content={`${CONSTS_SISTEMA.NOME_SISTEMA}`} />
                     <meta name='keywords' content='tiktok, videos' />
                     <meta name='author' content='@junioranheu' />
-                    <meta name='theme-color' content='#105EAA' />
+                    <meta name='theme-color' content='#912cf6' />
                 </Head>
 
                 <div className='toaster'>
