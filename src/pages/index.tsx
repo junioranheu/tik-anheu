@@ -75,7 +75,7 @@ export default function Home() {
                     video?.pause();
                 }
             }
-        }, 300);
+        }, 350);
     }
 
     useEffect(() => {

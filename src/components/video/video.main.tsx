@@ -40,28 +40,19 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isMut
         setVideoWidth(refVideo?.current?.getBoundingClientRect()?.width ?? 0);
     }, [tamanhoTela]);
 
-    const [infoProgress, setInfoProgress] = useState<string>('');
-    useEffect(() => {
-        setTimeout(function () {
-            setInfoProgress(`#${index} ${videoWidth} ${refVideo?.current?.duration}`);
-
-            if (refVideo?.current?.duration && videoWidth) {
-                const segundoAtual = 5;
-                const segundoMaximo = refVideo?.current?.duration;
-                const porcentagemVista = ajustarPorcentagem(Math.trunc((segundoAtual / segundoMaximo) * 100));
-
-                setInfoProgress(`O progresso do vídeo #${index} é ${porcentagemVista}%`);
-                setProgress(porcentagemVista);
-            }
-        }, 1000);
-    }, [videoWidth, index]);
-
     function ajustarPorcentagem(porcentagem: number) {
         porcentagem = porcentagem < 0 ? 0 : porcentagem;
         porcentagem = porcentagem > 100 ? 100 : porcentagem;
 
         return porcentagem;
     }
+
+    useEffect(() => {
+        if (refVideo.current) {
+            const tempo = Math.trunc((progress / 100) * refVideo?.current?.duration);
+            refVideo.current.currentTime = isNaN(tempo) ? 0 : tempo;
+        }
+    }, [progress]);
 
     return (
         <section className={Styles.sessaoVideo}>
@@ -76,7 +67,6 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isMut
                 disablePictureInPicture={true}
                 controls={false}
                 onClick={() => togglePlay()}
-
             >
                 <source src={videoUrl} type='video/mp4' />
             </video>
@@ -92,7 +82,6 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isMut
                 autorNome={autorNome}
                 autorLink={autorLink}
                 togglePlay={() => togglePlay()}
-                infoProgress={infoProgress}
             />
         </section>
     )

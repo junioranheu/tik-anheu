@@ -5,10 +5,9 @@ interface iParametros {
     autorNome: string;
     autorLink: string;
     togglePlay: () => void;
-    infoProgress: string;
 }
 
-export default function VideoDetalhes({ id, autorNome, autorLink, togglePlay, infoProgress }: iParametros) {
+export default function VideoDetalhes({ id, autorNome, autorLink, togglePlay }: iParametros) {
     return (
         <div className={Styles.detalhes} onClick={togglePlay}>
             <span>#{id}</span>
@@ -17,8 +16,6 @@ export default function VideoDetalhes({ id, autorNome, autorLink, togglePlay, in
             <span>
                 Por <a href={autorLink}>{autorNome}</a> — Pexel
             </span>
-
-            <span>{infoProgress}</span>
         </div>
     )
 }
