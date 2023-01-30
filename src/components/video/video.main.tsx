@@ -10,10 +10,11 @@ interface iParametros {
     autorNome: string;
     autorLink: string;
     videoUrl: string;
+    isVideoInViewPort: boolean;
     isMutado: boolean;
 }
 
-export default function VideoMain({ index, autorNome, autorLink, videoUrl, isMutado }: iParametros) {
+export default function VideoMain({ index, autorNome, autorLink, videoUrl, isVideoInViewPort, isMutado }: iParametros) {
 
     const refVideo = useRef<HTMLVideoElement>(null);
 
@@ -54,6 +55,23 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isMut
         }
     }, [progress]);
 
+    const [tempoSegundosAtual, setTempoSegundosAtual] = useState<number>(0);
+    useEffect(() => {
+        const intervalo = setInterval(() => {
+            if (isVideoInViewPort && refVideo?.current) {
+                const tempoAtual = refVideo?.current?.currentTime;
+                const duracao = refVideo?.current?.duration;
+                const porcentagem = tempoAtual / duracao;
+                const porcentagemWidth = porcentagem * refVideo?.current?.width;
+                console.log(porcentagemWidth);
+
+                setTempoSegundosAtual(porcentagemWidth ?? 0);
+            }
+        }, 500);
+
+        return () => clearInterval(intervalo);
+    }, [isVideoInViewPort])
+
     return (
         <section className={Styles.sessaoVideo}>
             <video
@@ -79,7 +97,7 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isMut
 
             <VideoDetalhes
                 id={index.toString()}
-                autorNome={autorNome}
+                autorNome={tempoSegundosAtual.toString()}
                 autorLink={autorLink}
                 togglePlay={() => togglePlay()}
             />

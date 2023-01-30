@@ -116,6 +116,7 @@ export default function Home() {
                                             autorNome={v.user.name}
                                             autorLink={v.user.url}
                                             videoUrl={v.video_files[0].link}
+                                            isVideoInViewPort={videoIdAtual === i}
                                             isMutado={isMutado}
                                         />
                                     ))
