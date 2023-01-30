@@ -14,7 +14,7 @@ const VideoMain = lazy(() => import('@/components/video/video.main'));
 
 export default function Home() {
 
-    const isDebugging = true;
+    const isDebugging = false;
     const [keyPexelsAPI, setKeyPexelsAPI] = useState<string>(CONSTS_SISTEMA.KEY_PEXELS_API_1);
     const [videos, setVideos] = useState<iPexelsVideo[]>([]);
     const [videosLoaded, setVideosLoaded] = useState<boolean>(false);
@@ -26,7 +26,7 @@ export default function Home() {
     const emoji = useEmoji();
     const [isMutado, setIsMutado] = useState<boolean>(false);
 
-    const iterarVideosEDefinirVideoIdAtual = useCallback(async () => {
+    const iterarVideosEDefinirVideoIdAtual = useCallback(async (isUsarTimeOut: boolean) => {
         function isElementInViewport(el: HTMLVideoElement): boolean {
             var rect = el.getBoundingClientRect();
             return rect.bottom > 0 && rect.right > 0 && rect.left < (window.innerWidth || document.documentElement.clientWidth) && rect.top < (window.innerHeight || document.documentElement.clientHeight);
@@ -54,7 +54,7 @@ export default function Home() {
                     video?.pause();
                 }
             }
-        }, 400);
+        }, isUsarTimeOut ? 400 : 1);
     }, [isDebugging]);
 
     const getVideos = useCallback(async () => {
@@ -68,7 +68,7 @@ export default function Home() {
             .search({
                 query,
                 per_page: qtdImagensPorVez,
-                page: gerarNumeroAleatorio(1, 30),
+                page: gerarNumeroAleatorio(1, 20),
                 orientation: 'portrait'
             })
             .then((result) => {
@@ -77,7 +77,7 @@ export default function Home() {
                 setVideosLoaded(true);
 
                 // Verificar novamente;
-                iterarVideosEDefinirVideoIdAtual();
+                iterarVideosEDefinirVideoIdAtual(false);
 
                 isDebugging && Aviso.toast(`${resultado.videos.length} novos vídeos baixados`, 3500, gerarEmojiAleatorio(), true);
             })
@@ -94,7 +94,7 @@ export default function Home() {
     }, [keyPexelsAPI, iterarVideosEDefinirVideoIdAtual, isDebugging]);
 
     function handleWheel() {
-        iterarVideosEDefinirVideoIdAtual();
+        iterarVideosEDefinirVideoIdAtual(true);
     }
 
     useEffect(() => {
