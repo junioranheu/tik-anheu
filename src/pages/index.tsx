@@ -33,7 +33,6 @@ export default function Home() {
                 const resultado = result as unknown as iPexels;
                 setVideos((oldVideos: iPexelsVideo[]) => [...oldVideos, ...resultado.videos]);
                 setVideosLoaded(true);
-                document.querySelectorAll('video').forEach(vid => vid.pause());
 
                 if (process.env.NODE_ENV === 'development') {
                     // Aviso.toast(`${resultado.videos.length} novos vídeos baixados`, 3500, gerarEmojiAleatorio(), true);
@@ -61,20 +60,22 @@ export default function Home() {
             return rect.bottom > 0 && rect.right > 0 && rect.left < (window.innerWidth || document.documentElement.clientWidth) && rect.top < (window.innerHeight || document.documentElement.clientHeight);
         }
 
+        const videos = document?.getElementsByTagName('video');
+
         setTimeout(function () {
-            const videos = document?.getElementsByTagName('video');
-
             for (let i = 0; i < videos.length; i++) {
-                videos[i]?.pause();
-                videos[i].currentTime = 0;
+                const video = videos[i];
+                video.currentTime = 0;
 
-                const isInViewPort = isElementInViewport(videos[i]) as boolean;
+                const isInViewPort = isElementInViewport(video) as boolean;
                 if (isInViewPort) {
-                    videos[i]?.play();
                     setVideoIdAtual(i);
+                    video?.play();
+                } else {
+                    video?.pause();
                 }
             }
-        }, 400);
+        }, 300);
     }
 
     useEffect(() => {

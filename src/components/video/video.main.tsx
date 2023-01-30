@@ -38,7 +38,7 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isMut
     const [videoWidth, setVideoWidth] = useState<number>(0);
     useEffect(() => {
         setVideoWidth(refVideo?.current?.getBoundingClientRect()?.width ?? 0);
-    }, [refVideo?.current, tamanhoTela]);
+    }, [tamanhoTela]);
 
     const [infoProgress, setInfoProgress] = useState<string>('');
     useEffect(() => {
@@ -54,7 +54,7 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isMut
                 setProgress(porcentagemVista);
             }
         }, 1000);
-    }, [refVideo?.current, videoWidth, index]);
+    }, [videoWidth, index]);
 
     function ajustarPorcentagem(porcentagem: number) {
         porcentagem = porcentagem < 0 ? 0 : porcentagem;
