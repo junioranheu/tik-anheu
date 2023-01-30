@@ -9,7 +9,7 @@
     z-index: 999;
     position: absolute;
     bottom: 6rem;
-
+ 
     &:hover {
         .progress {
             background-color: var(--cor-principal);
@@ -82,7 +82,12 @@
 @media (max-width:1025px) {}
 
 /* tablet, landscape iPad, lo-res laptops ands desktops */
-@media (max-width:801px) {}
+@media (max-width:801px) {
+    .progressWrapper {
+        // background: red !important;
+        bottom: 10rem;
+    }
+}
 
 /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
 @media (max-width:600px) {}
