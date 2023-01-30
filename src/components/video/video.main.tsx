@@ -84,7 +84,7 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isVid
                 handleProgress={handleProgress}
                 progress={progress}
                 width={`${videoWidth}px`}
-                isDebugging={false}
+                isDebugging={true}
                 classCSS={Styles.progress}
             />
 
