@@ -37,6 +37,41 @@ body {
     user-select: none;
 }
 
+/* =-=-=-=-=-=-=-=-=-=-= Botão =-=-=-=-=-=-=-=-=-=-= */
+.botao {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    height: 40px;
+    margin: 8px 0 0.75rem;
+    padding: 8px 48px;
+    border: none;
+    background: var(--cor-principal);
+    border-radius: 500px;
+    color: var(--branco);
+    cursor: pointer;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 400;
+    white-space: nowrap;
+    outline: none;
+    place-content: center;
+    place-items: center;
+    transition: all 0.3s;
+
+    &:hover {
+        transform: scale(1.05);
+        transition: all 0.3s;
+    }
+
+    &:disabled {
+        background-color: rgba(16, 94, 170, 0.5);
+        color: var(--branco);
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
+
 /* =-=-=-=-=-=-=-=-=-=-= react-hot-toast =-=-=-=-=-=-=-=-=-=-= */
 .toaster {
     position: fixed !important;

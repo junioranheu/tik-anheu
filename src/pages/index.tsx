@@ -1,3 +1,4 @@
+import Botao from '@/components/outros/botao';
 import useEmoji from '@/hooks/outros/useEmoji';
 import Styles from '@/styles/home.module.scss';
 import CONSTS_SISTEMA from '@/utils/consts/outros/sistema';
@@ -155,6 +156,16 @@ export default function Home() {
                         ) : (
                             <div className={`${Styles.avisoErro} animate__animated animate__fadeIn animate__delay-1s`}>
                                 <span>Parece que não há nenhum conteúdo para mostrar agora! {emoji}</span>
+
+                                <Botao
+                                    texto='Atualizar página'
+                                    url={null}
+                                    isNovaAba={false}
+                                    handleFuncao={() => { window.location.href = window.location.href }}
+                                    Svg={null}
+                                    refBtn={null}
+                                    isEnabled={true}
+                                />
                             </div>
                         )}
                 </section>
