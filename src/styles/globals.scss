@@ -42,3 +42,11 @@ body {
     position: fixed !important;
     z-index: 999999999 !important;
 }
+
+/* =-=-=-=-=-=-=-=-=-=-=-=- animate.css =-=-=-=-=-=-=-=-=-=-=-=- */
+.animate__delay03 {
+    -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s;
+    -webkit-animation-delay: calc(1s*0.3);
+    animation-delay: calc(1s*0.3);
+}

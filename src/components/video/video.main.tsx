@@ -1,9 +1,9 @@
 import Styles from '@/components/video/styles/video.main.module.scss';
 import useWindowSize from '@/hooks/outros/useWindowSize';
-import { Aviso } from '@/utils/misc/aviso';
 import { lazy, useEffect, useRef, useState } from 'react';
 const ProgressBar = lazy(() => import('./video.progressBar'));
 const VideoDetalhes = lazy(() => import('./video.detalhes'));
+const VideoOpcoes = lazy(() => import('./video.opcoes'));
 
 interface iParametros {
     index: number;
@@ -20,7 +20,6 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isVid
 
     function togglePlay() {
         const currentVideo = refVideo?.current;
-        Aviso.toast(`Vídeo #${index}`, 1000, '', true);
 
         if (currentVideo?.paused) {
             currentVideo?.play();
@@ -94,6 +93,10 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isVid
                 autorNome={autorNome}
                 autorLink={autorLink}
                 togglePlay={() => togglePlay()}
+            />
+
+            <VideoOpcoes
+                id={index.toString()}
             />
         </section>
     )

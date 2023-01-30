@@ -1,0 +1,19 @@
+.opcoes {
+    background-color: coral;
+    // background-color: var(--cor-principal-transparente);
+    color: var(--branco);
+    padding: 1rem;
+    border-radius: 0.5rem;
+ 
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    span {
+        font-size: 0.8rem;
+    }
+} 
