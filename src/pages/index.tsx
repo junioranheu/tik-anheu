@@ -1,3 +1,4 @@
+import useEmoji from '@/hooks/outros/useEmoji';
 import Styles from '@/styles/home.module.scss';
 import CONSTS_SISTEMA from '@/utils/consts/outros/sistema';
 import gerarItemRandom from '@/utils/misc/gerarItemRandom';
@@ -19,6 +20,7 @@ export default function Home() {
     const [videoIdAtual, setVideoIdAtual] = useState<number>(0);
     const [carregarNovosVideoEm, setCarregarNovosVideoEm] = useState<number>(qtdImagensPorVez);
 
+    const emoji = useEmoji();
     const [isMutado, setIsMutado] = useState<boolean>(false);
 
     const getVideos = useCallback(async () => {
@@ -135,9 +137,9 @@ export default function Home() {
                                 }
                             </Fragment>
                         ) : (
-                            <Fragment>
-                                <h1 style={{ color: 'coral' }}>Ops... parece que não há nenhum conteúdo para mostrar agora!</h1>
-                            </Fragment>
+                            <div className={`${Styles.avisoErro} animate__animated animate__fadeIn animate__delay-1s`}>
+                                <span>Parece que não há nenhum conteúdo para mostrar agora! {emoji}</span>
+                            </div>
                         )}
                 </section>
             </main>
