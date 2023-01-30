@@ -14,6 +14,7 @@ const VideoMain = lazy(() => import('@/components/video/video.main'));
 
 export default function Home() {
 
+    const isDebugging = true;
     const [keyPexelsAPI, setKeyPexelsAPI] = useState<string>(CONSTS_SISTEMA.KEY_PEXELS_API_1);
     const [videos, setVideos] = useState<iPexelsVideo[]>([]);
     const [videosLoaded, setVideosLoaded] = useState<boolean>(false);
@@ -24,6 +25,37 @@ export default function Home() {
 
     const emoji = useEmoji();
     const [isMutado, setIsMutado] = useState<boolean>(false);
+
+    const iterarVideosEDefinirVideoIdAtual = useCallback(async () => {
+        function isElementInViewport(el: HTMLVideoElement): boolean {
+            var rect = el.getBoundingClientRect();
+            return rect.bottom > 0 && rect.right > 0 && rect.left < (window.innerWidth || document.documentElement.clientWidth) && rect.top < (window.innerHeight || document.documentElement.clientHeight);
+        }
+
+        const videos = document?.getElementsByTagName('video');
+
+        setTimeout(function () {
+            for (let i = 0; i < videos.length; i++) {
+                const video = videos[i];
+
+                if (i > 0) {
+                    video.currentTime = 0;
+                }
+
+                const isInViewPort = isElementInViewport(video) as boolean;
+                if (isInViewPort) {
+                    setVideoIdAtual(i);
+
+                    setTimeout(function () {
+                        video?.play();
+                        isDebugging && Aviso.toast(`Play no vídeo #${i}`, 3500, gerarEmojiAleatorio(), true);
+                    }, 250);
+                } else {
+                    video?.pause();
+                }
+            }
+        }, 400);
+    }, [isDebugging]);
 
     const getVideos = useCallback(async () => {
         const client = createClient(keyPexelsAPI);
@@ -39,50 +71,25 @@ export default function Home() {
                 setVideos((oldVideos: iPexelsVideo[]) => [...oldVideos, ...resultado.videos]);
                 setVideosLoaded(true);
 
-                if (process.env.NODE_ENV === 'development') {
-                    // Aviso.toast(`${resultado.videos.length} novos vídeos baixados`, 3500, gerarEmojiAleatorio(), true);
-                }
+                // Verificar novamente;
+                iterarVideosEDefinirVideoIdAtual();
+
+                isDebugging && Aviso.toast(`${resultado.videos.length} novos vídeos baixados`, 3500, gerarEmojiAleatorio(), true);
             })
             .catch((e: any) => {
                 if (process.env.NODE_ENV === 'development') {
                     console.log('Houve um erro ao carregar os vídeos. Forçando recursão. Key alterada para CONSTS_SISTEMA.KEY_PEXELS_API_2', e);
-                    // Aviso.toast('Houve um erro ao carregar os vídeos. Forçando recursão', 3500, gerarEmojiAleatorio(), true);
+                    isDebugging && Aviso.toast('Houve um erro ao carregar os vídeos. Forçando recursão', 3500, gerarEmojiAleatorio(), true);
                 }
 
                 setVideosLoaded(false);
                 setKeyPexelsAPI(CONSTS_SISTEMA.KEY_PEXELS_API_2);
                 // getVideos(); // Recursão;
             });
-    }, [keyPexelsAPI]);
+    }, [keyPexelsAPI, iterarVideosEDefinirVideoIdAtual, isDebugging]);
 
     function handleWheel() {
-        function isElementInViewport(el: HTMLVideoElement): boolean {
-            var rect = el.getBoundingClientRect();
-            return rect.bottom > 0 && rect.right > 0 && rect.left < (window.innerWidth || document.documentElement.clientWidth) && rect.top < (window.innerHeight || document.documentElement.clientHeight);
-        }
-
-        const videos = document?.getElementsByTagName('video');
-
-        setTimeout(function () {
-            for (let i = 0; i < videos.length; i++) {
-                const video = videos[i];
- 
-                if (i > 0) {
-                    video.currentTime = 0;
-                }
-
-                const isInViewPort = isElementInViewport(video) as boolean;
-                if (isInViewPort) {
-                    setVideoIdAtual(i);
-
-                    setTimeout(function () {
-                        video?.play();
-                    }, 250);
-                } else {
-                    video?.pause();
-                }
-            }
-        }, 400);
+        iterarVideosEDefinirVideoIdAtual();
     }
 
     useEffect(() => {
@@ -90,19 +97,19 @@ export default function Home() {
             // Fluxo normal;
             if (novosEm === atual) {
                 setCarregarNovosVideoEm((prev) => prev + qtdImagensPorVez);
-                Aviso.toast('Fluxo normal', 3500, gerarEmojiAleatorio(), true);
+                isDebugging && Aviso.toast('Fluxo normal', 3500, gerarEmojiAleatorio(), true);
                 await getVideos();
             }
 
             // Fluxo inicial ou @BugFix - se a quantidade de vídeos for menor que o necessário, busque novamente mais vídeos;
             else if (videos?.length <= novosEm) {
-                Aviso.toast('Fluxo inicial ou @BugFix', 3500, gerarEmojiAleatorio(), true);
+                isDebugging && Aviso.toast('Fluxo inicial ou @BugFix', 3500, gerarEmojiAleatorio(), true);
                 await getVideos();
             }
         }
 
         verificarNecessidadeGetNovosVideos((carregarNovosVideoEm - 2), videoIdAtual);
-    }, [videoIdAtual, carregarNovosVideoEm, videos?.length, getVideos]);
+    }, [videoIdAtual, carregarNovosVideoEm, videos?.length, getVideos, isDebugging]);
 
     const handlerSwipe = useSwipeable({
         onSwiped: () => {
