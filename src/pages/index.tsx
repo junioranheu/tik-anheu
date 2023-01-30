@@ -1,6 +1,8 @@
 import useEmoji from '@/hooks/outros/useEmoji';
 import Styles from '@/styles/home.module.scss';
 import CONSTS_SISTEMA from '@/utils/consts/outros/sistema';
+import { Aviso } from '@/utils/misc/aviso';
+import gerarEmojiAleatorio from '@/utils/misc/gerarEmojiAleatorio';
 import gerarItemRandom from '@/utils/misc/gerarItemRandom';
 import gerarNumeroAleatorio from '@/utils/misc/gerarNumeroAleatorio';
 import { iPexels, iPexelsVideo } from '@/utils/types/iPexels';
@@ -53,10 +55,6 @@ export default function Home() {
             });
     }, [keyPexelsAPI]);
 
-    useEffect(() => {
-        getVideos();
-    }, [getVideos]);
-
     function handleWheel() {
         function isElementInViewport(el: HTMLVideoElement): boolean {
             var rect = el.getBoundingClientRect();
@@ -86,13 +84,16 @@ export default function Home() {
 
     useEffect(() => {
         async function verificarNecessidadeGetNovosVideos(novosEm: number, atual: number) {
+            // Fluxo normal;
             if (novosEm === atual) {
                 setCarregarNovosVideoEm((prev) => prev + qtdImagensPorVez);
+                Aviso.toast('Fluxo normal', 3500, gerarEmojiAleatorio(), true);
                 await getVideos();
             }
 
-            // @BugFix - se a quantidade de vídeos for menor que o necessário, busque novamente mais vídeos;
-            if (videos?.length <= novosEm) {
+            // Fluxo inicial ou @BugFix - se a quantidade de vídeos for menor que o necessário, busque novamente mais vídeos;
+            else if (videos?.length <= novosEm) {
+                Aviso.toast('Fluxo inicial ou @BugFix', 3500, gerarEmojiAleatorio(), true);
                 await getVideos();
             }
         }
