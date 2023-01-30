@@ -20,14 +20,17 @@
 
         &:hover,
         &:active {
-            ~.progress {
+
+            ~.progress,
+            ~.opcoesCentro {
                 opacity: 1;
                 transition: opacity 0.3s linear;
             }
         }
     }
 
-    .progress {
+    .progress,
+    .opcoesCentro {
         // background-color: coral;
         opacity: 0;
         transition: opacity 0.3s linear;

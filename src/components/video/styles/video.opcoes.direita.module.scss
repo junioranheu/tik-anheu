@@ -17,7 +17,7 @@
     span {
         font-size: 0.8rem;
     }
-
+ 
     .icone {
         background-color: var(--cor-principal);
         height: 2.5rem;
@@ -37,7 +37,7 @@
 
         &:hover {
             img {
-                filter: brightness(0) invert(0.85);
+                filter: brightness(0) invert(1);
                 transition: 0.3s;
             }
         }
@@ -76,6 +76,16 @@
 
         .icone {
             background-color: var(--cor-principal);
+
+            img {
+                filter: brightness(0) invert(0.9);
+            }
+
+            &:hover {
+                img {
+                    filter: brightness(0) invert(0.8);
+                }
+            }
         }
     }
 }

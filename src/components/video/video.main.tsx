@@ -99,6 +99,7 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isVid
             <VideoOpcoesCentro
                 id={index.toString()}
                 videoWidth={videoWidth}
+                classCSS={Styles.opcoesCentro}
             />
 
             <VideoOpcoesDireita
