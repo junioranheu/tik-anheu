@@ -70,7 +70,10 @@ export default function Home() {
                 const isInViewPort = isElementInViewport(video) as boolean;
                 if (isInViewPort) {
                     setVideoIdAtual(i);
-                    video?.play();
+
+                    setTimeout(function () {
+                        video?.play();
+                    }, 200);
                 } else {
                     video?.pause();
                 }
@@ -102,7 +105,7 @@ export default function Home() {
 
             <main>
                 <section
-                    className={`${Styles.main} semHighlight animate__animated animate__fadeIn animate__delay-1s`}
+                    className={Styles.main}
                     onWheel={() => videosLoaded && handleWheel()}
                 >
                     {
