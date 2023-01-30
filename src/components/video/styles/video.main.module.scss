@@ -92,10 +92,12 @@
             object-fit: cover;
         }
 
-        // .progress {
-        //     // background-color: coral;
-        //     // opacity: 1;
-        // }
+        // .progress,
+        .opcoesCentro {
+            // background-color: coral;
+            opacity: 1;
+            transition: opacity 0.3s linear;
+        }
     }
 }
 
