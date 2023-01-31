@@ -59,7 +59,7 @@ export default function Home() {
             if (isFirstLoad) {
                 setIsFirstLoad(false);
                 document.querySelectorAll('video').forEach(vid => vid.pause());
-                Aviso.toast('isFirstLoad', 3500, gerarEmojiAleatorio(), true);
+                Aviso.toast(`${isFirstLoad} | videos: ${videos?.length}`, 3500, gerarEmojiAleatorio(), true);
             }
         }, isUsarTimeOut ? 400 : 1);
     }, [isDebugging, isFirstLoad]);
