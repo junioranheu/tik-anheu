@@ -1,20 +1,45 @@
+import ImgEtc from '@/assets/images/icones/etc.webp';
 import Styles from '@/components/video/styles/video.detalhes.module.scss';
+import Image, { StaticImageData } from 'next/image';
 
 interface iParametros {
-    id: string;
     autorNome: string;
     autorLink: string;
-    togglePlay: () => void;
 }
 
-export default function VideoDetalhes({ id, autorNome, autorLink, togglePlay }: iParametros) {
+export default function VideoDetalhes({ autorNome, autorLink }: iParametros) {
     return (
-        <div className={Styles.detalhes} onClick={togglePlay}>
-            <span>@{autorNome}</span>
+        <section className={Styles.detalhes}>
+            <div className={Styles.opcoes}>
+                <Icone imagem={ImgEtc} title='Outras opções' handleFn={() => null} />
+                <Icone imagem={ImgEtc} title='Outras opções' handleFn={() => null} />
+            </div>
 
-            <span>
-                Por <a href={autorLink}>{autorNome}</a> — Pexel
-            </span>
-        </div>
+            <div className={Styles.infos}>
+                <span>@{autorNome}</span>
+
+                <span>
+                    Por <a href={autorLink}>{autorNome}</a> — Pexel
+                </span>
+            </div>
+        </section>
+    )
+}
+
+interface iIcone {
+    imagem: StaticImageData;
+    title: string;
+    handleFn: () => void;
+}
+
+export function Icone({ imagem, title, handleFn }: iIcone) {
+    return (
+        <div
+            className={Styles.icone}
+            title={title}
+            onClick={() => handleFn()}
+        >
+            <Image src={imagem} alt='' />
+        </div >
     )
 }

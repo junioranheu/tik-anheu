@@ -89,10 +89,8 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isVid
             />
 
             <VideoDetalhes
-                id={index.toString()}
                 autorNome={autorNome}
                 autorLink={autorLink}
-                togglePlay={() => togglePlay()}
             />
 
             <VideoOpcoesCentro
