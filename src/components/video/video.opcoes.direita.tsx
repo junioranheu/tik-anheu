@@ -31,6 +31,10 @@ export default function VideoOpcoesDireita({ id, videoWidth }: iParametros) {
         Aviso.toast(`Compartilhar vídeo #${id}`, 3500, gerarEmojiAleatorio(), true);
     }
 
+    function handleReportar() {
+        Aviso.toast(`Reportar vídeo #${id}`, 3500, gerarEmojiAleatorio(), true);
+    }
+
     return (
         <div
             className={Styles.opcoes}
@@ -39,7 +43,7 @@ export default function VideoOpcoesDireita({ id, videoWidth }: iParametros) {
             <Icone imagem={ImgCoracao} title='Curtir vídeo' handleFn={() => handleCurtir()} isCurtido={isCurtido} />
             <Icone imagem={ImgComentario} title='Comentários' handleFn={() => handleComentarios()} />
             <Icone imagem={ImgCompartilhar} title='Compartilhar' handleFn={() => handleCompartilhar()} />
-            <Icone imagem={ImgReportar} title='Reportar' handleFn={() => null} />
+            <Icone imagem={ImgReportar} title='Reportar' handleFn={() => handleReportar()} />
         </div>
     )
 }

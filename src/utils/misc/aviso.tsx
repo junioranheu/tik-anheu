@@ -30,7 +30,8 @@ export const Aviso = {
             ),
             {
                 duration: ms,
-                position: 'top-center',
+                // position: 'top-center',
+                position: 'bottom-right',
                 icon: icone,
                 style: style
             });
