@@ -76,12 +76,13 @@ export default function Home() {
                 const resultado = result as unknown as iPexels;
                 setVideos((oldVideos: iPexelsVideo[]) => [...oldVideos, ...resultado.videos]);
                 setVideosLoaded(true);
-                
+
+                iterarVideosEDefinirVideoIdAtual(false);
+
                 if (isFirstLoad) {
                     setIsFirstLoad(false);
-                    isDebugging && Aviso.toast('isFirstLoad', 3500, gerarEmojiAleatorio(), true);
-                } else {
-                    iterarVideosEDefinirVideoIdAtual(false);
+                    document.querySelectorAll('video').forEach(vid => vid.pause());
+                    Aviso.toast('isFirstLoad', 3500, gerarEmojiAleatorio(), true);
                 }
 
                 isDebugging && Aviso.toast(`${resultado.videos.length} novos vídeos baixados`, 3500, gerarEmojiAleatorio(), true);
