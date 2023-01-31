@@ -47,7 +47,7 @@ export default function Home() {
                     setVideoIdAtual(i);
 
                     setTimeout(function () {
-                        // video?.play();
+                        video?.play();
                         isDebugging && Aviso.toast(`Play no vídeo #${i}`, 3500, gerarEmojiAleatorio(), true);
                     }, 250);
                 } else {

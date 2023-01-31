@@ -72,7 +72,7 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isVid
                 id={index.toString()}
                 className={Styles.video}
                 muted={isMutado}
-                autoPlay={true}
+                autoPlay={false}
                 loop={true}
                 playsInline={true}
                 disablePictureInPicture={true}
