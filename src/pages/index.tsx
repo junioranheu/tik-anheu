@@ -17,7 +17,7 @@ export default function Home() {
 
     const emoji = useEmoji();
     const isDebugging = false;
-    const [isFirstLoad, setIsFirstLoad] = useState<boolean>(true);
+    const [loads, setLoads] = useState<number>(0);
 
     const [keyPexelsAPI, setKeyPexelsAPI] = useState<string>(CONSTS_SISTEMA.KEY_PEXELS_API_1);
     const [videos, setVideos] = useState<iPexelsVideo[]>([]);
@@ -56,13 +56,13 @@ export default function Home() {
                 }
             }
 
-            if (isFirstLoad) {
-                setIsFirstLoad(false);
+            if (loads <= 2) {
+                setLoads(loads + 1);
                 document.querySelectorAll('video').forEach(vid => vid.pause());
-                Aviso.toast(`${isFirstLoad} | videos: ${videos?.length}`, 3500, gerarEmojiAleatorio(), true);
+                Aviso.toast(`loads: ${loads} | videos: ${videos?.length}`, 3500, gerarEmojiAleatorio(), true);
             }
         }, isUsarTimeOut ? 400 : 1);
-    }, [isDebugging, isFirstLoad]);
+    }, [isDebugging, loads]);
 
     const getVideos = useCallback(async () => {
         const client = createClient(keyPexelsAPI);
