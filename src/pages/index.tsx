@@ -49,8 +49,18 @@ export default function Home() {
                     setVideoIdAtual(i);
 
                     setTimeout(function () {
-                        video?.play();
-                        isDebugging && Aviso.toast(`Play no vídeo #${i}`, 3500, gerarEmojiAleatorio(), true);
+                        try {
+                            const p = video?.play();
+                            p.then(function () {
+
+                            }).catch(function (reason: any) {
+
+                            });
+                        } catch (error: any) {
+
+                        } finally {
+                            isDebugging && Aviso.toast(`Play no vídeo #${i}`, 3500, gerarEmojiAleatorio(), true);
+                        }
                     }, 250);
                 } else {
                     video?.pause();
@@ -119,7 +129,7 @@ export default function Home() {
 
     const handlerSwipe = useSwipeable({
         onSwiped: () => {
-            // console.log('swiped');
+            isDebugging && Aviso.toast('Swiped', 3500, gerarEmojiAleatorio(), true);
             videosLoaded && handleWheel();
         }
     })
