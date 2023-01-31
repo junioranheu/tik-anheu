@@ -55,8 +55,14 @@ export default function Home() {
                     video?.pause();
                 }
             }
+
+            if (isFirstLoad) {
+                setIsFirstLoad(false);
+                document.querySelectorAll('video').forEach(vid => vid.pause());
+                Aviso.toast('isFirstLoad', 3500, gerarEmojiAleatorio(), true);
+            }
         }, isUsarTimeOut ? 400 : 1);
-    }, [isDebugging]);
+    }, [isDebugging, isFirstLoad]);
 
     const getVideos = useCallback(async () => {
         const client = createClient(keyPexelsAPI);
@@ -79,12 +85,6 @@ export default function Home() {
 
                 iterarVideosEDefinirVideoIdAtual(false);
 
-                if (isFirstLoad) {
-                    setIsFirstLoad(false);
-                    document.querySelectorAll('video').forEach(vid => vid.pause());
-                    Aviso.toast('isFirstLoad', 3500, gerarEmojiAleatorio(), true);
-                }
-
                 isDebugging && Aviso.toast(`${resultado.videos.length} novos vídeos baixados`, 3500, gerarEmojiAleatorio(), true);
             })
             .catch((e: any) => {
@@ -97,7 +97,7 @@ export default function Home() {
                 setKeyPexelsAPI(CONSTS_SISTEMA.KEY_PEXELS_API_2);
                 // getVideos(); // Recursão;
             });
-    }, [isFirstLoad, keyPexelsAPI, iterarVideosEDefinirVideoIdAtual, isDebugging]);
+    }, [keyPexelsAPI, iterarVideosEDefinirVideoIdAtual, isDebugging]);
 
     function handleWheel() {
         iterarVideosEDefinirVideoIdAtual(true);

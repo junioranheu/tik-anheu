@@ -1,4 +1,5 @@
 import toast from 'react-hot-toast'; // https://github.com/timolins/react-hot-toast & https://react-hot-toast.com/
+import { MiscLocalStorage } from '../context/miscContext';
 
 export const Aviso = {
     toast(texto: string, ms: number, icone: string | null, isDark: boolean) {
@@ -12,7 +13,7 @@ export const Aviso = {
         } as any;
 
         const styleDark = {
-            background: 'rgb(59, 59, 59)',
+            background: MiscLocalStorage.get()?.isModoDark ? 'rgba(255, 255, 255, 0.5)' : 'rgb(59, 59, 59)',
             borderRadius: '1rem',
             boxShadow: '0 4px 30px rgba(0, 0, 0, 0.25)',
             color: 'var(--branco)',
