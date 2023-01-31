@@ -26,7 +26,7 @@ export default function Home() {
     const [videoIdAtual, setVideoIdAtual] = useState<number>(0);
     const [carregarNovosVideoEm, setCarregarNovosVideoEm] = useState<number>(qtdImagensPorVez);
 
-    const [isMutado, setIsMutado] = useState<boolean>(false);
+    const [isMutado, setIsMutado] = useState<boolean>(true);
 
     const iterarVideosEDefinirVideoIdAtual = useCallback(async (isUsarTimeOut: boolean) => {
         function isElementInViewport(el: HTMLVideoElement): boolean {

@@ -77,8 +77,9 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isVid
                 playsInline={true}
                 disablePictureInPicture={true}
                 controls={false}
+                preload='metadata'
             >
-                <source src={videoUrl} type='video/mp4' />
+                <source src={`${videoUrl}#t=0.1`} type='video/mp4' />
             </video>
 
             <ProgressBar

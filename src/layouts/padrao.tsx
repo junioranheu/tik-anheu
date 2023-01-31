@@ -19,7 +19,7 @@ export default function LayoutPadrao({ Component, pageProps }: any) {
     useEffect(() => {
         async function handleAvisoNavegador() {
             if (await pegarNomeNavegador() !== 'Chrome') {
-                Aviso.toast('Parece que seu navegador não é o Google Chrome! Isso talvez possa afetar negativamente em alguns pontos!', 10000, '😨', true);
+                Aviso.toast('Parece que seu navegador não é o Google Chrome! Isso talvez possa afetar negativamente em alguns pontos!', 6000, '😨', true);
             }
         }
 
