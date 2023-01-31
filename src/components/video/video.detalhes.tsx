@@ -1,5 +1,7 @@
 import ImgEtc from '@/assets/images/icones/etc.webp';
 import ImgLua from '@/assets/images/icones/lua.webp';
+import ImgLupa from '@/assets/images/icones/lupa.webp';
+import ImgPerfil from '@/assets/images/icones/perfil.webp';
 import ImgSol from '@/assets/images/icones/sol.webp';
 import Styles from '@/components/video/styles/video.detalhes.module.scss';
 import Image, { StaticImageData } from 'next/image';
@@ -19,6 +21,8 @@ export default function VideoDetalhes({ autorNome, autorLink }: iParametros) {
             <div className={Styles.opcoes}>
                 <Icone imagem={(isModoDark ? ImgLua : ImgSol)} title={(isModoDark ? 'Alterar para modo dark' : 'Alterar para modo light')} handleFn={() => setIsModoDark(!isModoDark)} />
                 <Icone imagem={ImgEtc} title='Outras opções' handleFn={() => null} />
+                <Icone imagem={ImgLupa} title='Buscar' handleFn={() => null} />
+            <Icone imagem={ImgPerfil} title='Perfil' handleFn={() => null} />
             </div>
 
             <div className={Styles.infos}>

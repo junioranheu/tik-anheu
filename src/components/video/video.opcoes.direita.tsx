@@ -1,8 +1,7 @@
 import ImgComentario from '@/assets/images/icones/comentario.webp';
 import ImgCompartilhar from '@/assets/images/icones/compartilhar.webp';
 import ImgCoracao from '@/assets/images/icones/coracao.webp';
-import ImgLupa from '@/assets/images/icones/lupa.webp';
-import ImgPerfil from '@/assets/images/icones/perfil.webp';
+import ImgReportar from '@/assets/images/icones/reportar.webp';
 import Styles from '@/components/video/styles/video.opcoes.direita.module.scss';
 import useWindowSize from '@/hooks/outros/useWindowSize';
 import { Aviso } from '@/utils/misc/aviso';
@@ -40,8 +39,7 @@ export default function VideoOpcoesDireita({ id, videoWidth }: iParametros) {
             <Icone imagem={ImgCoracao} title='Curtir vídeo' handleFn={() => handleCurtir()} isCurtido={isCurtido} />
             <Icone imagem={ImgComentario} title='Comentários' handleFn={() => handleComentarios()} />
             <Icone imagem={ImgCompartilhar} title='Compartilhar' handleFn={() => handleCompartilhar()} />
-            <Icone imagem={ImgLupa} title='Buscar' handleFn={() => null} />
-            <Icone imagem={ImgPerfil} title='Perfil' handleFn={() => null} />
+            <Icone imagem={ImgReportar} title='Reportar' handleFn={() => null} />
         </div>
     )
 }
