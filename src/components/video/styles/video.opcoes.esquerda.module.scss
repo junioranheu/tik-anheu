@@ -1,4 +1,4 @@
-.detalhes {
+.opcoes {
     position: absolute;
     bottom: 1rem;
     left: 1rem;
@@ -10,9 +10,10 @@
     opacity: 1;
     transition: opacity 0.3s linear;
 
-    .opcoes {
+    .divIcones {
         // background-color: coral;
         display: flex;
+        justify-content: space-between;
         gap: 0.55rem;
 
         .icone {
@@ -80,7 +81,7 @@
 
 /* big landscape tablets, laptops, and desktops */
 @media (max-width:1025px) {
-    .detalhes {
+    .opcoes {
         opacity: 0;
         transition: opacity 0.3s linear;
     }

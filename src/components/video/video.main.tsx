@@ -1,8 +1,9 @@
 import Styles from '@/components/video/styles/video.main.module.scss';
 import useWindowSize from '@/hooks/outros/useWindowSize';
 import { lazy, useEffect, useRef, useState } from 'react';
+import VideoOpcoesEsquerda from './video.opcoes.esquerda';
 const ProgressBar = lazy(() => import('./video.progressBar'));
-const VideoDetalhes = lazy(() => import('./video.detalhes'));
+const VideoDetalhes = lazy(() => import('./video.opcoes.esquerda'));
 const VideoOpcoesDireita = lazy(() => import('./video.opcoes.direita'));
 const VideoOpcoesCentro = lazy(() => import('./video.opcoes.centro'));
 
@@ -88,7 +89,7 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isVid
                 classCSS={Styles.progress}
             />
 
-            <VideoDetalhes
+            <VideoOpcoesEsquerda
                 autorNome={autorNome}
                 autorLink={autorLink}
             />
