@@ -18,6 +18,19 @@
     span {
         font-size: 0.8rem;
     }
+
+    a {
+        color: var(--branco);
+        text-decoration-style: wavy;
+        text-decoration-color: var(--cor-principal);
+        text-underline-offset: 0.3rem;
+        transition: 0.3s;
+
+        &:hover {
+            color: var(--preto);
+            transition: 0.3s;
+        }
+    }
 }
 
 /* =-=-=-=-=-=-=-=-=-=-= Media queries =-=-=-=-=-=-=-=-=-=-= */

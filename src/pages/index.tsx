@@ -2,12 +2,14 @@ import Botao from '@/components/outros/botao';
 import useEmoji from '@/hooks/outros/useEmoji';
 import Styles from '@/styles/home.module.scss';
 import CONSTS_SISTEMA from '@/utils/consts/outros/sistema';
+import CONSTS_TELAS from '@/utils/consts/outros/telas';
 import { Aviso } from '@/utils/misc/aviso';
 import gerarEmojiAleatorio from '@/utils/misc/gerarEmojiAleatorio';
 import gerarItemRandom from '@/utils/misc/gerarItemRandom';
 import gerarNumeroAleatorio from '@/utils/misc/gerarNumeroAleatorio';
 import { iPexels, iPexelsVideo } from '@/utils/types/iPexels';
 import Head from 'next/head';
+import Router from 'next/router';
 import { createClient } from 'pexels'; // https://www.pexels.com/api/documentation/
 import { Fragment, lazy, useCallback, useEffect, useState } from 'react';
 import { useSwipeable } from 'react-swipeable'; // https://www.npmjs.com/package/react-swipeable
@@ -158,7 +160,7 @@ export default function Home() {
                                     texto='Atualizar página'
                                     url={null}
                                     isNovaAba={false}
-                                    handleFuncao={() => { window.location.href = window.location.href }}
+                                    handleFuncao={() => Router.push(CONSTS_TELAS.INDEX)}
                                     Svg={null}
                                     refBtn={null}
                                     isEnabled={true}
