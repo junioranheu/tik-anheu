@@ -2,14 +2,12 @@ import Botao from '@/components/outros/botao';
 import useEmoji from '@/hooks/outros/useEmoji';
 import Styles from '@/styles/home.module.scss';
 import CONSTS_SISTEMA from '@/utils/consts/outros/sistema';
-import CONSTS_TELAS from '@/utils/consts/outros/telas';
 import { Aviso } from '@/utils/misc/aviso';
 import gerarEmojiAleatorio from '@/utils/misc/gerarEmojiAleatorio';
 import gerarItemRandom from '@/utils/misc/gerarItemRandom';
 import gerarNumeroAleatorio from '@/utils/misc/gerarNumeroAleatorio';
 import { iPexels, iPexelsVideo } from '@/utils/types/iPexels';
 import Head from 'next/head';
-import Router from 'next/router';
 import { createClient } from 'pexels'; // https://www.pexels.com/api/documentation/
 import { Fragment, lazy, useCallback, useEffect, useState } from 'react';
 import { useSwipeable } from 'react-swipeable'; // https://www.npmjs.com/package/react-swipeable
@@ -19,6 +17,8 @@ export default function Home() {
 
     const emoji = useEmoji();
     const isDebugging = false;
+    const [isFirstLoad, setIsFirstLoad] = useState<boolean>(true);
+
     const [keyPexelsAPI, setKeyPexelsAPI] = useState<string>(CONSTS_SISTEMA.KEY_PEXELS_API_1);
     const [videos, setVideos] = useState<iPexelsVideo[]>([]);
     const [videosLoaded, setVideosLoaded] = useState<boolean>(false);
@@ -76,9 +76,13 @@ export default function Home() {
                 const resultado = result as unknown as iPexels;
                 setVideos((oldVideos: iPexelsVideo[]) => [...oldVideos, ...resultado.videos]);
                 setVideosLoaded(true);
-
-                // Verificar novamente;
-                iterarVideosEDefinirVideoIdAtual(false);
+                
+                if (isFirstLoad) {
+                    setIsFirstLoad(false);
+                    isDebugging && Aviso.toast('isFirstLoad', 3500, gerarEmojiAleatorio(), true);
+                } else {
+                    iterarVideosEDefinirVideoIdAtual(false);
+                }
 
                 isDebugging && Aviso.toast(`${resultado.videos.length} novos vídeos baixados`, 3500, gerarEmojiAleatorio(), true);
             })
@@ -92,7 +96,7 @@ export default function Home() {
                 setKeyPexelsAPI(CONSTS_SISTEMA.KEY_PEXELS_API_2);
                 // getVideos(); // Recursão;
             });
-    }, [keyPexelsAPI, iterarVideosEDefinirVideoIdAtual, isDebugging]);
+    }, [isFirstLoad, keyPexelsAPI, iterarVideosEDefinirVideoIdAtual, isDebugging]);
 
     function handleWheel() {
         iterarVideosEDefinirVideoIdAtual(true);
@@ -160,7 +164,7 @@ export default function Home() {
                                     texto='Atualizar página'
                                     url={null}
                                     isNovaAba={false}
-                                    handleFuncao={() => Router.push(CONSTS_TELAS.INDEX, { query: `${parseInt(Math.floor(Date.now() / 1000).toString().substring(1))}` })}
+                                    handleFuncao={() => location.reload()}
                                     Svg={null}
                                     refBtn={null}
                                     isEnabled={true}

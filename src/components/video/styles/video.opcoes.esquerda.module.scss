@@ -7,6 +7,9 @@
     flex-direction: column;
     gap: 0.55rem;
 
+    opacity: 1;
+    transition: opacity 0.3s linear;
+
     .divIcones {
         // background-color: coral;
         display: flex;
@@ -79,14 +82,16 @@
 /* big landscape tablets, laptops, and desktops */
 @media (max-width:1025px) {
     .opcoes {
-        display: none;
+        opacity: 0;
+        transition: opacity 0.3s linear;
     }
 }
 
 /* tablet, landscape iPad, lo-res laptops ands desktops */
 @media (max-width:801px) {
     .opcoes {
-        display: block;
+        opacity: 1;
+        transition: opacity 0.3s linear;
 
         // background-color: coral;
         width: fit-content;
