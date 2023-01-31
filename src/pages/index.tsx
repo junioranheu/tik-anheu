@@ -160,7 +160,7 @@ export default function Home() {
                                     texto='Atualizar página'
                                     url={null}
                                     isNovaAba={false}
-                                    handleFuncao={() => Router.push(CONSTS_TELAS.INDEX)}
+                                    handleFuncao={() => Router.push(CONSTS_TELAS.INDEX, { query: `${parseInt(Math.floor(Date.now() / 1000).toString().substring(1))}` })}
                                     Svg={null}
                                     refBtn={null}
                                     isEnabled={true}
