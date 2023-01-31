@@ -47,19 +47,15 @@ export default function Home() {
                 if (isInViewPort) {
                     setVideoIdAtual(i);
 
-                    setTimeout(function () {
-                        video?.play();
-                        isDebugging && Aviso.toast(`Play no vídeo #${i}`, 3500, gerarEmojiAleatorio(), true);
-                    }, 250);
+                    if (loads > 1) {
+                        setTimeout(function () {
+                            video?.play();
+                            isDebugging && Aviso.toast(`Play no vídeo #${i}`, 3500, gerarEmojiAleatorio(), true);
+                        }, 250);
+                    }
                 } else {
                     video?.pause();
                 }
-            }
-
-            if (loads <= 2) {
-                setLoads(loads + 1);
-                document.querySelectorAll('video').forEach(vid => vid.pause());
-                Aviso.toast(`loads: ${loads} | videos: ${videos?.length}`, 3500, gerarEmojiAleatorio(), true);
             }
         }, isUsarTimeOut ? 400 : 1);
     }, [isDebugging, loads]);
