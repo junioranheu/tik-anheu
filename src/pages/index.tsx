@@ -26,6 +26,8 @@ export default function Home() {
     const [videoIdAtual, setVideoIdAtual] = useState<number>(0);
     const [carregarNovosVideoEm, setCarregarNovosVideoEm] = useState<number>(qtdImagensPorVez);
 
+    const [isMutado, setIsMutado] = useState<boolean>(false);
+
     const iterarVideosEDefinirVideoIdAtual = useCallback(async (isUsarTimeOut: boolean) => {
         function isElementInViewport(el: HTMLVideoElement): boolean {
             var rect = el.getBoundingClientRect();
@@ -146,6 +148,8 @@ export default function Home() {
                                             autorLink={v.user.url}
                                             videoUrl={v.video_files[0].link}
                                             isVideoInViewPort={videoIdAtual === i}
+                                            isMutado={isMutado}
+                                            setIsMutado={setIsMutado}
                                         />
                                     ))
                                 }

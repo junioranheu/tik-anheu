@@ -1,9 +1,8 @@
 import Styles from '@/components/video/styles/video.main.module.scss';
 import useWindowSize from '@/hooks/outros/useWindowSize';
-import { lazy, useEffect, useRef, useState } from 'react';
-import VideoOpcoesEsquerda from './video.opcoes.esquerda';
+import { Dispatch, lazy, useEffect, useRef, useState } from 'react';
 const ProgressBar = lazy(() => import('./video.progressBar'));
-const VideoDetalhes = lazy(() => import('./video.opcoes.esquerda'));
+const VideoOpcoesEsquerda = lazy(() => import('./video.opcoes.esquerda'));
 const VideoOpcoesDireita = lazy(() => import('./video.opcoes.direita'));
 const VideoOpcoesCentro = lazy(() => import('./video.opcoes.centro'));
 
@@ -13,12 +12,13 @@ interface iParametros {
     autorLink: string;
     videoUrl: string;
     isVideoInViewPort: boolean;
+    isMutado: boolean;
+    setIsMutado: Dispatch<boolean>;
 }
 
-export default function VideoMain({ index, autorNome, autorLink, videoUrl, isVideoInViewPort }: iParametros) {
+export default function VideoMain({ index, autorNome, autorLink, videoUrl, isVideoInViewPort, isMutado, setIsMutado }: iParametros) {
 
     const refVideo = useRef<HTMLVideoElement>(null);
-    const [isMutado, setIsMutado] = useState<boolean>(false);
 
     function togglePlay() {
         const currentVideo = refVideo?.current;
