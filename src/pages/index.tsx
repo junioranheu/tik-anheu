@@ -17,7 +17,6 @@ export default function Home() {
 
     const emoji = useEmoji();
     const isDebugging = false;
-    const [loads, setLoads] = useState<number>(0);
 
     const [keyPexelsAPI, setKeyPexelsAPI] = useState<string>(CONSTS_SISTEMA.KEY_PEXELS_API_1);
     const [videos, setVideos] = useState<iPexelsVideo[]>([]);
@@ -47,18 +46,16 @@ export default function Home() {
                 if (isInViewPort) {
                     setVideoIdAtual(i);
 
-                    if (loads > 1) {
-                        setTimeout(function () {
-                            video?.play();
-                            isDebugging && Aviso.toast(`Play no vídeo #${i}`, 3500, gerarEmojiAleatorio(), true);
-                        }, 250);
-                    }
+                    setTimeout(function () {
+                        // video?.play();
+                        isDebugging && Aviso.toast(`Play no vídeo #${i}`, 3500, gerarEmojiAleatorio(), true);
+                    }, 250);
                 } else {
                     video?.pause();
                 }
             }
         }, isUsarTimeOut ? 400 : 1);
-    }, [isDebugging, loads]);
+    }, [isDebugging]);
 
     const getVideos = useCallback(async () => {
         const client = createClient(keyPexelsAPI);
