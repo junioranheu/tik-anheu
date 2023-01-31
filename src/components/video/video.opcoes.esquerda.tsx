@@ -4,8 +4,10 @@ import ImgLupa from '@/assets/images/icones/lupa.webp';
 import ImgPerfil from '@/assets/images/icones/perfil.webp';
 import ImgSol from '@/assets/images/icones/sol.webp';
 import Styles from '@/components/video/styles/video.opcoes.esquerda.module.scss';
+import { MiscContext } from '@/utils/context/miscContext';
+import toggleModoDark from '@/utils/misc/toggleModoDark';
 import Image, { StaticImageData } from 'next/image';
-import { useState } from 'react';
+import { useContext, useEffect } from 'react';
 
 interface iParametros {
     autorNome: string;
@@ -14,7 +16,12 @@ interface iParametros {
 
 export default function VideoOpcoesEsquerda({ autorNome, autorLink }: iParametros) {
 
-    const [isModoDark, setIsModoDark] = useState<boolean>(false);
+    const miscContext = useContext(MiscContext); // Contexto do modo dark;
+    const [isModoDark, setIsModoDark] = [miscContext?.isModoDarkContext[0], miscContext?.isModoDarkContext[1]];
+    
+    useEffect(() => {
+        toggleModoDark(isModoDark, setIsModoDark);
+    }, [isModoDark, setIsModoDark]);
 
     return (
         <section className={Styles.opcoes}>
