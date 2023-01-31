@@ -9,8 +9,7 @@
 
     z-index: 999;
     position: absolute;
-    // bottom: 2.5rem;
-    bottom: 4.5%;
+    bottom: 2.5rem;
  
     &:hover {
         .progress {
@@ -87,7 +86,7 @@
 @media (max-width:801px) {
     .progressWrapper {
         // background: red !important;
-        // bottom: 9rem;
+        bottom: 9rem;
     }
 }
 
