@@ -60,7 +60,9 @@
 @media (max-width:801px) {
     .opcoes {
         // background-color: coral;
-        height: 4rem;
+        width: fit-content;
+        height: fit-content;
+
         position: absolute;
         top: 0rem;
         left: auto;

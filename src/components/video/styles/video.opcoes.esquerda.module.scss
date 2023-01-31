@@ -79,9 +79,14 @@
 /* big landscape tablets, laptops, and desktops */
 @media (max-width:1025px) {
     .opcoes {
+        // background-color: coral;
+        width: fit-content;
+        height: fit-content;
+
         position: absolute;
         top: 4.05rem;
-        left: 1rem;
+        left: auto;
+        right: 1rem;
 
         display: flex;
         flex-direction: column;
