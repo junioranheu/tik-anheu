@@ -1,5 +1,6 @@
 import toast from 'react-hot-toast'; // https://github.com/timolins/react-hot-toast & https://react-hot-toast.com/
 import { MiscLocalStorage } from '../context/miscContext';
+import isMobile from './isMobile';
 
 export const Aviso = {
     toast(texto: string, ms: number, icone: string | null, isDark: boolean) {
@@ -30,8 +31,7 @@ export const Aviso = {
             ),
             {
                 duration: ms,
-                // position: 'top-center',
-                position: 'bottom-right',
+                position: isMobile() ? 'bottom-right' : 'top-center',
                 icon: icone,
                 style: style
             });
