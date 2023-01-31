@@ -1,4 +1,5 @@
 import useWindowSize from '@/hooks/outros/useWindowSize';
+import isMobile from '@/utils/misc/isMobile';
 import { MouseEvent, useCallback, useEffect, useState } from 'react';
 import { useLongPress } from 'use-long-press'; // https://www.npmjs.com/package/use-long-press
 import Styles from './styles/video.progressBar.module.scss';
@@ -86,7 +87,7 @@ export default function ProgressBar({ handleProgress, progress, width, isDebuggi
 
     return (
         <div
-            className={`${Styles.progressWrapper} ${classCSS}`}
+            className={`${Styles.progressWrapper} ${classCSS} ${isMobile() && Styles.bottomMobile}`}
             id={elementoId}
             onClick={(e) => handleClick(e)} {...bindProgressBar()}
             style={{ width: width }}

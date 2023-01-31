@@ -10,7 +10,7 @@
     z-index: 999;
     position: absolute;
     bottom: 2.5rem;
- 
+
     &:hover {
         .progress {
             background-color: var(--cor-principal);
@@ -64,6 +64,11 @@
         }
     }
 
+    &.bottomMobile {
+        // background-color: coral !important;
+        bottom: 9rem;
+    }
+
     // Aumentar a área clicável
     &::after {
         content: '';
@@ -84,10 +89,10 @@
 
 /* tablet, landscape iPad, lo-res laptops ands desktops */
 @media (max-width:801px) {
-    .progressWrapper {
-        // background: red !important;
-        bottom: 9rem;
-    }
+    // .progressWrapper {
+    //     // background: red !important;
+    //     bottom: 9rem;
+    // }
 }
 
 /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
