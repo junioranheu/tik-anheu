@@ -1,6 +1,9 @@
 import ImgEtc from '@/assets/images/icones/etc.webp';
+import ImgLua from '@/assets/images/icones/lua.webp';
+import ImgSol from '@/assets/images/icones/sol.webp';
 import Styles from '@/components/video/styles/video.detalhes.module.scss';
 import Image, { StaticImageData } from 'next/image';
+import { useState } from 'react';
 
 interface iParametros {
     autorNome: string;
@@ -8,10 +11,13 @@ interface iParametros {
 }
 
 export default function VideoDetalhes({ autorNome, autorLink }: iParametros) {
+
+    const [isModoDark, setIsModoDark] = useState<boolean>(false);
+
     return (
         <section className={Styles.detalhes}>
             <div className={Styles.opcoes}>
-                <Icone imagem={ImgEtc} title='Outras opções' handleFn={() => null} />
+                <Icone imagem={(isModoDark ? ImgLua : ImgSol)} title={(isModoDark ? 'Alterar para modo dark' : 'Alterar para modo light')} handleFn={() => setIsModoDark(!isModoDark)} />
                 <Icone imagem={ImgEtc} title='Outras opções' handleFn={() => null} />
             </div>
 
