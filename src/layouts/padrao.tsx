@@ -1,3 +1,5 @@
+import { Aviso } from '@/utils/misc/aviso';
+import pegarNomeNavegador from '@/utils/misc/pegarNomeNavegador';
 import { useRouter } from 'next/router';
 import { Fragment, useEffect, useState } from 'react';
 
@@ -13,6 +15,16 @@ export default function LayoutPadrao({ Component, pageProps }: any) {
             setEfeitoAnimar('');
         }, 1000);
     }, [asPath]);
+
+    useEffect(() => {
+        async function handleAvisoNavegador() {
+            if (await pegarNomeNavegador() !== 'Chrome') {
+                Aviso.toast('Parece que seu navegador não é o Google Chrome! Isso talvez possa afetar negativamente em alguns pontos!', 10000, '😨', true);
+            }
+        }
+
+        handleAvisoNavegador();
+    }, []);
 
     return (
         <Fragment>
