@@ -2,6 +2,7 @@ import '@/assets/fonts/GTWalsheim/GTWalsheim.css';
 import LayoutPadrao from '@/layouts/padrao';
 import '@/styles/globals.scss';
 import CONSTS_SISTEMA from '@/utils/consts/outros/sistema';
+import { MiscProvider } from '@/utils/context/miscContext';
 import 'animate.css/animate.min.css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -77,7 +78,9 @@ export default function App({ Component, pageProps }: AppProps) {
                     <Toaster />
                 </div>
 
-                {verificarLayout()}
+                <MiscProvider>
+                    {verificarLayout()}
+                </MiscProvider>
             </Fragment>
         ) : null
 }
