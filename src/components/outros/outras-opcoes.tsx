@@ -53,9 +53,13 @@ export default function OutrasOpcoes({ autorNome }: iParametros) {
                     isDebugging && <span className='debug'>isModoDark: {isModoDark!.toString()}</span>
                 }
 
-                <span>
-                    Por <span className={Styles.spanBold}>@{autorNome}</span> — via Pexel
-                </span>
+                <span>Via Pexel API</span>
+
+                {
+                    queryBusca && (
+                        <span>Buscando vídeos sobre <span className={Styles.spanBold}>{queryBusca.toLocaleLowerCase()}</span></span>
+                    )
+                }
             </div>
         </section>
     )

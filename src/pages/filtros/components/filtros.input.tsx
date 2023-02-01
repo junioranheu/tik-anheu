@@ -36,7 +36,7 @@ export default function FiltrosInput({ topicoBuscado }: iParametros) {
             <input
                 className={Styles.inputPesquisaNavbar}
                 type='text'
-                placeholder='Procure por um tópico como "cat" ou "dog", por exemplo'
+                placeholder='Procure por um tópico como "gato" ou "cachorro", por exemplo'
                 onChange={(e) => setTxtFiltro(e.target.value)}
                 onKeyPress={handleKeyPress}
                 value={txtFiltro}
