@@ -14,4 +14,5 @@ Desenvolvido para praticar React.js, Next.js, Typescript, SCSS, lógica, etc.
 
 Este projeto faz parte do meu potfólio pessoal, sem fins lucrativos, a fim de estudo apenas. 
 
-Projeto iniciado em 28 de janeiro de 2023.
+Projeto iniciado em 28 de janeiro de 2023.<br/>
+Core do projeto finalizado em 01 de fevereiro de 2023 (133 commits).
