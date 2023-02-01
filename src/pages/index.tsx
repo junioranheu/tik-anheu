@@ -14,7 +14,7 @@ import { useSwipeable } from 'react-swipeable'; // https://www.npmjs.com/package
 const VideoMain = lazy(() => import('@/components/video/video.main'));
 
 export default function Home() {
-
+ 
     const miscContext = useContext(MiscContext); // Contexto misc;
     const [queryBusca, setQueryBusca] = [miscContext?.queryBuscaContext[0], miscContext?.queryBuscaContext[1]];
 
@@ -157,7 +157,7 @@ export default function Home() {
                     }
 
                     {
-                        videos?.length > 0 ? (
+                        videos?.length < 0 ? (
                             <Fragment>
                                 {
                                     videos?.map((v: iPexelsVideo, i: number) => (

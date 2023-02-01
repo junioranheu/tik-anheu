@@ -1,2 +1,1 @@
-- colocar a div da esquerda para fora, para aparecer sempre;
 - colocar meu tiktok no meu portfolio (avisar com toast);

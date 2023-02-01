@@ -1,0 +1,33 @@
+.erro {
+    // background-color: coral;
+    height: 100vh;
+    padding: 2rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+
+    span {
+        // background-color: red;
+        font-weight: 500;
+        font-size: 1.75rem;
+        color: var(--preto);
+        text-align: center;
+
+        &.opa {
+            font-size: 4rem;
+        }
+
+        .spanBold {
+            color: var(--preto);
+            font-weight: 600;
+            text-decoration: underline;
+            text-decoration-style: wavy;
+            text-decoration-color: var(--cor-principal);
+            text-underline-offset: 0.5rem;
+            transition: 0.3s;
+        }
+    }
+}
