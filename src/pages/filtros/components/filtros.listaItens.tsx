@@ -9,10 +9,11 @@ import Styles from './../styles/filtros.listaItens.module.scss';
 
 interface iParametros {
     listaTopicos: iFiltroItem[];
+    topicoBuscado: string | null;
 }
 
-export default function FiltrosListaItens({ listaTopicos }: iParametros) {
-    FiltrosListaItens
+export default function FiltrosListaItens({ listaTopicos, topicoBuscado }: iParametros) {
+
     const miscContext = useContext(MiscContext); // Contexto misc;
     const [queryBusca, setQueryBusca] = [miscContext?.queryBuscaContext[0], miscContext?.queryBuscaContext[1]];
 
@@ -30,7 +31,7 @@ export default function FiltrosListaItens({ listaTopicos }: iParametros) {
         <div className={Styles.main}>
             {
                 listaTopicos && listaTopicos?.length > 0 ? (
-                    listaTopicos?.map((item: iFiltroItem, i: number) => (
+                    listaTopicos?.filter(x => x.portugues.toLowerCase().includes(topicoBuscado?.toLocaleLowerCase() ?? '')).map((item: iFiltroItem, i: number) => (
                         <div
                             key={i}
                             className={Styles.topico}

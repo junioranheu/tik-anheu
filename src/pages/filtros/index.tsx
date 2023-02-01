@@ -4,7 +4,7 @@ import CONSTS_SISTEMA from '@/utils/consts/outros/sistema';
 import iFiltroItem from '@/utils/types/iFiltroItem';
 import Head from 'next/head';
 import Image from 'next/image';
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import FiltrosInput from './components/filtros.input';
 import FiltrosListaItens from './components/filtros.listaItens';
 import Styles from './styles/filtros.module.scss';
@@ -18,15 +18,16 @@ export default function Index() {
         { portugues: 'Insetos', ingles: 'Insect', qtdVideos: useNumeroAleatorio(500, 1500), isAtivo: true },
         { portugues: 'Borboletas', ingles: 'Butterfly Insect', qtdVideos: useNumeroAleatorio(500, 1500), isAtivo: true },
         { portugues: 'Bebês', ingles: 'Baby', qtdVideos: useNumeroAleatorio(500, 1500), isAtivo: true },
-        { portugues: 'Passáros', ingles: 'Bird', qtdVideos: useNumeroAleatorio(500, 1500), isAtivo: true },
+        { portugues: 'Aves', ingles: 'Bird', qtdVideos: useNumeroAleatorio(500, 1500), isAtivo: true },
         { portugues: 'Gente', ingles: 'People', qtdVideos: useNumeroAleatorio(500, 1500), isAtivo: true },
         { portugues: 'Artes', ingles: 'Art', qtdVideos: useNumeroAleatorio(500, 1500), isAtivo: true },
         { portugues: 'Videogames', ingles: 'Videogame', qtdVideos: useNumeroAleatorio(500, 1500), isAtivo: true },
         { portugues: 'Programação', ingles: 'Coding', qtdVideos: useNumeroAleatorio(500, 1500), isAtivo: true },
         { portugues: 'Humor', ingles: 'Funny', qtdVideos: useNumeroAleatorio(500, 1500), isAtivo: true },
-        { portugues: 'Comida', ingles: 'Food', qtdVideos: useNumeroAleatorio(500, 1500), isAtivo: true },
-        { portugues: 'Animais', ingles: 'Animal', qtdVideos: useNumeroAleatorio(500, 1500), isAtivo: true }
+        { portugues: 'Comida', ingles: 'Food', qtdVideos: useNumeroAleatorio(500, 1500), isAtivo: true }
     ] as iFiltroItem[];
+
+    const [topicoBuscado, setTopicoBuscado] = useState<string>('');
 
     return (
         <Fragment>
@@ -43,9 +44,15 @@ export default function Index() {
                     </div>
                 </div>
 
-                <FiltrosInput topicoBuscado='' />
+                <FiltrosInput
+                    topicoBuscado={topicoBuscado}
+                    setTopicoBuscado={setTopicoBuscado}
+                />
 
-                <FiltrosListaItens listaTopicos={listaTopicos} />
+                <FiltrosListaItens
+                    listaTopicos={listaTopicos}
+                    topicoBuscado={topicoBuscado}
+                />
             </main>
         </Fragment>
     )
