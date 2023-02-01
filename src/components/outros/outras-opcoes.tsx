@@ -1,4 +1,5 @@
 import ImgEtc from '@/assets/images/icones/etc.webp';
+import ImgHome from '@/assets/images/icones/home.webp';
 import ImgLua from '@/assets/images/icones/lua.webp';
 import ImgLupa from '@/assets/images/icones/lupa.webp';
 import ImgPerfil from '@/assets/images/icones/perfil.webp';
@@ -9,13 +10,13 @@ import { MiscContext } from '@/utils/context/miscContext';
 import Image, { StaticImageData } from 'next/image';
 import Router, { useRouter } from 'next/router';
 import { useContext } from 'react';
-import Styles from './styles/opcoes.esquerda.module.scss';
+import Styles from './styles/outras-opcoes.module.scss';
 
 interface iParametros {
     autorNome: string;
 }
 
-export default function OpcoesEsquerda({ autorNome }: iParametros) {
+export default function OutrasOpcoes({ autorNome }: iParametros) {
 
     const isDebugging = false;
     const { asPath } = useRouter();
@@ -29,7 +30,15 @@ export default function OpcoesEsquerda({ autorNome }: iParametros) {
             <div className={Styles.divIcones}>
                 <Icone imagem={(isModoDark ? ImgLua : ImgSol)} title={(isModoDark ? 'Alterar para modo dark' : 'Alterar para modo light')} handleFn={() => setIsModoDark(!isModoDark)} isProbido={false} />
                 <Icone imagem={ImgEtc} title='Outras opções' handleFn={() => null} isProbido={true} />
-                <Icone imagem={ImgLupa} title={(queryBusca ? `Filtro atual: "${queryBusca}" — clique para buscar novo filtro` : 'Clique para buscar novo filtro')} handleFn={() => Router.push(CONSTS_TELAS.FILTROS)} isProbido={false} />
+
+                {
+                    asPath !== CONSTS_TELAS.INDEX ? (
+                        <Icone imagem={ImgHome} title='Voltar ao início' handleFn={() => Router.push(CONSTS_TELAS.INDEX)} isProbido={false} />
+                    ) : (
+                        <Icone imagem={ImgLupa} title={(queryBusca ? `Filtro atual: "${queryBusca}" — clique para buscar novo filtro` : 'Clique para buscar novo filtro')} handleFn={() => Router.push(CONSTS_TELAS.FILTROS)} isProbido={false} />
+                    )
+                }
+
                 <Icone imagem={ImgPerfil} title='Perfil' handleFn={() => null} isProbido={true} />
             </div>
 

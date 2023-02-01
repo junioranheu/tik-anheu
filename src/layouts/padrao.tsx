@@ -4,7 +4,7 @@ import pegarNomeNavegador from '@/utils/misc/pegarNomeNavegador';
 import toggleModoDark from '@/utils/misc/toggleModoDark';
 import { useRouter } from 'next/router';
 import { Fragment, lazy, useContext, useEffect } from 'react';
-const OpcoesEsquerda = lazy(() => import('@/components/outros/opcoes.esquerda'));
+const OutrasOpcoes = lazy(() => import('@/components/outros/outras-opcoes'));
 
 export default function LayoutPadrao({ Component, pageProps }: any) {
 
@@ -31,7 +31,7 @@ export default function LayoutPadrao({ Component, pageProps }: any) {
             <main className={'semHighlight'}>
                 <Component {...pageProps} />
 
-                <OpcoesEsquerda
+                <OutrasOpcoes
                     autorNome='aea pes'
                 />
             </main>
