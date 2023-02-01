@@ -11,8 +11,10 @@ export default function LayoutPadrao({ Component, pageProps }: any) {
     const [queryBusca, setQueryBusca] = [miscContext?.queryBuscaContext[0], miscContext?.queryBuscaContext[1]];
     const [isModoDark, setIsModoDark] = [miscContext?.isModoDarkContext[0], miscContext?.isModoDarkContext[1]];
 
+    const [isPrimeiroLoading, setIsPrimeiroLoading] = useState<boolean>(true);
     useEffect(() => {
-        toggleModoDark(isModoDark, setIsModoDark);
+        toggleModoDark(isModoDark, setIsModoDark, isPrimeiroLoading);
+        setIsPrimeiroLoading(false);
     }, [isModoDark, setIsModoDark]);
 
     const { asPath } = useRouter();
