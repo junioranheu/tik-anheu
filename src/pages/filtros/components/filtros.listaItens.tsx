@@ -1,30 +1,31 @@
-import Router from 'next/router';
-import Styles from './filtros.listaItens.module.scss';
+import removerHTML from '@/utils/misc/removerHTML';
+import iFiltroItem from '@/utils/types/iFiltroItem';
+import Styles from './../styles/filtros.listaItens.module.scss';
 
 interface iParametros {
-    listaTopicos: iAjudaTopico[];
+    listaTopicos: iFiltroItem[];
 }
 
 export default function FiltrosListaItens({ listaTopicos }: iParametros) {
     return (
-        <div className={`${Styles.main} margem3`}>
+        <div className={Styles.main}>
             {
                 listaTopicos && listaTopicos?.length > 0 ? (
-                    listaTopicos?.map((item: iAjudaTopico, i: number) => (
+                    listaTopicos?.map((item: iFiltroItem, i: number) => (
                         <div
-                            key={item?.ajudaTopicoId}
+                            key={item?.filtroItemId}
                             className={Styles.topico}
-                            title={removerHTML(item?.topico)}
-                            onClick={() => Router.push(`/ajuda/topico/${item?.ajudaTopicoId}/${ajustarUrl(removerHTML(item?.topico))}`)}
+                            title={removerHTML(item?.item)}
+                            onClick={() => null}
                         >
-                            <div className={Styles.titulo} title={removerHTML(item?.topico)} dangerouslySetInnerHTML={{ __html: item?.topico }} />
+                            <div className={Styles.titulo} title={removerHTML(item?.item)} dangerouslySetInnerHTML={{ __html: item?.item }} />
                             <span className={Styles.subtitulo}>{item?.descricao}</span>
-                            <span className={Styles.saibaMais} title={`Saiba mais: ${removerHTML(item?.topico?.toLowerCase())}`}>Saiba mais</span>
+                            <span className={Styles.saibaMais} title={`Saiba mais: ${removerHTML(item?.item?.toLowerCase())}`}>Saiba mais</span>
                         </div>
                     ))
                 ) : (
                     <div>
-                        <span className='texto'>Eita... pra onde foram os tópicos de ajuda?</span>
+                        <span>Eita... pra onde foram os itens?</span>
                     </div>
                 )
             }
