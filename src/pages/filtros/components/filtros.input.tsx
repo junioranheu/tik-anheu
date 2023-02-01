@@ -32,7 +32,7 @@ export default function FiltrosInput({ topicoBuscado }: iParametros) {
     }
 
     return (
-        <div className={`${Styles.divPesquisa} margem3`}>
+        <div className={Styles.divPesquisa}>
             <input
                 className={Styles.inputPesquisaNavbar}
                 type='text'
