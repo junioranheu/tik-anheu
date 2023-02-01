@@ -2,17 +2,20 @@ import { createContext, useState } from 'react';
 import iContextMisc from '../types/iContextMisc';
 
 interface iContext {
-   isModoDarkContext: [isModoDark: boolean | null | undefined, setIsModoDark: any];
+    queryBuscaContext: [queryBusca: string | null | undefined, setQueryBusca: any];
+    isModoDarkContext: [isModoDark: boolean | null | undefined, setIsModoDark: any];
 }
 
 const _item = '_misc';
 export const MiscContext = createContext<iContext | null>(null);
 
 export const MiscProvider = (props: any) => {
+    const [queryBusca, setQueryBusca] = useState<string | null | undefined>(MiscLocalStorage?.get()?.queryBusca ?? null);
     const [isModoDark, setIsModoDark] = useState<boolean | null | undefined>(MiscLocalStorage?.get()?.isModoDark ?? null);
 
     return (
         <MiscContext.Provider value={{
+            queryBuscaContext: [queryBusca, setQueryBusca],
             isModoDarkContext: [isModoDark, setIsModoDark]
         }}>
             {props.children}
@@ -25,6 +28,7 @@ export const MiscLocalStorage = {
         const dadosAnteriores = MiscLocalStorage.get() as iContextMisc;
 
         const dados = {
+            queryBusca: data?.queryBusca ?? dadosAnteriores?.queryBusca,
             isModoDark: data?.isModoDark ?? dadosAnteriores?.isModoDark
         } as iContextMisc;
 

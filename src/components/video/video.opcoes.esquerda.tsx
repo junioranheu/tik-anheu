@@ -4,8 +4,9 @@ import ImgLupa from '@/assets/images/icones/lupa.webp';
 import ImgPerfil from '@/assets/images/icones/perfil.webp';
 import ImgSol from '@/assets/images/icones/sol.webp';
 import Styles from '@/components/video/styles/video.opcoes.esquerda.module.scss';
-import { MiscContext } from '@/utils/context/miscContext';
+import { MiscContext, MiscLocalStorage } from '@/utils/context/miscContext';
 import toggleModoDark from '@/utils/misc/toggleModoDark';
+import iContextMisc from '@/utils/types/iContextMisc';
 import Image, { StaticImageData } from 'next/image';
 import { useContext, useEffect } from 'react';
 
@@ -16,19 +17,27 @@ interface iParametros {
 
 export default function VideoOpcoesEsquerda({ autorNome, autorLink }: iParametros) {
 
-    const miscContext = useContext(MiscContext); // Contexto do modo dark;
+    const miscContext = useContext(MiscContext); // Contexto misc;
+    const [queryBusca, setQueryBusca] = [miscContext?.queryBuscaContext[0], miscContext?.queryBuscaContext[1]];
     const [isModoDark, setIsModoDark] = [miscContext?.isModoDarkContext[0], miscContext?.isModoDarkContext[1]];
 
     useEffect(() => {
         toggleModoDark(isModoDark, setIsModoDark);
     }, [isModoDark, setIsModoDark]);
 
+    function handleLupa() {
+        const query = { queryBusca: 'Dog' } as iContextMisc;
+        setQueryBusca(query);
+        MiscLocalStorage.set(query);
+        location.reload();
+    }
+
     return (
         <section className={Styles.opcoes}>
             <div className={Styles.divIcones}>
                 <Icone imagem={(isModoDark ? ImgLua : ImgSol)} title={(isModoDark ? 'Alterar para modo dark' : 'Alterar para modo light')} handleFn={() => setIsModoDark(!isModoDark)} isProbido={false} />
                 <Icone imagem={ImgEtc} title='Outras opções' handleFn={() => null} isProbido={true} />
-                <Icone imagem={ImgLupa} title='Buscar' handleFn={() => null} isProbido={true} />
+                <Icone imagem={ImgLupa} title='Buscar' handleFn={() => handleLupa()} isProbido={false} />
                 <Icone imagem={ImgPerfil} title='Perfil' handleFn={() => null} isProbido={true} />
             </div>
 

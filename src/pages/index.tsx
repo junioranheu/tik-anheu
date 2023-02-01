@@ -2,18 +2,21 @@ import Botao from '@/components/outros/botao';
 import useEmoji from '@/hooks/outros/useEmoji';
 import Styles from '@/styles/home.module.scss';
 import CONSTS_SISTEMA from '@/utils/consts/outros/sistema';
+import { MiscContext } from '@/utils/context/miscContext';
 import { Aviso } from '@/utils/misc/aviso';
 import gerarEmojiAleatorio from '@/utils/misc/gerarEmojiAleatorio';
-import gerarItemRandom from '@/utils/misc/gerarItemRandom';
 import gerarNumeroAleatorio from '@/utils/misc/gerarNumeroAleatorio';
 import { iPexels, iPexelsVideo } from '@/utils/types/iPexels';
 import Head from 'next/head';
 import { createClient } from 'pexels'; // https://www.pexels.com/api/documentation/
-import { Fragment, lazy, useCallback, useEffect, useState } from 'react';
+import { Fragment, lazy, useCallback, useContext, useEffect, useState } from 'react';
 import { useSwipeable } from 'react-swipeable'; // https://www.npmjs.com/package/react-swipeable
 const VideoMain = lazy(() => import('@/components/video/video.main'));
 
 export default function Home() {
+
+    const miscContext = useContext(MiscContext); // Contexto misc;
+    const [queryBusca, setQueryBusca] = [miscContext?.queryBuscaContext[0], miscContext?.queryBuscaContext[1]];
 
     const emoji = useEmoji();
     const isDebugging = false;
@@ -71,8 +74,8 @@ export default function Home() {
         const client = createClient(keyPexelsAPI);
 
         // const queries = ['Funny', 'Art', 'Animals', 'Coding', 'Space'];
-        const queries = ['Cats', 'Dogs', 'Monkeys'];
-        const query = gerarItemRandom(queries);
+        // const query = gerarItemRandom(queries);
+        const query = queryBusca ?? 'Cat';
 
         await client.videos
             .search({
@@ -100,7 +103,7 @@ export default function Home() {
                 setKeyPexelsAPI(CONSTS_SISTEMA.KEY_PEXELS_API_2);
                 // getVideos(); // Recursão;
             });
-    }, [keyPexelsAPI, iterarVideosEDefinirVideoIdAtual, isDebugging]);
+    }, [keyPexelsAPI, queryBusca, iterarVideosEDefinirVideoIdAtual, isDebugging]);
 
     function handleWheel() {
         iterarVideosEDefinirVideoIdAtual(true);

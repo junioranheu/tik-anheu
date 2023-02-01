@@ -7,7 +7,7 @@ interface iParametros {
 
 export default function Coracao({ isCurtido }: iParametros) {
 
-    const miscContext = useContext(MiscContext); // Contexto do modo dark;
+    const miscContext = useContext(MiscContext); // Contexto misc;
     const [isModoDark, setIsModoDark] = [miscContext?.isModoDarkContext[0], miscContext?.isModoDarkContext[1]];
 
     return (
