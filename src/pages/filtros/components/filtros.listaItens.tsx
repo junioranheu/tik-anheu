@@ -12,7 +12,7 @@ interface iParametros {
 }
 
 export default function FiltrosListaItens({ listaTopicos }: iParametros) {
-
+    FiltrosListaItens
     const miscContext = useContext(MiscContext); // Contexto misc;
     const [queryBusca, setQueryBusca] = [miscContext?.queryBuscaContext[0], miscContext?.queryBuscaContext[1]];
 
@@ -37,7 +37,7 @@ export default function FiltrosListaItens({ listaTopicos }: iParametros) {
                             onClick={() => handleClick(item)}
                         >
                             <div className={Styles.titulo} title={removerHTML(item?.portugues)} dangerouslySetInnerHTML={{ __html: item?.portugues }} />
-                            <span className={Styles.subtitulo}>0 vídeos</span>
+                            <span className={Styles.subtitulo}>{item?.qtdVideos} {(item?.qtdVideos === 1 ? 'vídeo' : 'vídeos')}</span>
                         </div>
                     ))
                 ) : (

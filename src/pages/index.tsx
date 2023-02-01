@@ -144,7 +144,7 @@ export default function Home() {
 
             <main>
                 <section
-                    className={Styles.main}
+                    className={`${Styles.main} animate__animated animate__fadeIn animate__delay03`}
                     onWheel={() => videosLoaded && handleWheel()}
                     {...handlerSwipe}
                 >
