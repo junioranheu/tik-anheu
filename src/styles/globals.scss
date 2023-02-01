@@ -60,6 +60,7 @@ body {
 
     margin-top: 0.125rem;
     margin-left: 0.05rem;
+    transition: 0.3s;
 
     &.coracaoAnimar {
         animation: heart-burst .8s steps(28) forwards;
@@ -69,8 +70,22 @@ body {
         filter: brightness(20%);
     }
 
-    &.coracaoFiltroBranco{
+    &.coracaoFiltroBranco {
         filter: brightness(0) invert(1);
+    }
+
+    &.coracaoFiltroPretoHover {
+        &:hover {
+            filter: brightness(20%);
+            transition: 0.3s;
+        }
+    }
+
+    &.coracaoFiltroBrancoHover {
+        &:hover {
+            filter: brightness(0) invert(1);
+            transition: 0.3s;
+        }
     }
 }
 

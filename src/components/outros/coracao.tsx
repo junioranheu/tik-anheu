@@ -11,6 +11,14 @@ export default function Coracao({ isCurtido }: iParametros) {
     const [isModoDark, setIsModoDark] = [miscContext?.isModoDarkContext[0], miscContext?.isModoDarkContext[1]];
 
     return (
-        <div className={`coracao ${(isCurtido && 'coracaoAnimar')} ${(!isCurtido && (isModoDark ? 'coracaoFiltroBranco' : 'coracaoFiltroPreto'))}`}></div>
+        <div
+            className={`
+                coracao 
+                ${(isCurtido && 'coracaoAnimar')} 
+                ${(!isCurtido && (isModoDark ? 'coracaoFiltroBranco' : 'coracaoFiltroPreto'))}
+                ${(!isCurtido && (isModoDark ? 'coracaoFiltroPretoHover' : 'coracaoFiltroBrancoHover'))}
+            `}
+        >
+        </div>
     )
 }

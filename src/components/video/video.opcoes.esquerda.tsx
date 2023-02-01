@@ -22,7 +22,7 @@ export default function VideoOpcoesEsquerda({ autorNome, autorLink }: iParametro
     useEffect(() => {
         toggleModoDark(isModoDark, setIsModoDark);
     }, [isModoDark, setIsModoDark]);
-
+ 
     return (
         <section className={Styles.opcoes}>
             <div className={Styles.divIcones}>
