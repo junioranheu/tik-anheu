@@ -18,18 +18,18 @@ export default function VideoOpcoesEsquerda({ autorNome, autorLink }: iParametro
 
     const miscContext = useContext(MiscContext); // Contexto do modo dark;
     const [isModoDark, setIsModoDark] = [miscContext?.isModoDarkContext[0], miscContext?.isModoDarkContext[1]];
-    
+
     useEffect(() => {
         toggleModoDark(isModoDark, setIsModoDark);
     }, [isModoDark, setIsModoDark]);
- 
+
     return (
         <section className={Styles.opcoes}>
             <div className={Styles.divIcones}>
-                <Icone imagem={(isModoDark ? ImgLua : ImgSol)} title={(isModoDark ? 'Alterar para modo dark' : 'Alterar para modo light')} handleFn={() => setIsModoDark(!isModoDark)} />
-                <Icone imagem={ImgEtc} title='Outras opções' handleFn={() => null} />
-                <Icone imagem={ImgLupa} title='Buscar' handleFn={() => null} />
-                <Icone imagem={ImgPerfil} title='Perfil' handleFn={() => null} />
+                <Icone imagem={(isModoDark ? ImgLua : ImgSol)} title={(isModoDark ? 'Alterar para modo dark' : 'Alterar para modo light')} handleFn={() => setIsModoDark(!isModoDark)} isProbido={false} />
+                <Icone imagem={ImgEtc} title='Outras opções' handleFn={() => null} isProbido={true} />
+                <Icone imagem={ImgLupa} title='Buscar' handleFn={() => null} isProbido={true} />
+                <Icone imagem={ImgPerfil} title='Perfil' handleFn={() => null} isProbido={true} />
             </div>
 
             <div className={Styles.infos}>
@@ -47,12 +47,13 @@ interface iIcone {
     imagem: StaticImageData;
     title: string;
     handleFn: () => void;
+    isProbido: boolean;
 }
 
-export function Icone({ imagem, title, handleFn }: iIcone) {
+export function Icone({ imagem, title, handleFn, isProbido }: iIcone) {
     return (
         <div
-            className={Styles.icone}
+            className={`${Styles.icone} ${(isProbido && 'cursorProibido')}`}
             title={title}
             onClick={() => handleFn()}
         >

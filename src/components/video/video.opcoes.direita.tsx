@@ -3,8 +3,6 @@ import ImgCompartilhar from '@/assets/images/icones/compartilhar.webp';
 import ImgReportar from '@/assets/images/icones/reportar.webp';
 import Styles from '@/components/video/styles/video.opcoes.direita.module.scss';
 import useWindowSize from '@/hooks/outros/useWindowSize';
-import { Aviso } from '@/utils/misc/aviso';
-import gerarEmojiAleatorio from '@/utils/misc/gerarEmojiAleatorio';
 import Image, { StaticImageData } from 'next/image';
 import { useState } from 'react';
 import Coracao from '../outros/coracao';
@@ -23,27 +21,15 @@ export default function VideoOpcoesDireita({ id, videoWidth }: iParametros) {
         setIsCurtido(!isCurtido);
     }
 
-    function handleComentarios() {
-        Aviso.toast(`Visualizar comentários do vídeo #${id}`, 3500, gerarEmojiAleatorio(), true);
-    }
-
-    function handleCompartilhar() {
-        Aviso.toast(`Compartilhar vídeo #${id}`, 3500, gerarEmojiAleatorio(), true);
-    }
-
-    function handleReportar() {
-        Aviso.toast(`Reportar vídeo #${id}`, 3500, gerarEmojiAleatorio(), true);
-    }
-
     return (
         <div
             className={Styles.opcoes}
             style={{ marginLeft: tamanhoTela?.width! > 801 ? `${(videoWidth + 80)}px` : '' }}
         >
-            <Icone imagem={null} componente={() => <Coracao isCurtido={isCurtido} />} title='Curtir vídeo' handleFn={() => handleCurtir()} />
-            <Icone imagem={ImgComentario} componente={() => null} title='Comentários' handleFn={() => handleComentarios()} />
-            <Icone imagem={ImgCompartilhar} componente={() => null} title='Compartilhar' handleFn={() => handleCompartilhar()} />
-            <Icone imagem={ImgReportar} componente={() => null} title='Reportar' handleFn={() => handleReportar()} />
+            <Icone imagem={null} componente={() => <Coracao isCurtido={isCurtido} />} title='Curtir vídeo' handleFn={() => handleCurtir()} isProbido={false} />
+            <Icone imagem={ImgComentario} componente={() => null} title='Comentários' handleFn={() => null} isProbido={true} />
+            <Icone imagem={ImgCompartilhar} componente={() => null} title='Compartilhar' handleFn={() => null} isProbido={true} />
+            <Icone imagem={ImgReportar} componente={() => null} title='Reportar' handleFn={() => null} isProbido={true} />
         </div>
     )
 }
@@ -53,13 +39,13 @@ interface iIcone {
     componente: () => JSX.Element | null;
     title: string;
     handleFn: () => void;
-    isCurtido?: boolean;
+    isProbido?: boolean;
 }
 
-export function Icone({ imagem, componente, title, handleFn }: iIcone) {
+export function Icone({ imagem, componente, title, handleFn, isProbido }: iIcone) {
     return (
         <div
-            className={Styles.icone}
+            className={`${Styles.icone} ${(isProbido && 'cursorProibido')}`}
             title={title}
             onClick={() => handleFn()}
         >

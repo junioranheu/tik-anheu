@@ -27,6 +27,10 @@ body {
     pointer-events: none;
 }
 
+.cursorProibido {
+    cursor: not-allowed !important;
+}
+
 .semHighlight {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
