@@ -157,7 +157,7 @@ export default function Home() {
                     }
 
                     {
-                        videos?.length < 0 ? (
+                        videos?.length > 0 ? (
                             <Fragment>
                                 {
                                     videos?.map((v: iPexelsVideo, i: number) => (
