@@ -1,12 +1,21 @@
+import { MiscContext } from '@/utils/context/miscContext';
 import { Aviso } from '@/utils/misc/aviso';
 import pegarNomeNavegador from '@/utils/misc/pegarNomeNavegador';
+import toggleModoDark from '@/utils/misc/toggleModoDark';
 import { useRouter } from 'next/router';
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useContext, useEffect, useState } from 'react';
 
 export default function LayoutPadrao({ Component, pageProps }: any) {
 
-    const { asPath } = useRouter();
+    const miscContext = useContext(MiscContext); // Contexto misc;
+    const [queryBusca, setQueryBusca] = [miscContext?.queryBuscaContext[0], miscContext?.queryBuscaContext[1]];
+    const [isModoDark, setIsModoDark] = [miscContext?.isModoDarkContext[0], miscContext?.isModoDarkContext[1]];
 
+    useEffect(() => {
+        toggleModoDark(isModoDark, setIsModoDark);
+    }, [isModoDark, setIsModoDark]);
+
+    const { asPath } = useRouter();
     const [efeitoAnimar, setEfeitoAnimar] = useState<string>('');
     useEffect(() => {
         setEfeitoAnimar('animate__animated animate__fadeIn animate__delay03');

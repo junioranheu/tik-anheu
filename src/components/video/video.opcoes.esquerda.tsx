@@ -6,10 +6,9 @@ import ImgSol from '@/assets/images/icones/sol.webp';
 import Styles from '@/components/video/styles/video.opcoes.esquerda.module.scss';
 import CONSTS_TELAS from '@/utils/consts/outros/telas';
 import { MiscContext } from '@/utils/context/miscContext';
-import toggleModoDark from '@/utils/misc/toggleModoDark';
 import Image, { StaticImageData } from 'next/image';
 import Router from 'next/router';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 
 interface iParametros {
     autorNome: string;
@@ -19,12 +18,7 @@ interface iParametros {
 export default function VideoOpcoesEsquerda({ autorNome, autorLink }: iParametros) {
 
     const miscContext = useContext(MiscContext); // Contexto misc;
-    const [queryBusca, setQueryBusca] = [miscContext?.queryBuscaContext[0], miscContext?.queryBuscaContext[1]];
     const [isModoDark, setIsModoDark] = [miscContext?.isModoDarkContext[0], miscContext?.isModoDarkContext[1]];
-
-    useEffect(() => {
-        toggleModoDark(isModoDark, setIsModoDark);
-    }, [isModoDark, setIsModoDark]);
 
     return (
         <section className={Styles.opcoes}>
