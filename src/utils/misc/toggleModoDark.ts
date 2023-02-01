@@ -1,4 +1,5 @@
 import { Dispatch } from 'react';
+import CONSTS_SISTEMA from '../consts/outros/sistema';
 import { MiscLocalStorage } from '../context/miscContext';
 import iContextMisc from '../types/iContextMisc';
 
@@ -24,7 +25,7 @@ export default function toggleModoDark(isModoDark: boolean | null | undefined, s
 
 function selectorAll(isModoDark: boolean, isPrimeiroLoading: boolean) {
     setTimeout(function () {
-        const icones = document?.querySelectorAll('img[src*=".webp"]');
+        const icones = document?.querySelectorAll(`img[id*="${CONSTS_SISTEMA.ID_IMG_MODO_DARK}"]`);
 
         for (let index = 0; index < icones?.length; index++) {
             const element = icones[index];

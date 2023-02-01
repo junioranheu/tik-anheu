@@ -3,6 +3,7 @@ import ImgSomMudo from '@/assets/images/icones/som-mudo.webp';
 import ImgSom from '@/assets/images/icones/som.webp';
 import ImgStop from '@/assets/images/icones/stop.webp';
 import Styles from '@/components/video/styles/video.opcoes.centro.module.scss';
+import CONSTS_SISTEMA from '@/utils/consts/outros/sistema';
 import Image, { StaticImageData } from 'next/image';
 import { Dispatch } from 'react';
 
@@ -41,7 +42,7 @@ export function Icone({ imagem, title, handleFn }: iIcone) {
             title={title}
             onClick={() => handleFn()}
         >
-            <Image src={imagem} alt='' />
+            <Image src={imagem} alt='' id={CONSTS_SISTEMA.ID_IMG_MODO_DARK} />
         </div >
     )
 }

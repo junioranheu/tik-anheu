@@ -3,6 +3,7 @@ import ImgCompartilhar from '@/assets/images/icones/compartilhar.webp';
 import ImgReportar from '@/assets/images/icones/reportar.webp';
 import Styles from '@/components/video/styles/video.opcoes.direita.module.scss';
 import useWindowSize from '@/hooks/outros/useWindowSize';
+import CONSTS_SISTEMA from '@/utils/consts/outros/sistema';
 import Image, { StaticImageData } from 'next/image';
 import { useState } from 'react';
 import Coracao from '../outros/coracao';
@@ -57,7 +58,7 @@ export function Icone({ imagem, componente, title, handleFn, isProbido }: iIcone
 
             {
                 imagem && (
-                    <Image src={imagem} alt='' />
+                    <Image src={imagem} alt='' id={CONSTS_SISTEMA.ID_IMG_MODO_DARK} />
                 )
             }
         </div >

@@ -4,6 +4,7 @@ import ImgLupa from '@/assets/images/icones/lupa.webp';
 import ImgPerfil from '@/assets/images/icones/perfil.webp';
 import ImgSol from '@/assets/images/icones/sol.webp';
 import Styles from '@/components/video/styles/video.opcoes.esquerda.module.scss';
+import CONSTS_SISTEMA from '@/utils/consts/outros/sistema';
 import CONSTS_TELAS from '@/utils/consts/outros/telas';
 import { MiscContext } from '@/utils/context/miscContext';
 import Image, { StaticImageData } from 'next/image';
@@ -54,7 +55,7 @@ export function Icone({ imagem, title, handleFn, isProbido }: iIcone) {
             title={title}
             onClick={() => handleFn()}
         >
-            <Image src={imagem} alt='' />
+            <Image src={imagem} alt='' id={CONSTS_SISTEMA.ID_IMG_MODO_DARK} />
         </div >
     )
 }
