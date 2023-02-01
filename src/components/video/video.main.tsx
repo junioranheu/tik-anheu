@@ -4,10 +4,9 @@ import { Aviso } from '@/utils/misc/aviso';
 import gerarEmojiAleatorio from '@/utils/misc/gerarEmojiAleatorio';
 import { Dispatch, lazy, useEffect, useRef, useState } from 'react';
 const ProgressBar = lazy(() => import('./video.progressBar'));
-const VideoOpcoesEsquerda = lazy(() => import('./video.opcoes.esquerda'));
 const VideoOpcoesDireita = lazy(() => import('./video.opcoes.direita'));
 const VideoOpcoesCentro = lazy(() => import('./video.opcoes.centro'));
-
+ 
 interface iParametros {
     index: number;
     autorNome: string;
@@ -96,11 +95,6 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isVid
                 width={`${videoWidth}px`}
                 isDebugging={false}
                 classCSS={Styles.progress}
-            />
-
-            <VideoOpcoesEsquerda
-                autorNome={autorNome}
-                autorLink={autorLink}
             />
 
             <VideoOpcoesCentro

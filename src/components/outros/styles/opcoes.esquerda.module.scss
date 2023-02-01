@@ -90,6 +90,12 @@
 
 /* tablet, landscape iPad, lo-res laptops ands desktops */
 @media (max-width:801px) {
+    .opcoesAbsoluteTop {
+        // background-color: coral;
+        position: absolute;
+        top: 1rem !important;
+    }
+
     .opcoes {
         opacity: 1;
         transition: opacity 0.3s linear;
