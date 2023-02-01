@@ -1,5 +1,7 @@
 import Styles from '@/components/video/styles/video.main.module.scss';
 import useWindowSize from '@/hooks/outros/useWindowSize';
+import { Aviso } from '@/utils/misc/aviso';
+import gerarEmojiAleatorio from '@/utils/misc/gerarEmojiAleatorio';
 import { Dispatch, lazy, useEffect, useRef, useState } from 'react';
 const ProgressBar = lazy(() => import('./video.progressBar'));
 const VideoOpcoesEsquerda = lazy(() => import('./video.opcoes.esquerda'));
@@ -23,13 +25,21 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isVid
     function togglePlay() {
         const currentVideo = refVideo?.current;
 
-        setTimeout(function () {
-            if (currentVideo?.paused) {
-                currentVideo?.play();
-            } else {
-                currentVideo?.pause();
-            }
-        }, 150);
+        if (currentVideo?.paused) {
+            const p = currentVideo?.play();
+
+            p.then(function () {
+                Aviso.toast('Play', 3500, gerarEmojiAleatorio(), true);
+            }).catch(function (reason: any) {
+                Aviso.toast('Erro ao play', 3500, gerarEmojiAleatorio(), true);
+
+                setTimeout(function () {
+                    currentVideo?.play();
+                }, 150);
+            });
+        } else {
+            currentVideo?.pause();
+        }
     }
 
     const tamanhoTela = useWindowSize();

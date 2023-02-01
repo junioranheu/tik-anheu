@@ -50,18 +50,15 @@ export default function Home() {
                     setVideoIdAtual(i);
 
                     setTimeout(function () {
-                        try {
-                            const p = video?.play();
-                            p.then(function () {
+                        const p = video?.play();
 
-                            }).catch(function (reason: any) {
+                        p.then(function () {
 
-                            });
-                        } catch (error: any) {
+                        }).catch(function (reason: any) {
 
-                        } finally {
+                        }).finally(function () {
                             isDebugging && Aviso.toast(`Play no vídeo #${i}`, 3500, gerarEmojiAleatorio(), true);
-                        }
+                        });
                     }, 250);
                 } else {
                     video?.pause();
