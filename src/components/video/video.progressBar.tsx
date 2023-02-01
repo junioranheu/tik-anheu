@@ -98,7 +98,7 @@ export default function ProgressBar({ handleProgress, progress, width, isDebuggi
 
                     {
                         isDebugging && (
-                            <p style={{ color: 'lime', fontSize: '2rem' }}><b>{progress}</b></p>
+                            <p className='debug'><b>{progress}</b></p>
                         )
                     }
                 </div>

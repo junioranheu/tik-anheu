@@ -150,7 +150,7 @@ export default function Home() {
                 >
                     {
                         isDebugging && (
-                            <section style={{ color: 'lime', position: 'absolute', zIndex: 999 }}>
+                            <section className='debug' style={{ position: 'absolute', zIndex: 999 }}>
                                 <h1>{msgDebug}</h1>
                             </section>
                         )

@@ -18,6 +18,7 @@ interface iParametros {
 
 export default function VideoOpcoesEsquerda({ autorNome, autorLink }: iParametros) {
 
+    const isDebugging = false;
     const miscContext = useContext(MiscContext); // Contexto misc;
     const [queryBusca, setQueryBusca] = [miscContext?.queryBuscaContext[0], miscContext?.queryBuscaContext[1]];
     const [isModoDark, setIsModoDark] = [miscContext?.isModoDarkContext[0], miscContext?.isModoDarkContext[1]];
@@ -33,12 +34,14 @@ export default function VideoOpcoesEsquerda({ autorNome, autorLink }: iParametro
 
             <div className={Styles.infos}>
                 {
-                    queryBusca && (
-                        <span>queryBusca: {queryBusca}</span>
+                    isDebugging && queryBusca && (
+                        <span className='debug'>queryBusca: {queryBusca}</span>
                     )
                 }
 
-                <span>isModoDark: {isModoDark!.toString()}</span>
+                {
+                    isDebugging && <span className='debug'>isModoDark: {isModoDark!.toString()}</span>
+                }
 
                 <span>
                     Por <span className={Styles.spanBold}>@{autorNome}</span> — via Pexel
