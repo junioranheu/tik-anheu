@@ -1,5 +1,6 @@
 const CONSTS_TELAS = {
-    INDEX: '/'
+    INDEX: '/',
+    FILTROS: '/filtros'
 };
 
 export default CONSTS_TELAS;
