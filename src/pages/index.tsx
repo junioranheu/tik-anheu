@@ -17,6 +17,7 @@ export default function Home() {
 
     const emoji = useEmoji();
     const isDebugging = false;
+    const [msgDebug, setMsgDebug] = useState<string>('');
 
     const [keyPexelsAPI, setKeyPexelsAPI] = useState<string>(CONSTS_SISTEMA.KEY_PEXELS_API_1);
     const [videos, setVideos] = useState<iPexelsVideo[]>([]);
@@ -134,6 +135,10 @@ export default function Home() {
         }
     })
 
+    useEffect(() => {
+        setMsgDebug(`videos?.length: ${videos?.length} | carregarNovosVideoEm: ${(carregarNovosVideoEm - 2)} | videoIdAtual: ${videoIdAtual}`);
+    }, [videos, carregarNovosVideoEm, videoIdAtual]);
+
     return (
         <Fragment>
             <Head>
@@ -146,6 +151,14 @@ export default function Home() {
                     onWheel={() => videosLoaded && handleWheel()}
                     {...handlerSwipe}
                 >
+                    {
+                        !isDebugging && (
+                            <section style={{ color: 'lime', position: 'absolute', zIndex: 999 }}>
+                                <h1>{msgDebug}</h1>
+                            </section>
+                        )
+                    }
+
                     {
                         videos?.length > 0 ? (
                             <Fragment>
