@@ -1,5 +1,6 @@
 import { Dispatch } from 'react';
 import { MiscLocalStorage } from '../context/miscContext';
+import iContextMisc from '../types/iContextMisc';
 
 export default function toggleModoDark(isModoDark: boolean | null | undefined, setIsModoDark: Dispatch<boolean>) {
     // console.log(isModoDark);
@@ -20,7 +21,7 @@ export default function toggleModoDark(isModoDark: boolean | null | undefined, s
 
     // Atualizar no localStorage;
     setIsModoDark(isModoDark ?? false);
-    MiscLocalStorage.set({ isModoDark: isModoDark ?? false });
+    MiscLocalStorage.set({ isModoDark: isModoDark ?? false } as iContextMisc);
 }
 
 function selectorAll(isModoDark: boolean) {
