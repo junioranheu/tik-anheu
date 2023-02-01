@@ -42,12 +42,6 @@
                 transition: 0.3s;
             }
         }
-
-        &.iconeVermelho {
-            img {
-                filter: invert(21%) sepia(100%) saturate(7414%) hue-rotate(359deg) brightness(94%) contrast(117%);
-            }
-        }
     }
 }
 
