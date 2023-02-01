@@ -1,5 +1,5 @@
 <h1 align="center">
-TikAnheu - um projeto baseado no TikTok por @junioranheu
+@TikAnheu - um projeto baseado no TikTok por @junioranheu
 </h1>
 
 <p align="center">Um web app baseado no TikTok em React.js e Next.js.
@@ -8,7 +8,7 @@ TikAnheu - um projeto baseado no TikTok por @junioranheu
 
 ## 📃 Sobre o projeto
 
-Um projeto baseado no TikTok: TikAnheu.
+Um projeto baseado no TikTok: @TikAnheu.
 
 Desenvolvido para praticar React.js, Next.js, Typescript, SCSS, lógica, etc.
 
