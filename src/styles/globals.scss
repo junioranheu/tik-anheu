@@ -41,7 +41,7 @@ body {
     transition: 0.3s;
 
     &:hover {
-        filter: brightness(100%) !important;
+        filter: brightness(0) !important;
         transition: 0.3s !important;
     }
 }
@@ -76,7 +76,7 @@ body {
 
     &.coracaoFiltroPretoHover {
         &:hover {
-            filter: brightness(20%);
+            filter: brightness(0);
             transition: 0.3s;
         }
     }
