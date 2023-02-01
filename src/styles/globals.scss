@@ -46,6 +46,44 @@ body {
     }
 }
 
+/* =-=-=-=-=-=-=-=-=-=-= Coração =-=-=-=-=-=-=-=-=-=-= */
+.coracao {
+    // background-color: coral;
+    background-image: url('../assets/images/outros/coracao-animacao.png');
+    background-repeat: no-repeat;
+    background-size: 2900%;
+    background-position: left;
+    height: 3.125rem;
+    width: 3.125rem;
+    margin: 0 auto;
+    cursor: pointer;
+
+    margin-top: 0.125rem;
+    margin-left: 0.07rem;
+
+    &.coracaoAnimar {
+        animation: heart-burst .8s steps(28) forwards;
+    }
+
+    &.coracaoFiltroPreto {
+        filter: brightness(20%);
+    }
+
+    &.coracaoFiltroBranco{
+        filter: brightness(0) invert(1);
+    }
+}
+
+@keyframes heart-burst {
+    0% {
+        background-position: left;
+    }
+
+    100% {
+        background-position: right;
+    }
+}
+
 /* =-=-=-=-=-=-=-=-=-=-= Botão =-=-=-=-=-=-=-=-=-=-= */
 .botao {
     position: relative;
