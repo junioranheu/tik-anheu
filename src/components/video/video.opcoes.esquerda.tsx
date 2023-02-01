@@ -31,7 +31,7 @@ export default function VideoOpcoesEsquerda({ autorNome, autorLink }: iParametro
             <div className={Styles.divIcones}>
                 <Icone imagem={(isModoDark ? ImgLua : ImgSol)} title={(isModoDark ? 'Alterar para modo dark' : 'Alterar para modo light')} handleFn={() => setIsModoDark(!isModoDark)} isProbido={false} />
                 <Icone imagem={ImgEtc} title='Outras opções' handleFn={() => null} isProbido={true} />
-                <Icone imagem={ImgLupa} title='Buscar' handleFn={() => Router.push(CONSTS_TELAS.FILTROS)} isProbido={false} />
+                <Icone imagem={ImgLupa} title='Filtros' handleFn={() => Router.push(CONSTS_TELAS.FILTROS)} isProbido={false} />
                 <Icone imagem={ImgPerfil} title='Perfil' handleFn={() => null} isProbido={true} />
             </div>
 
