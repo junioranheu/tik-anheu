@@ -49,7 +49,7 @@ export default function OutrasOpcoes() {
                     isDebugging && <span className='debug'>isModoDark: {isModoDark!.toString()}</span>
                 }
 
-                <span>Via Pexel API</span>
+                <span>Via Pexels API</span>
 
                 {
                     queryBusca && (
