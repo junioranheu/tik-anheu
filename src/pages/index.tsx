@@ -72,9 +72,6 @@ export default function Home() {
 
     const getVideos = useCallback(async () => {
         const client = createClient(keyPexelsAPI);
-
-        // const queries = ['Funny', 'Art', 'Animals', 'Coding', 'Space'];
-        // const query = gerarItemRandom(queries);
         const query = queryBusca ?? 'Cat';
 
         await client.videos

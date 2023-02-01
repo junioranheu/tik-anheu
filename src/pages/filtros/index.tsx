@@ -11,14 +11,16 @@ import Styles from './styles/filtros.module.scss';
 export default function Index() {
 
     const listaTopicos = [
-        {  portugues: 'Cachorros', ingles: 'Dog', isAtivo: true },
-        {  portugues: 'Gatos', ingles: 'Cat', isAtivo: true },
-        {  portugues: 'Macacos', ingles: 'Monkey', isAtivo: true },
-        {  portugues: 'Insetos', ingles: 'Insects', isAtivo: true },
-        {  portugues: 'Passáros', ingles: 'Bird', isAtivo: true },
-        {  portugues: 'Gente', ingles: 'People', isAtivo: true },
-        {  portugues: 'Artes', ingles: 'Art', isAtivo: true },
-        {  portugues: 'Videogames', ingles: 'Videogame', isAtivo: true }
+        { portugues: 'Cachorros', ingles: 'Dog', isAtivo: true },
+        { portugues: 'Gatos', ingles: 'Cat', isAtivo: true },
+        { portugues: 'Macacos', ingles: 'Monkey', isAtivo: true },
+        { portugues: 'Insetos', ingles: 'Insect', isAtivo: true },
+        { portugues: 'Passáros', ingles: 'Bird', isAtivo: true },
+        { portugues: 'Gente', ingles: 'People', isAtivo: true },
+        { portugues: 'Artes', ingles: 'Art', isAtivo: true },
+        { portugues: 'Videogames', ingles: 'Videogame', isAtivo: true },
+        { portugues: 'Programação', ingles: 'Coding', isAtivo: true },
+        { portugues: 'Humor', ingles: 'Funny', isAtivo: true }
     ] as iFiltroItem[];
 
     return (

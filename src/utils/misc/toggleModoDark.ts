@@ -38,5 +38,5 @@ function selectorAll(isModoDark: boolean) {
                 element.classList.remove('imgModoDark');
             }
         }
-    }, 500);
+    }, 750);
 }

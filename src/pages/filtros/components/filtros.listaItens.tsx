@@ -18,7 +18,7 @@ export default function FiltrosListaItens({ listaTopicos }: iParametros) {
 
     function handleClick(item: iFiltroItem) {
         const query = { queryBusca: item.ingles } as iContextMisc;
-        setQueryBusca(query);
+        setQueryBusca(item.ingles);
         MiscLocalStorage.set(query);
 
         setTimeout(() => {
