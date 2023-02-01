@@ -23,11 +23,13 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isVid
     function togglePlay() {
         const currentVideo = refVideo?.current;
 
-        if (currentVideo?.paused) {
-            currentVideo?.play();
-        } else {
-            currentVideo?.pause();
-        }
+        setTimeout(function () {
+            if (currentVideo?.paused) {
+                currentVideo?.play();
+            } else {
+                currentVideo?.pause();
+            }
+        }, 150);
     }
 
     const tamanhoTela = useWindowSize();
