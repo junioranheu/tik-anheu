@@ -92,10 +92,15 @@ export default function ProgressBar({ handleProgress, progress, width, isDebuggi
             onClick={(e) => handleClick(e)} {...bindProgressBar()}
             style={{ width: width }}
         >
-            <div className={Styles.progress} style={{ width: volumeControleInterno }}>
+            <div className={Styles.progress} style={{ width: (isNaN(volumeControleInterno) ? 0 : (volumeControleInterno ?? 0)) }}>
                 <div className={Styles.pointer}>
                     <div className={Styles.toast}></div>
-                    {isDebugging && <p style={{ color: 'lime', fontSize: '2rem' }}><b>{progress}</b></p>}
+
+                    {
+                        isDebugging && (
+                            <p style={{ color: 'lime', fontSize: '2rem' }}><b>{progress}</b></p>
+                        )
+                    }
                 </div>
             </div>
         </div>

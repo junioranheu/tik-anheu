@@ -29,13 +29,9 @@ export default function VideoMain({ index, autorNome, autorLink, videoUrl, isVid
             const p = currentVideo?.play();
 
             p.then(function () {
-                Aviso.toast('Play', 3500, gerarEmojiAleatorio(), true);
-            }).catch(function (reason: any) {
-                Aviso.toast('Erro ao play', 3500, gerarEmojiAleatorio(), true);
 
-                setTimeout(function () {
-                    currentVideo?.play();
-                }, 150);
+            }).catch(function (reason: any) {
+                Aviso.toast('Houve um problema para carregar esse vídeo. Atualize a página, por favor', 7000, gerarEmojiAleatorio(), true);
             });
         } else {
             currentVideo?.pause();
