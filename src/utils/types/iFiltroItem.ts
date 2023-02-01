@@ -1,6 +1,5 @@
 export default interface iFiltroItem {
-    filtroItemId: number;
-    item: string;
-    descricao:string;
+    portugues: string;
+    ingles: string;
     isAtivo: boolean;
 }

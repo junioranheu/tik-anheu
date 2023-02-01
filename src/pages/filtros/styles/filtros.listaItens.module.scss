@@ -16,13 +16,14 @@
         flex-direction: column;
         gap: 0.5rem;
 
-        max-width: 30%;
+        max-width: 20%;
         padding: 2rem 1.75rem;
         border: 1px solid var(--bege);
         box-shadow: 0 0 1px var(--cor-principal);
         border-radius: 5px;
 
         cursor: pointer;
+        transition: 0.3s;
 
         .titulo {
             // background-color: red;
@@ -42,16 +43,13 @@
             color: var(--preto);
             font-size: 0.9rem;
             font-weight: 400;
-            min-height: 4rem;
         }
 
-        .saibaMais {
-            // background-color: blue;
-            color: var(--cor-principal);
-            font-size: 0.9rem;
-            font-weight: 400;
-            cursor: pointer;
-            margin-top: auto;
+        &:hover {
+            .titulo {
+                color: var(--cor-principal);
+                transition: 0.3s;
+            }
         }
     }
 }

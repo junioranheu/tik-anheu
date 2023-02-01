@@ -1,5 +1,10 @@
+import CONSTS_TELAS from '@/utils/consts/outros/telas';
+import { MiscContext, MiscLocalStorage } from '@/utils/context/miscContext';
 import removerHTML from '@/utils/misc/removerHTML';
+import iContextMisc from '@/utils/types/iContextMisc';
 import iFiltroItem from '@/utils/types/iFiltroItem';
+import Router from 'next/router';
+import { useContext } from 'react';
 import Styles from './../styles/filtros.listaItens.module.scss';
 
 interface iParametros {
@@ -7,20 +12,32 @@ interface iParametros {
 }
 
 export default function FiltrosListaItens({ listaTopicos }: iParametros) {
+
+    const miscContext = useContext(MiscContext); // Contexto misc;
+    const [queryBusca, setQueryBusca] = [miscContext?.queryBuscaContext[0], miscContext?.queryBuscaContext[1]];
+
+    function handleClick(item: iFiltroItem) {
+        const query = { queryBusca: item.ingles } as iContextMisc;
+        setQueryBusca(query);
+        MiscLocalStorage.set(query);
+
+        setTimeout(() => {
+            Router.push(CONSTS_TELAS.INDEX);
+        }, 500);
+    }
+
     return (
         <div className={Styles.main}>
             {
                 listaTopicos && listaTopicos?.length > 0 ? (
                     listaTopicos?.map((item: iFiltroItem, i: number) => (
                         <div
-                            key={item?.filtroItemId}
+                            key={i}
                             className={Styles.topico}
-                            title={removerHTML(item?.item)}
-                            onClick={() => null}
+                            onClick={() => handleClick(item)}
                         >
-                            <div className={Styles.titulo} title={removerHTML(item?.item)} dangerouslySetInnerHTML={{ __html: item?.item }} />
-                            <span className={Styles.subtitulo}>{item?.descricao}</span>
-                            <span className={Styles.saibaMais} title={`Saiba mais: ${removerHTML(item?.item?.toLowerCase())}`}>Saiba mais</span>
+                            <div className={Styles.titulo} title={removerHTML(item?.portugues)} dangerouslySetInnerHTML={{ __html: item?.portugues }} />
+                            <span className={Styles.subtitulo}>0 vídeos</span>
                         </div>
                     ))
                 ) : (
