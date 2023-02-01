@@ -1,6 +1,6 @@
 import EmojiMedicacao from '@/assets/images/outros/emoji-meditacao.webp';
+import useNumeroAleatorio from '@/hooks/outros/useNumeroAleatorio';
 import CONSTS_SISTEMA from '@/utils/consts/outros/sistema';
-import gerarNumeroAleatorio from '@/utils/misc/gerarNumeroAleatorio';
 import iFiltroItem from '@/utils/types/iFiltroItem';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -10,22 +10,22 @@ import FiltrosListaItens from './components/filtros.listaItens';
 import Styles from './styles/filtros.module.scss';
 
 export default function Index() {
- 
+
     const listaTopicos = [
-        { portugues: 'Cachorros', ingles: 'Dog', qtdVideos: gerarNumeroAleatorio(500, 1500), isAtivo: true },
-        { portugues: 'Gatos', ingles: 'Cat', qtdVideos: gerarNumeroAleatorio(500, 1500), isAtivo: true },
-        { portugues: 'Macacos', ingles: 'Monkey', qtdVideos: gerarNumeroAleatorio(500, 1500), isAtivo: true },
-        { portugues: 'Insetos', ingles: 'Insect', qtdVideos: gerarNumeroAleatorio(500, 1500), isAtivo: true },
-        { portugues: 'Borboletas', ingles: 'Butterfly Insect', qtdVideos: gerarNumeroAleatorio(500, 1500), isAtivo: true },
-        { portugues: 'Bebês', ingles: 'Baby', qtdVideos: gerarNumeroAleatorio(500, 1500), isAtivo: true },
-        { portugues: 'Passáros', ingles: 'Bird', qtdVideos: gerarNumeroAleatorio(500, 1500), isAtivo: true },
-        { portugues: 'Gente', ingles: 'People', qtdVideos: gerarNumeroAleatorio(500, 1500), isAtivo: true },
-        { portugues: 'Artes', ingles: 'Art', qtdVideos: gerarNumeroAleatorio(500, 1500), isAtivo: true },
-        { portugues: 'Videogames', ingles: 'Videogame', qtdVideos: gerarNumeroAleatorio(500, 1500), isAtivo: true },
-        { portugues: 'Programação', ingles: 'Coding', qtdVideos: gerarNumeroAleatorio(500, 1500), isAtivo: true },
-        { portugues: 'Humor', ingles: 'Funny', qtdVideos: gerarNumeroAleatorio(500, 1500), isAtivo: true },
-        { portugues: 'Comida', ingles: 'Food', qtdVideos: gerarNumeroAleatorio(500, 1500), isAtivo: true },
-        { portugues: 'Animais', ingles: 'Animal', qtdVideos: gerarNumeroAleatorio(500, 1500), isAtivo: true }
+        { portugues: 'Cachorros', ingles: 'Dog', qtdVideos: useNumeroAleatorio(500, 1500), isAtivo: true },
+        { portugues: 'Gatos', ingles: 'Cat', qtdVideos: useNumeroAleatorio(500, 1500), isAtivo: true },
+        { portugues: 'Macacos', ingles: 'Monkey', qtdVideos: useNumeroAleatorio(500, 1500), isAtivo: true },
+        { portugues: 'Insetos', ingles: 'Insect', qtdVideos: useNumeroAleatorio(500, 1500), isAtivo: true },
+        { portugues: 'Borboletas', ingles: 'Butterfly Insect', qtdVideos: useNumeroAleatorio(500, 1500), isAtivo: true },
+        { portugues: 'Bebês', ingles: 'Baby', qtdVideos: useNumeroAleatorio(500, 1500), isAtivo: true },
+        { portugues: 'Passáros', ingles: 'Bird', qtdVideos: useNumeroAleatorio(500, 1500), isAtivo: true },
+        { portugues: 'Gente', ingles: 'People', qtdVideos: useNumeroAleatorio(500, 1500), isAtivo: true },
+        { portugues: 'Artes', ingles: 'Art', qtdVideos: useNumeroAleatorio(500, 1500), isAtivo: true },
+        { portugues: 'Videogames', ingles: 'Videogame', qtdVideos: useNumeroAleatorio(500, 1500), isAtivo: true },
+        { portugues: 'Programação', ingles: 'Coding', qtdVideos: useNumeroAleatorio(500, 1500), isAtivo: true },
+        { portugues: 'Humor', ingles: 'Funny', qtdVideos: useNumeroAleatorio(500, 1500), isAtivo: true },
+        { portugues: 'Comida', ingles: 'Food', qtdVideos: useNumeroAleatorio(500, 1500), isAtivo: true },
+        { portugues: 'Animais', ingles: 'Animal', qtdVideos: useNumeroAleatorio(500, 1500), isAtivo: true }
     ] as iFiltroItem[];
 
     return (

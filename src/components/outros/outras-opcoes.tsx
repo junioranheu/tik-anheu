@@ -12,11 +12,7 @@ import Router, { useRouter } from 'next/router';
 import { useContext } from 'react';
 import Styles from './styles/outras-opcoes.module.scss';
 
-interface iParametros {
-    autorNome: string;
-}
-
-export default function OutrasOpcoes({ autorNome }: iParametros) {
+export default function OutrasOpcoes() {
 
     const isDebugging = false;
     const { asPath } = useRouter();

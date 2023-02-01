@@ -31,9 +31,7 @@ export default function LayoutPadrao({ Component, pageProps }: any) {
             <main className={'semHighlight'}>
                 <Component {...pageProps} />
 
-                <OutrasOpcoes
-                    autorNome='aea pes'
-                />
+                <OutrasOpcoes />
             </main>
         </Fragment>
     )

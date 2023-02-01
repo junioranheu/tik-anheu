@@ -8,6 +8,8 @@
     align-items: center;
     flex-direction: column;
 
+    overflow-y: auto;
+
     .divTitulo {
         // background-color: red;
         display: flex;
