@@ -1,18 +1,14 @@
-<h1 align="center">
-@TikAnheu - um projeto baseado no TikTok por @junioranheu
-</h1>
-
-<p align="center">Um web app baseado no TikTok em React.js e Next.js.
-<br/><br/><a align="center" href="https://tikanheu.vercel.app/" target="_blank">Aplicação rodando na Vercel</a>
-</p>
-
-## 📃 Sobre o projeto
+# @TikAnheu - um projeto baseado no TikTok
 
 Um projeto baseado no TikTok: @TikAnheu.
 
 Desenvolvido para praticar React.js, Next.js, Typescript, SCSS, lógica, etc.
 
-Este projeto faz parte do meu potfólio pessoal, sem fins lucrativos, a fim de estudo apenas. 
+Este projeto faz parte do meu potfólio pessoal, sem fins lucrativos, a fim de estudo apenas.
 
-Projeto iniciado em 28 de janeiro de 2023.<br/>
+Projeto iniciado em 28 de janeiro de 2023.
 Core do projeto finalizado em 01 de fevereiro de 2023 (137 commits).
+
+## Publicação
+O projeto foi publicado na Vercel:
+https://tikanheu.vercel.app/
